@@ -122,6 +122,9 @@
     <Reference Include="PCLCrypto">
       <HintPath>..\packages\PCLCrypto.2.0.147\lib\xamarinios10\PCLCrypto.dll</HintPath>
     </Reference>
+    <Reference Include="Plugin.Visual1993.Gateway.Abstractions">
+      <HintPath>..\packages\Plugin.Visual1993.Gateway.Abstractions.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Contents.json" />
@@ -141,12 +144,6 @@
   <ItemGroup>
     <Compile Include="Main.cs" />
     <Compile Include="AppDelegate.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\..\Plugin.Visual1993.Gateway\Plugin.Visual1993.Gateway.Abstractions\Plugin.Visual1993.Gateway.Abstractions.csproj">
-      <Project>{C615361B-5E33-43F3-900F-F2B40A4F34EE}</Project>
-      <Name>Plugin.Visual1993.Gateway.Abstractions</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="..\LuissLoft\LuissLoft.projitems" Label="Shared" Condition="Exists('..\LuissLoft\LuissLoft.projitems')" />
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />

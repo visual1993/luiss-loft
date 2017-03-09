@@ -11,13 +11,16 @@ using Xamarin.Forms;
 using Visual1993.Extensions;
 using System.Text;
 
-namespace disco1
+namespace LuissLoft
 {
-	public class Locale : Gateway<Locale.PersonalizedData, Locale>
+	public class TestModel : Gateway<TestModel.PersonalizedData, TestModel>
 	{
-		public const string remoteClassNameConst = "locale";
-		public Locale()
-		{}
+		public const string remoteClassNameConst = "testmodel";
+		public TestModel()
+		{
+			remoteClassName = remoteClassNameConst;
+
+		}
 		public PersonalizedData data { get; set; } = new PersonalizedData();
 		public class PersonalizedData
 		{
@@ -37,44 +40,44 @@ namespace disco1
 		public class CachedDataClass
 		{ 
 		}
-		public static async Task<ResponseList<Locale>> getMultiple(List<Guid> guids)
+		public static async Task<ResponseList<TestModel>> getMultiple(List<Guid> guids)
 		{
-			return await getAdvanced(guids, null, "", null, Constants.GatewayUrl, remoteClassNameConst)?? new Gateway<PersonalizedData, Locale>.ResponseList<Locale>();
+			return await getAdvanced(guids, null, "", null, Constants.GatewayUrl, remoteClassNameConst)?? new Gateway<PersonalizedData, TestModel>.ResponseList<TestModel>();
 		}
-		public static async Task<ResponseList<Locale>> getAll()
+		public static async Task<ResponseList<TestModel>> getAll()
 		{
-			return await get(Guid.Empty)?? new Gateway<PersonalizedData, Locale>.ResponseList<Locale>();
+			return await get(Guid.Empty)?? new Gateway<PersonalizedData, TestModel>.ResponseList<TestModel>();
 		}
-		public static async Task<ResponseList<Locale>> GetOne(Guid guid)
+		public static async Task<ResponseList<TestModel>> GetOne(Guid guid)
 		{
-			if (guid == Guid.Empty) { return new ResponseList<Locale>(); }
+			if (guid == Guid.Empty) { return new ResponseList<TestModel>(); }
 			return await getBase(guid, Constants.GatewayUrl, remoteClassNameConst, "", null);
 		}
-		private static async Task<ResponseList<Locale>> get(Guid guid, string filterQuery = "", List<ListQuery> listsQuery = null)
+		private static async Task<ResponseList<TestModel>> get(Guid guid, string filterQuery = "", List<ListQuery> listsQuery = null)
 		{
-			return await getBase(guid, Constants.GatewayUrl, remoteClassNameConst, filterQuery, listsQuery)??new Gateway<PersonalizedData, Locale>.ResponseList<Locale>();
+			return await getBase(guid, Constants.GatewayUrl, remoteClassNameConst, filterQuery, listsQuery)??new Gateway<PersonalizedData, TestModel>.ResponseList<TestModel>();
 		}
 		public override async Task<Response> insert(object fullData = null)
 		{
 			if (checkProperties() == false)
 			{
-				return new Gateway<PersonalizedData, Locale>.Response { state = WebServiceV2.WebRequestState.GenericError, errorMessage = "validation failed" };
+				return new Gateway<PersonalizedData, TestModel>.Response { state = WebServiceV2.WebRequestState.GenericError, errorMessage = "validation failed" };
 			}
 			this.data.LastChange = DateTime.UtcNow;
 			var res = await base.insert(this.data);
 			sendMQTT();
-			return res?? new Gateway<PersonalizedData, Locale>.Response();
+			return res?? new Gateway<PersonalizedData, TestModel>.Response();
 		}
 		public override async Task<Response> update(object fullData = null)
 		{
 			if (checkProperties() == false)
 			{
-				return new Gateway<PersonalizedData, Locale>.Response { state = WebServiceV2.WebRequestState.GenericError, errorMessage = "validation failed" };
+				return new Gateway<PersonalizedData, TestModel>.Response { state = WebServiceV2.WebRequestState.GenericError, errorMessage = "validation failed" };
 			}
 			this.data.LastChange = DateTime.UtcNow;
 			var res = await base.update(this.data);
 			sendMQTT();
-			return res??new Gateway<PersonalizedData, Locale>.Response();
+			return res??new Gateway<PersonalizedData, TestModel>.Response();
 		}
 		public override async Task<Response> remove()
 		{
@@ -82,7 +85,7 @@ namespace disco1
 			this.data.State = PersonalizedData.LocaleState.Removed;
 			var res = await base.update(this.data);
 			sendMQTT();
-			return res??new Gateway<PersonalizedData, Locale>.Response();
+			return res??new Gateway<PersonalizedData, TestModel>.Response();
 		}
 		public void sendMQTT()
 		{
