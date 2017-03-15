@@ -17,9 +17,26 @@ namespace LuissLoft
 		public App()
 		{
 			// The root page of your application
-			var button = new Button {Text="test" };
-			button.Clicked += async(sender, e) => {
-				await DoTest();
+			var button = new Button {
+				Text="test", 
+				BackgroundColor=Color.Yellow,
+				TextColor= Color.Black
+
+			};
+
+			var casellaNome = new Entry { 
+				Placeholder="inserisci qui il testo"
+			};
+			var introduzione = new Label
+			{
+				HorizontalTextAlignment = TextAlignment.Center,
+				Text = "Welcome to Xamarin Forms!"
+			};
+			button.Clicked += async(sender, e) =>
+			{
+				await introduzione.RotateXTo(360, 1000);
+				await introduzione.RotateXTo(0, 1000);
+				//await DoTest();
 			};
 			var content = new ContentPage
 			{
@@ -29,10 +46,8 @@ namespace LuissLoft
 					VerticalOptions = LayoutOptions.Center,
 					Children = {
 						button,
-						new Label {
-							HorizontalTextAlignment = TextAlignment.Center,
-							Text = "Welcome to Xamarin Forms!"
-						}
+						introduzione,
+						casellaNome
 					}
 				}
 			};

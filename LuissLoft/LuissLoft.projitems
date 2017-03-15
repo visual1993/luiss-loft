@@ -11,8 +11,16 @@
   <ItemGroup>
     <Compile Include="$(MSBuildThisFileDirectory)LuissLoft.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\TestModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Pagine\SeratePage.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Views\SerataCellView.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\SerataCellVM.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\Event.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="$(MSBuildThisFileDirectory)Models\" />
+    <Folder Include="$(MSBuildThisFileDirectory)Pagine\" />
+    <Folder Include="$(MSBuildThisFileDirectory)Visual1993\" />
+    <Folder Include="$(MSBuildThisFileDirectory)Views\" />
+    <Folder Include="$(MSBuildThisFileDirectory)ViewModels\" />
   </ItemGroup>
 </Project>
