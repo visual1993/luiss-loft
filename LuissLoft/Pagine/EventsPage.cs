@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using Visual1993;
 using Visual1993.Controls;
 using Xamarin.Forms;
@@ -11,20 +11,21 @@ using Visual1993.Data;
 namespace LuissLoft
 {
 
-	public class SeratePage : ContentPage
+	public class EventsPage : ContentPage
 	{
-		public EventiPageVM VM;
-		public SeratePage(EventiPageVM vm)
+		public EventsPageVM VM;
+		public EventsPage(EventsPageVM vm)
 		{
 			VM = vm; BindingContext = VM;
 			var listPoints = new ListView(ListViewCachingStrategy.RecycleElement)
 			{
 				IsPullToRefreshEnabled = true,
-				RowHeight=250, HasUnevenRows=false,
-				BackgroundColor=EventiPageVM.ColoreSfondoLista
+				//RowHeight=250,
+                HasUnevenRows =true,
+				BackgroundColor=EventsPageVM.ColoreSfondoLista
 			};
 			listPoints.ItemTemplate = new DataTemplate(typeof(EventCellView));
-			listPoints.SetBinding(ListView.ItemsSourceProperty, new Binding(nameof(SeratePageVM.Serate)));
+			listPoints.SetBinding(ListView.ItemsSourceProperty, new Binding(nameof(EventsPageVM.Events)));
 			listPoints.ItemTapped += (sender, e) =>
 			{
 				var item = (EventCellVM)e.Item; if (item == null) { return;}
@@ -58,24 +59,41 @@ namespace LuissLoft
 		}
 	}
 
-	public class EventiPageVM : ViewModelBase
+	public class EventsPageVM : ViewModelBase
 	{
 		public Page UIPage;
 		public Guid LocaleGuid;
 
 		public static Color ColoreSfondoLista = Color.FromHex("#ecf7f7");
 
-		public EventiPageVM()
+		public EventsPageVM()
 		{
 		}
 		public async Task DownloadData()
-		{ }
+		{
+			IsLoadingData = true;
+			var res = await Event.getAll();
+			if (res.IsValidForAtLeastOneItem)
+			{
+				EventsObj = res.items;
+			}
+			IsLoadingData = false;
+		}
 		public void UpdateVM()
 		{
-			
+			Device.BeginInvokeOnMainThread(() => {
+				Events.Clear();
+				foreach (var item in EventsObj)
+				{
+					var cellVM = new EventCellVM(item);
+					cellVM.UpdateVM();
+					Events.Add(cellVM);
+				}
+				if (Events.Count == 0) { IsListEmpty = true; }
+			});
 		}
-		public List<Event> SerateObj = new List<Event>();
-		public ObservableCollection<EventCellVM> Serate { get; } = new ObservableCollection<EventCellVM>();
+		public List<Event> EventsObj = new List<Event>();
+		public ObservableCollection<EventCellVM> Events { get; } = new ObservableCollection<EventCellVM>();
 
 		private bool isShowingSerateEliminate = false;
 		public bool IsShowingSerateEliminate

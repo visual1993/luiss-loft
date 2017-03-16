@@ -1,6 +1,7 @@
 using System;
 using Plugin.Visual1993.Gateway.Abstractions;
 using Newtonsoft.Json;
+using Visual1993.CloudImageNamespace;
 
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -25,6 +26,18 @@ namespace LuissLoft
 		{
 			[JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
 			public string Name { get; set; }
+
+			[JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
+			public string Description { get; set; }
+
+			[JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
+			public DateTime StartDate { get; set; }
+
+			[JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
+			public DateTime EndDate { get; set; }
+
+			[JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
+			public CloudImage Image { get; set; }
 
 			[JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
 			public DateTime LastChange { get; set; }

@@ -11,9 +11,9 @@
   <ItemGroup>
     <Compile Include="$(MSBuildThisFileDirectory)LuissLoft.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\TestModel.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Pagine\SeratePage.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Views\SerataCellView.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\SerataCellVM.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Pagine\EventsPage.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Views\EventCellView.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\EventCellVM.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\Event.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using Visual1993;
 using Visual1993.Controls;
 using Visual1993.Extensions;
@@ -16,7 +16,7 @@ namespace LuissLoft
 		{
 			base.OnBindingContextChanged();
 
-			var VM = (SerataCellVM)BindingContext;
+			var VM = BindingContext as EventCellVM;
 			if (VM == null)
 				return;
 			ContextActions.Clear();
@@ -29,17 +29,19 @@ namespace LuissLoft
 				};
 				menuRemove.Clicked += (sender, e) =>
 				{
-					var item = (SerataCellVM)BindingContext; if (item == null) { return; }
+					var item = (EventCellVM)BindingContext; if (item == null) { return; }
 				};
 			}
 		}
 
 		public EventCellView()
 		{
-			var layoutIntero = new Grid { BackgroundColor = Color.Transparent,
+			var layoutIntero = new Grid {
+                HeightRequest=300,
+                BackgroundColor = Color.Transparent,
 				RowDefinitions=new RowDefinitionCollection { 
-					new RowDefinition { Height=new GridLength(0.75, GridUnitType.Star) },
-					new RowDefinition { Height=new GridLength(0.25, GridUnitType.Star) }
+					new RowDefinition { Height=new GridLength(0.70, GridUnitType.Star) },
+					new RowDefinition { Height=new GridLength(0.30, GridUnitType.Star) }
 				}, RowSpacing=0,
 				Padding=new Thickness(5),
 			};
@@ -63,25 +65,25 @@ namespace LuissLoft
 				HorizontalTextAlignment= TextAlignment.Start,
 				HorizontalOptions=LayoutOptions.Start,
 			};
-			title.SetBinding(Label.TextProperty, nameof(SerataCellVM.Title));
+			title.SetBinding(Label.TextProperty, nameof(EventCellVM.Title));
 
 			var data = new Label { TextColor = Color.White, FontSize = DefaultTema.FontSmall };
-			data.SetBinding(Label.TextProperty, nameof(SerataCellVM.DataInizio));
+			data.SetBinding(Label.TextProperty, nameof(EventCellVM.DataInizio));
 
 			var luogoLabel = new Label { TextColor = Color.White };
-			luogoLabel.SetBinding(Label.TextProperty, nameof(SerataCellVM.Luogo));
+			luogoLabel.SetBinding(Label.TextProperty, nameof(EventCellVM.Luogo));
 
 			var prezzoLabel = new Label { TextColor = Color.White };
-			prezzoLabel.SetBinding(Label.TextProperty, nameof(SerataCellVM.Prezzo));
+			prezzoLabel.SetBinding(Label.TextProperty, nameof(EventCellVM.Prezzo));
 
 			var startLabel = new Label { };
-			startLabel.SetBinding(Label.FormattedTextProperty, nameof(SerataCellVM.DataFormatted));
+			startLabel.SetBinding(Label.FormattedTextProperty, nameof(EventCellVM.DataFormatted));
 
 			//var img = new SpeedImage() { Aspect = Aspect.AspectFill, LoadingPriority = FFImageLoading.Work.LoadingPriority.Low };
-			//img.SetBinding(SpeedImage.SourceProperty, nameof(SerataCellVM.Copertina));
+			//img.SetBinding(SpeedImage.SourceProperty, nameof(EventCellVM.Copertina));
 
 			var img = new Image() { Aspect = Aspect.AspectFill,};
-			img.Bind(nameof(SerataCellVM.Copertina));
+			img.Bind(nameof(EventCellVM.Copertina));
 
 			var layoutDataLuogo = new StackLayout
 			{

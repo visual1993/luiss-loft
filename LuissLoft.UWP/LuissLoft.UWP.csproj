@@ -126,11 +126,6 @@
       <SubType>Designer</SubType>
     </Page>
   </ItemGroup>
-  <ItemGroup>
-    <Reference Include="Plugin.Visual1993.Gateway.Abstractions">
-      <HintPath>..\packages\Plugin.Visual1993.Gateway.Abstractions.dll</HintPath>
-    </Reference>
-  </ItemGroup>
   <Import Project="..\LuissLoft\LuissLoft.projitems" Label="Shared" />
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>

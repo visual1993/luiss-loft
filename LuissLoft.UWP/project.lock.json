@@ -3,6 +3,47 @@
   "version": 2,
   "targets": {
     "UAP,Version=v10.0": {
+      "AWSSDK.Core/3.3.10.1": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.NETCore.UniversalWindowsPlatform": "5.2.2",
+          "PCLCrypto": "1.0.2.15130",
+          "PCLStorage": "1.0.2"
+        },
+        "compile": {
+          "lib/uap/AWSSDK.Core.dll": {}
+        },
+        "runtime": {
+          "lib/uap/AWSSDK.Core.dll": {}
+        }
+      },
+      "AWSSDK.S3/3.3.5.10": {
+        "type": "package",
+        "dependencies": {
+          "AWSSDK.Core": "[3.3.10.1, 3.4.0)"
+        },
+        "compile": {
+          "lib/netstandard1.3/AWSSDK.S3.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard1.3/AWSSDK.S3.dll": {}
+        }
+      },
+      "Microsoft.Bcl/1.1.10": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.Bcl.Build": "1.0.14"
+        },
+        "compile": {
+          "lib/win8/_._": {}
+        },
+        "runtime": {
+          "lib/win8/_._": {}
+        }
+      },
+      "Microsoft.Bcl.Build/1.0.14": {
+        "type": "package"
+      },
       "Microsoft.CSharp/4.0.0": {
         "type": "package",
         "dependencies": {
@@ -28,6 +69,21 @@
         },
         "runtime": {
           "lib/netcore50/Microsoft.CSharp.dll": {}
+        }
+      },
+      "Microsoft.Net.Http/2.2.29": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.Bcl": "1.1.10",
+          "Microsoft.Bcl.Build": "1.0.14"
+        },
+        "compile": {
+          "lib/win8/System.Net.Http.Extensions.dll": {},
+          "lib/win8/System.Net.Http.Primitives.dll": {}
+        },
+        "runtime": {
+          "lib/win8/System.Net.Http.Extensions.dll": {},
+          "lib/win8/System.Net.Http.Primitives.dll": {}
         }
       },
       "Microsoft.NETCore/5.0.0": {
@@ -290,6 +346,17 @@
           "lib/portable-win81+wpa81/PCLCrypto.dll": {}
         }
       },
+      "PCLStorage/1.0.2": {
+        "type": "package",
+        "compile": {
+          "lib/portable-win8+wpa81/PCLStorage.Abstractions.dll": {},
+          "lib/portable-win8+wpa81/PCLStorage.dll": {}
+        },
+        "runtime": {
+          "lib/portable-win8+wpa81/PCLStorage.Abstractions.dll": {},
+          "lib/portable-win8+wpa81/PCLStorage.dll": {}
+        }
+      },
       "PInvoke.BCrypt/0.3.2": {
         "type": "package",
         "dependencies": {
@@ -335,6 +402,78 @@
         },
         "runtime": {
           "lib/portable-net45+win+wpa81+MonoAndroid10+xamarinios10+MonoTouch10/PInvoke.Windows.Core.dll": {}
+        }
+      },
+      "Plugin.Visual1993.CloudImage/1.0.0": {
+        "type": "package",
+        "dependencies": {
+          "AWSSDK.S3": "3.3.5.10",
+          "Newtonsoft.Json": "9.0.1",
+          "PCLStorage": "1.0.2",
+          "Plugin.Visual1993.Common": "1.0.0",
+          "Xam.Plugin.Media": "2.6.2",
+          "Xamarin.Forms": "2.3.3"
+        },
+        "compile": {
+          "lib/portable-net45+wp8+wpa81+win8+MonoAndroid10+MonoTouch10+Xamarin.iOS10+UAP10/CloudImage.dll": {}
+        },
+        "runtime": {
+          "lib/portable-net45+wp8+wpa81+win8+MonoAndroid10+MonoTouch10+Xamarin.iOS10+UAP10/CloudImage.dll": {}
+        }
+      },
+      "Plugin.Visual1993.Common/1.0.0": {
+        "type": "package",
+        "dependencies": {
+          "Newtonsoft.Json": "9.0.1",
+          "Xamarin.Forms": "2.3.3"
+        },
+        "compile": {
+          "lib/portable-net45+wp8+wpa81+win8+MonoAndroid10+MonoTouch10+Xamarin.iOS10+UAP10/Common.dll": {}
+        },
+        "runtime": {
+          "lib/portable-net45+wp8+wpa81+win8+MonoAndroid10+MonoTouch10+Xamarin.iOS10+UAP10/Common.dll": {}
+        }
+      },
+      "Plugin.Visual1993.Controls/1.0.0": {
+        "type": "package",
+        "dependencies": {
+          "Newtonsoft.Json": "9.0.1",
+          "Plugin.Visual1993.Common": "1.0.0",
+          "Xamarin.FFImageLoading.Forms": "2.2.9",
+          "Xamarin.FFImageLoading.Transformations": "2.2.9",
+          "Xamarin.Forms": "2.3.3"
+        },
+        "compile": {
+          "lib/portable-net45+wp8+wpa81+win8+MonoAndroid10+MonoTouch10+Xamarin.iOS10+UAP10/Plugin.Visual1993.Controls.dll": {}
+        },
+        "runtime": {
+          "lib/portable-net45+wp8+wpa81+win8+MonoAndroid10+MonoTouch10+Xamarin.iOS10+UAP10/Plugin.Visual1993.Controls.dll": {}
+        }
+      },
+      "Plugin.Visual1993.Core/1.0.2": {
+        "type": "package",
+        "dependencies": {
+          "Newtonsoft.Json": "9.0.1"
+        },
+        "compile": {
+          "lib/portable-net45+wp8+wpa81+win8+MonoAndroid10+MonoTouch10+Xamarin.iOS10+UAP10/Core.dll": {}
+        },
+        "runtime": {
+          "lib/portable-net45+wp8+wpa81+win8+MonoAndroid10+MonoTouch10+Xamarin.iOS10+UAP10/Core.dll": {}
+        }
+      },
+      "Plugin.Visual1993.Gateway/1.0.0": {
+        "type": "package",
+        "dependencies": {
+          "Newtonsoft.Json": "9.0.1",
+          "PCLCrypto": "2.0.147",
+          "Plugin.Visual1993.Core": "1.0.2"
+        },
+        "compile": {
+          "lib/portable-net45+wp8+wpa81+win8+MonoAndroid10+MonoTouch10+Xamarin.iOS10+UAP10/Plugin.Visual1993.Gateway.Abstractions.dll": {}
+        },
+        "runtime": {
+          "lib/portable-net45+wp8+wpa81+win8+MonoAndroid10+MonoTouch10+Xamarin.iOS10+UAP10/Plugin.Visual1993.Gateway.Abstractions.dll": {}
         }
       },
       "System.AppContext/4.0.0": {
@@ -1963,6 +2102,58 @@
           "lib/dotnet/Validation.dll": {}
         }
       },
+      "Xam.Plugin.Media/2.6.2": {
+        "type": "package",
+        "compile": {
+          "lib/UAP10/Plugin.Media.Abstractions.dll": {},
+          "lib/UAP10/Plugin.Media.dll": {}
+        },
+        "runtime": {
+          "lib/UAP10/Plugin.Media.Abstractions.dll": {},
+          "lib/UAP10/Plugin.Media.dll": {}
+        }
+      },
+      "Xamarin.FFImageLoading/2.2.9": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.Net.Http": "2.2.29"
+        },
+        "compile": {
+          "lib/portable-netcore45+wpa81/FFImageLoading.Platform.dll": {},
+          "lib/portable-netcore45+wpa81/FFImageLoading.dll": {}
+        },
+        "runtime": {
+          "lib/portable-netcore45+wpa81/FFImageLoading.Platform.dll": {},
+          "lib/portable-netcore45+wpa81/FFImageLoading.dll": {}
+        }
+      },
+      "Xamarin.FFImageLoading.Forms/2.2.9": {
+        "type": "package",
+        "dependencies": {
+          "Xamarin.FFImageLoading": "2.2.9",
+          "Xamarin.Forms": "1.4.4.6392"
+        },
+        "compile": {
+          "lib/uap10.0/FFImageLoading.Forms.WinUWP.dll": {},
+          "lib/uap10.0/FFImageLoading.Forms.dll": {}
+        },
+        "runtime": {
+          "lib/uap10.0/FFImageLoading.Forms.WinUWP.dll": {},
+          "lib/uap10.0/FFImageLoading.Forms.dll": {}
+        }
+      },
+      "Xamarin.FFImageLoading.Transformations/2.2.9": {
+        "type": "package",
+        "dependencies": {
+          "Xamarin.FFImageLoading": "2.2.9"
+        },
+        "compile": {
+          "lib/portable-netcore45+wpa81/FFImageLoading.Transformations.dll": {}
+        },
+        "runtime": {
+          "lib/portable-netcore45+wpa81/FFImageLoading.Transformations.dll": {}
+        }
+      },
       "Xamarin.Forms/2.3.3.193": {
         "type": "package",
         "compile": {
@@ -1980,6 +2171,47 @@
       }
     },
     "UAP,Version=v10.0/win10-arm": {
+      "AWSSDK.Core/3.3.10.1": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.NETCore.UniversalWindowsPlatform": "5.2.2",
+          "PCLCrypto": "1.0.2.15130",
+          "PCLStorage": "1.0.2"
+        },
+        "compile": {
+          "lib/uap/AWSSDK.Core.dll": {}
+        },
+        "runtime": {
+          "lib/uap/AWSSDK.Core.dll": {}
+        }
+      },
+      "AWSSDK.S3/3.3.5.10": {
+        "type": "package",
+        "dependencies": {
+          "AWSSDK.Core": "[3.3.10.1, 3.4.0)"
+        },
+        "compile": {
+          "lib/netstandard1.3/AWSSDK.S3.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard1.3/AWSSDK.S3.dll": {}
+        }
+      },
+      "Microsoft.Bcl/1.1.10": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.Bcl.Build": "1.0.14"
+        },
+        "compile": {
+          "lib/win8/_._": {}
+        },
+        "runtime": {
+          "lib/win8/_._": {}
+        }
+      },
+      "Microsoft.Bcl.Build/1.0.14": {
+        "type": "package"
+      },
       "Microsoft.CSharp/4.0.0": {
         "type": "package",
         "dependencies": {
@@ -2005,6 +2237,21 @@
         },
         "runtime": {
           "lib/netcore50/Microsoft.CSharp.dll": {}
+        }
+      },
+      "Microsoft.Net.Http/2.2.29": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.Bcl": "1.1.10",
+          "Microsoft.Bcl.Build": "1.0.14"
+        },
+        "compile": {
+          "lib/win8/System.Net.Http.Extensions.dll": {},
+          "lib/win8/System.Net.Http.Primitives.dll": {}
+        },
+        "runtime": {
+          "lib/win8/System.Net.Http.Extensions.dll": {},
+          "lib/win8/System.Net.Http.Primitives.dll": {}
         }
       },
       "Microsoft.NETCore/5.0.0": {
@@ -2260,6 +2507,17 @@
           "lib/portable-win81+wpa81/PCLCrypto.dll": {}
         }
       },
+      "PCLStorage/1.0.2": {
+        "type": "package",
+        "compile": {
+          "lib/portable-win8+wpa81/PCLStorage.Abstractions.dll": {},
+          "lib/portable-win8+wpa81/PCLStorage.dll": {}
+        },
+        "runtime": {
+          "lib/portable-win8+wpa81/PCLStorage.Abstractions.dll": {},
+          "lib/portable-win8+wpa81/PCLStorage.dll": {}
+        }
+      },
       "PInvoke.BCrypt/0.3.2": {
         "type": "package",
         "dependencies": {
@@ -2305,6 +2563,78 @@
         },
         "runtime": {
           "lib/portable-net45+win+wpa81+MonoAndroid10+xamarinios10+MonoTouch10/PInvoke.Windows.Core.dll": {}
+        }
+      },
+      "Plugin.Visual1993.CloudImage/1.0.0": {
+        "type": "package",
+        "dependencies": {
+          "AWSSDK.S3": "3.3.5.10",
+          "Newtonsoft.Json": "9.0.1",
+          "PCLStorage": "1.0.2",
+          "Plugin.Visual1993.Common": "1.0.0",
+          "Xam.Plugin.Media": "2.6.2",
+          "Xamarin.Forms": "2.3.3"
+        },
+        "compile": {
+          "lib/portable-net45+wp8+wpa81+win8+MonoAndroid10+MonoTouch10+Xamarin.iOS10+UAP10/CloudImage.dll": {}
+        },
+        "runtime": {
+          "lib/portable-net45+wp8+wpa81+win8+MonoAndroid10+MonoTouch10+Xamarin.iOS10+UAP10/CloudImage.dll": {}
+        }
+      },
+      "Plugin.Visual1993.Common/1.0.0": {
+        "type": "package",
+        "dependencies": {
+          "Newtonsoft.Json": "9.0.1",
+          "Xamarin.Forms": "2.3.3"
+        },
+        "compile": {
+          "lib/portable-net45+wp8+wpa81+win8+MonoAndroid10+MonoTouch10+Xamarin.iOS10+UAP10/Common.dll": {}
+        },
+        "runtime": {
+          "lib/portable-net45+wp8+wpa81+win8+MonoAndroid10+MonoTouch10+Xamarin.iOS10+UAP10/Common.dll": {}
+        }
+      },
+      "Plugin.Visual1993.Controls/1.0.0": {
+        "type": "package",
+        "dependencies": {
+          "Newtonsoft.Json": "9.0.1",
+          "Plugin.Visual1993.Common": "1.0.0",
+          "Xamarin.FFImageLoading.Forms": "2.2.9",
+          "Xamarin.FFImageLoading.Transformations": "2.2.9",
+          "Xamarin.Forms": "2.3.3"
+        },
+        "compile": {
+          "lib/portable-net45+wp8+wpa81+win8+MonoAndroid10+MonoTouch10+Xamarin.iOS10+UAP10/Plugin.Visual1993.Controls.dll": {}
+        },
+        "runtime": {
+          "lib/portable-net45+wp8+wpa81+win8+MonoAndroid10+MonoTouch10+Xamarin.iOS10+UAP10/Plugin.Visual1993.Controls.dll": {}
+        }
+      },
+      "Plugin.Visual1993.Core/1.0.2": {
+        "type": "package",
+        "dependencies": {
+          "Newtonsoft.Json": "9.0.1"
+        },
+        "compile": {
+          "lib/portable-net45+wp8+wpa81+win8+MonoAndroid10+MonoTouch10+Xamarin.iOS10+UAP10/Core.dll": {}
+        },
+        "runtime": {
+          "lib/portable-net45+wp8+wpa81+win8+MonoAndroid10+MonoTouch10+Xamarin.iOS10+UAP10/Core.dll": {}
+        }
+      },
+      "Plugin.Visual1993.Gateway/1.0.0": {
+        "type": "package",
+        "dependencies": {
+          "Newtonsoft.Json": "9.0.1",
+          "PCLCrypto": "2.0.147",
+          "Plugin.Visual1993.Core": "1.0.2"
+        },
+        "compile": {
+          "lib/portable-net45+wp8+wpa81+win8+MonoAndroid10+MonoTouch10+Xamarin.iOS10+UAP10/Plugin.Visual1993.Gateway.Abstractions.dll": {}
+        },
+        "runtime": {
+          "lib/portable-net45+wp8+wpa81+win8+MonoAndroid10+MonoTouch10+Xamarin.iOS10+UAP10/Plugin.Visual1993.Gateway.Abstractions.dll": {}
         }
       },
       "System.AppContext/4.0.0": {
@@ -3797,6 +4127,58 @@
           "lib/dotnet/Validation.dll": {}
         }
       },
+      "Xam.Plugin.Media/2.6.2": {
+        "type": "package",
+        "compile": {
+          "lib/UAP10/Plugin.Media.Abstractions.dll": {},
+          "lib/UAP10/Plugin.Media.dll": {}
+        },
+        "runtime": {
+          "lib/UAP10/Plugin.Media.Abstractions.dll": {},
+          "lib/UAP10/Plugin.Media.dll": {}
+        }
+      },
+      "Xamarin.FFImageLoading/2.2.9": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.Net.Http": "2.2.29"
+        },
+        "compile": {
+          "lib/portable-netcore45+wpa81/FFImageLoading.Platform.dll": {},
+          "lib/portable-netcore45+wpa81/FFImageLoading.dll": {}
+        },
+        "runtime": {
+          "lib/portable-netcore45+wpa81/FFImageLoading.Platform.dll": {},
+          "lib/portable-netcore45+wpa81/FFImageLoading.dll": {}
+        }
+      },
+      "Xamarin.FFImageLoading.Forms/2.2.9": {
+        "type": "package",
+        "dependencies": {
+          "Xamarin.FFImageLoading": "2.2.9",
+          "Xamarin.Forms": "1.4.4.6392"
+        },
+        "compile": {
+          "lib/uap10.0/FFImageLoading.Forms.WinUWP.dll": {},
+          "lib/uap10.0/FFImageLoading.Forms.dll": {}
+        },
+        "runtime": {
+          "lib/uap10.0/FFImageLoading.Forms.WinUWP.dll": {},
+          "lib/uap10.0/FFImageLoading.Forms.dll": {}
+        }
+      },
+      "Xamarin.FFImageLoading.Transformations/2.2.9": {
+        "type": "package",
+        "dependencies": {
+          "Xamarin.FFImageLoading": "2.2.9"
+        },
+        "compile": {
+          "lib/portable-netcore45+wpa81/FFImageLoading.Transformations.dll": {}
+        },
+        "runtime": {
+          "lib/portable-netcore45+wpa81/FFImageLoading.Transformations.dll": {}
+        }
+      },
       "Xamarin.Forms/2.3.3.193": {
         "type": "package",
         "compile": {
@@ -3814,6 +4196,47 @@
       }
     },
     "UAP,Version=v10.0/win10-arm-aot": {
+      "AWSSDK.Core/3.3.10.1": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.NETCore.UniversalWindowsPlatform": "5.2.2",
+          "PCLCrypto": "1.0.2.15130",
+          "PCLStorage": "1.0.2"
+        },
+        "compile": {
+          "lib/uap/AWSSDK.Core.dll": {}
+        },
+        "runtime": {
+          "lib/uap/AWSSDK.Core.dll": {}
+        }
+      },
+      "AWSSDK.S3/3.3.5.10": {
+        "type": "package",
+        "dependencies": {
+          "AWSSDK.Core": "[3.3.10.1, 3.4.0)"
+        },
+        "compile": {
+          "lib/netstandard1.3/AWSSDK.S3.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard1.3/AWSSDK.S3.dll": {}
+        }
+      },
+      "Microsoft.Bcl/1.1.10": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.Bcl.Build": "1.0.14"
+        },
+        "compile": {
+          "lib/win8/_._": {}
+        },
+        "runtime": {
+          "lib/win8/_._": {}
+        }
+      },
+      "Microsoft.Bcl.Build/1.0.14": {
+        "type": "package"
+      },
       "Microsoft.CSharp/4.0.0": {
         "type": "package",
         "dependencies": {
@@ -3839,6 +4262,21 @@
         },
         "runtime": {
           "lib/netcore50/Microsoft.CSharp.dll": {}
+        }
+      },
+      "Microsoft.Net.Http/2.2.29": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.Bcl": "1.1.10",
+          "Microsoft.Bcl.Build": "1.0.14"
+        },
+        "compile": {
+          "lib/win8/System.Net.Http.Extensions.dll": {},
+          "lib/win8/System.Net.Http.Primitives.dll": {}
+        },
+        "runtime": {
+          "lib/win8/System.Net.Http.Extensions.dll": {},
+          "lib/win8/System.Net.Http.Primitives.dll": {}
         }
       },
       "Microsoft.NETCore/5.0.0": {
@@ -4080,6 +4518,17 @@
           "lib/portable-win81+wpa81/PCLCrypto.dll": {}
         }
       },
+      "PCLStorage/1.0.2": {
+        "type": "package",
+        "compile": {
+          "lib/portable-win8+wpa81/PCLStorage.Abstractions.dll": {},
+          "lib/portable-win8+wpa81/PCLStorage.dll": {}
+        },
+        "runtime": {
+          "lib/portable-win8+wpa81/PCLStorage.Abstractions.dll": {},
+          "lib/portable-win8+wpa81/PCLStorage.dll": {}
+        }
+      },
       "PInvoke.BCrypt/0.3.2": {
         "type": "package",
         "dependencies": {
@@ -4125,6 +4574,78 @@
         },
         "runtime": {
           "lib/portable-net45+win+wpa81+MonoAndroid10+xamarinios10+MonoTouch10/PInvoke.Windows.Core.dll": {}
+        }
+      },
+      "Plugin.Visual1993.CloudImage/1.0.0": {
+        "type": "package",
+        "dependencies": {
+          "AWSSDK.S3": "3.3.5.10",
+          "Newtonsoft.Json": "9.0.1",
+          "PCLStorage": "1.0.2",
+          "Plugin.Visual1993.Common": "1.0.0",
+          "Xam.Plugin.Media": "2.6.2",
+          "Xamarin.Forms": "2.3.3"
+        },
+        "compile": {
+          "lib/portable-net45+wp8+wpa81+win8+MonoAndroid10+MonoTouch10+Xamarin.iOS10+UAP10/CloudImage.dll": {}
+        },
+        "runtime": {
+          "lib/portable-net45+wp8+wpa81+win8+MonoAndroid10+MonoTouch10+Xamarin.iOS10+UAP10/CloudImage.dll": {}
+        }
+      },
+      "Plugin.Visual1993.Common/1.0.0": {
+        "type": "package",
+        "dependencies": {
+          "Newtonsoft.Json": "9.0.1",
+          "Xamarin.Forms": "2.3.3"
+        },
+        "compile": {
+          "lib/portable-net45+wp8+wpa81+win8+MonoAndroid10+MonoTouch10+Xamarin.iOS10+UAP10/Common.dll": {}
+        },
+        "runtime": {
+          "lib/portable-net45+wp8+wpa81+win8+MonoAndroid10+MonoTouch10+Xamarin.iOS10+UAP10/Common.dll": {}
+        }
+      },
+      "Plugin.Visual1993.Controls/1.0.0": {
+        "type": "package",
+        "dependencies": {
+          "Newtonsoft.Json": "9.0.1",
+          "Plugin.Visual1993.Common": "1.0.0",
+          "Xamarin.FFImageLoading.Forms": "2.2.9",
+          "Xamarin.FFImageLoading.Transformations": "2.2.9",
+          "Xamarin.Forms": "2.3.3"
+        },
+        "compile": {
+          "lib/portable-net45+wp8+wpa81+win8+MonoAndroid10+MonoTouch10+Xamarin.iOS10+UAP10/Plugin.Visual1993.Controls.dll": {}
+        },
+        "runtime": {
+          "lib/portable-net45+wp8+wpa81+win8+MonoAndroid10+MonoTouch10+Xamarin.iOS10+UAP10/Plugin.Visual1993.Controls.dll": {}
+        }
+      },
+      "Plugin.Visual1993.Core/1.0.2": {
+        "type": "package",
+        "dependencies": {
+          "Newtonsoft.Json": "9.0.1"
+        },
+        "compile": {
+          "lib/portable-net45+wp8+wpa81+win8+MonoAndroid10+MonoTouch10+Xamarin.iOS10+UAP10/Core.dll": {}
+        },
+        "runtime": {
+          "lib/portable-net45+wp8+wpa81+win8+MonoAndroid10+MonoTouch10+Xamarin.iOS10+UAP10/Core.dll": {}
+        }
+      },
+      "Plugin.Visual1993.Gateway/1.0.0": {
+        "type": "package",
+        "dependencies": {
+          "Newtonsoft.Json": "9.0.1",
+          "PCLCrypto": "2.0.147",
+          "Plugin.Visual1993.Core": "1.0.2"
+        },
+        "compile": {
+          "lib/portable-net45+wp8+wpa81+win8+MonoAndroid10+MonoTouch10+Xamarin.iOS10+UAP10/Plugin.Visual1993.Gateway.Abstractions.dll": {}
+        },
+        "runtime": {
+          "lib/portable-net45+wp8+wpa81+win8+MonoAndroid10+MonoTouch10+Xamarin.iOS10+UAP10/Plugin.Visual1993.Gateway.Abstractions.dll": {}
         }
       },
       "System.AppContext/4.0.0": {
@@ -5594,6 +6115,58 @@
           "lib/dotnet/Validation.dll": {}
         }
       },
+      "Xam.Plugin.Media/2.6.2": {
+        "type": "package",
+        "compile": {
+          "lib/UAP10/Plugin.Media.Abstractions.dll": {},
+          "lib/UAP10/Plugin.Media.dll": {}
+        },
+        "runtime": {
+          "lib/UAP10/Plugin.Media.Abstractions.dll": {},
+          "lib/UAP10/Plugin.Media.dll": {}
+        }
+      },
+      "Xamarin.FFImageLoading/2.2.9": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.Net.Http": "2.2.29"
+        },
+        "compile": {
+          "lib/portable-netcore45+wpa81/FFImageLoading.Platform.dll": {},
+          "lib/portable-netcore45+wpa81/FFImageLoading.dll": {}
+        },
+        "runtime": {
+          "lib/portable-netcore45+wpa81/FFImageLoading.Platform.dll": {},
+          "lib/portable-netcore45+wpa81/FFImageLoading.dll": {}
+        }
+      },
+      "Xamarin.FFImageLoading.Forms/2.2.9": {
+        "type": "package",
+        "dependencies": {
+          "Xamarin.FFImageLoading": "2.2.9",
+          "Xamarin.Forms": "1.4.4.6392"
+        },
+        "compile": {
+          "lib/uap10.0/FFImageLoading.Forms.WinUWP.dll": {},
+          "lib/uap10.0/FFImageLoading.Forms.dll": {}
+        },
+        "runtime": {
+          "lib/uap10.0/FFImageLoading.Forms.WinUWP.dll": {},
+          "lib/uap10.0/FFImageLoading.Forms.dll": {}
+        }
+      },
+      "Xamarin.FFImageLoading.Transformations/2.2.9": {
+        "type": "package",
+        "dependencies": {
+          "Xamarin.FFImageLoading": "2.2.9"
+        },
+        "compile": {
+          "lib/portable-netcore45+wpa81/FFImageLoading.Transformations.dll": {}
+        },
+        "runtime": {
+          "lib/portable-netcore45+wpa81/FFImageLoading.Transformations.dll": {}
+        }
+      },
       "Xamarin.Forms/2.3.3.193": {
         "type": "package",
         "compile": {
@@ -5611,6 +6184,47 @@
       }
     },
     "UAP,Version=v10.0/win10-x64": {
+      "AWSSDK.Core/3.3.10.1": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.NETCore.UniversalWindowsPlatform": "5.2.2",
+          "PCLCrypto": "1.0.2.15130",
+          "PCLStorage": "1.0.2"
+        },
+        "compile": {
+          "lib/uap/AWSSDK.Core.dll": {}
+        },
+        "runtime": {
+          "lib/uap/AWSSDK.Core.dll": {}
+        }
+      },
+      "AWSSDK.S3/3.3.5.10": {
+        "type": "package",
+        "dependencies": {
+          "AWSSDK.Core": "[3.3.10.1, 3.4.0)"
+        },
+        "compile": {
+          "lib/netstandard1.3/AWSSDK.S3.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard1.3/AWSSDK.S3.dll": {}
+        }
+      },
+      "Microsoft.Bcl/1.1.10": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.Bcl.Build": "1.0.14"
+        },
+        "compile": {
+          "lib/win8/_._": {}
+        },
+        "runtime": {
+          "lib/win8/_._": {}
+        }
+      },
+      "Microsoft.Bcl.Build/1.0.14": {
+        "type": "package"
+      },
       "Microsoft.CSharp/4.0.0": {
         "type": "package",
         "dependencies": {
@@ -5636,6 +6250,21 @@
         },
         "runtime": {
           "lib/netcore50/Microsoft.CSharp.dll": {}
+        }
+      },
+      "Microsoft.Net.Http/2.2.29": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.Bcl": "1.1.10",
+          "Microsoft.Bcl.Build": "1.0.14"
+        },
+        "compile": {
+          "lib/win8/System.Net.Http.Extensions.dll": {},
+          "lib/win8/System.Net.Http.Primitives.dll": {}
+        },
+        "runtime": {
+          "lib/win8/System.Net.Http.Extensions.dll": {},
+          "lib/win8/System.Net.Http.Primitives.dll": {}
         }
       },
       "Microsoft.NETCore/5.0.0": {
@@ -5898,6 +6527,17 @@
           "lib/portable-win81+wpa81/PCLCrypto.dll": {}
         }
       },
+      "PCLStorage/1.0.2": {
+        "type": "package",
+        "compile": {
+          "lib/portable-win8+wpa81/PCLStorage.Abstractions.dll": {},
+          "lib/portable-win8+wpa81/PCLStorage.dll": {}
+        },
+        "runtime": {
+          "lib/portable-win8+wpa81/PCLStorage.Abstractions.dll": {},
+          "lib/portable-win8+wpa81/PCLStorage.dll": {}
+        }
+      },
       "PInvoke.BCrypt/0.3.2": {
         "type": "package",
         "dependencies": {
@@ -5943,6 +6583,78 @@
         },
         "runtime": {
           "lib/portable-net45+win+wpa81+MonoAndroid10+xamarinios10+MonoTouch10/PInvoke.Windows.Core.dll": {}
+        }
+      },
+      "Plugin.Visual1993.CloudImage/1.0.0": {
+        "type": "package",
+        "dependencies": {
+          "AWSSDK.S3": "3.3.5.10",
+          "Newtonsoft.Json": "9.0.1",
+          "PCLStorage": "1.0.2",
+          "Plugin.Visual1993.Common": "1.0.0",
+          "Xam.Plugin.Media": "2.6.2",
+          "Xamarin.Forms": "2.3.3"
+        },
+        "compile": {
+          "lib/portable-net45+wp8+wpa81+win8+MonoAndroid10+MonoTouch10+Xamarin.iOS10+UAP10/CloudImage.dll": {}
+        },
+        "runtime": {
+          "lib/portable-net45+wp8+wpa81+win8+MonoAndroid10+MonoTouch10+Xamarin.iOS10+UAP10/CloudImage.dll": {}
+        }
+      },
+      "Plugin.Visual1993.Common/1.0.0": {
+        "type": "package",
+        "dependencies": {
+          "Newtonsoft.Json": "9.0.1",
+          "Xamarin.Forms": "2.3.3"
+        },
+        "compile": {
+          "lib/portable-net45+wp8+wpa81+win8+MonoAndroid10+MonoTouch10+Xamarin.iOS10+UAP10/Common.dll": {}
+        },
+        "runtime": {
+          "lib/portable-net45+wp8+wpa81+win8+MonoAndroid10+MonoTouch10+Xamarin.iOS10+UAP10/Common.dll": {}
+        }
+      },
+      "Plugin.Visual1993.Controls/1.0.0": {
+        "type": "package",
+        "dependencies": {
+          "Newtonsoft.Json": "9.0.1",
+          "Plugin.Visual1993.Common": "1.0.0",
+          "Xamarin.FFImageLoading.Forms": "2.2.9",
+          "Xamarin.FFImageLoading.Transformations": "2.2.9",
+          "Xamarin.Forms": "2.3.3"
+        },
+        "compile": {
+          "lib/portable-net45+wp8+wpa81+win8+MonoAndroid10+MonoTouch10+Xamarin.iOS10+UAP10/Plugin.Visual1993.Controls.dll": {}
+        },
+        "runtime": {
+          "lib/portable-net45+wp8+wpa81+win8+MonoAndroid10+MonoTouch10+Xamarin.iOS10+UAP10/Plugin.Visual1993.Controls.dll": {}
+        }
+      },
+      "Plugin.Visual1993.Core/1.0.2": {
+        "type": "package",
+        "dependencies": {
+          "Newtonsoft.Json": "9.0.1"
+        },
+        "compile": {
+          "lib/portable-net45+wp8+wpa81+win8+MonoAndroid10+MonoTouch10+Xamarin.iOS10+UAP10/Core.dll": {}
+        },
+        "runtime": {
+          "lib/portable-net45+wp8+wpa81+win8+MonoAndroid10+MonoTouch10+Xamarin.iOS10+UAP10/Core.dll": {}
+        }
+      },
+      "Plugin.Visual1993.Gateway/1.0.0": {
+        "type": "package",
+        "dependencies": {
+          "Newtonsoft.Json": "9.0.1",
+          "PCLCrypto": "2.0.147",
+          "Plugin.Visual1993.Core": "1.0.2"
+        },
+        "compile": {
+          "lib/portable-net45+wp8+wpa81+win8+MonoAndroid10+MonoTouch10+Xamarin.iOS10+UAP10/Plugin.Visual1993.Gateway.Abstractions.dll": {}
+        },
+        "runtime": {
+          "lib/portable-net45+wp8+wpa81+win8+MonoAndroid10+MonoTouch10+Xamarin.iOS10+UAP10/Plugin.Visual1993.Gateway.Abstractions.dll": {}
         }
       },
       "System.AppContext/4.0.0": {
@@ -7435,6 +8147,58 @@
           "lib/dotnet/Validation.dll": {}
         }
       },
+      "Xam.Plugin.Media/2.6.2": {
+        "type": "package",
+        "compile": {
+          "lib/UAP10/Plugin.Media.Abstractions.dll": {},
+          "lib/UAP10/Plugin.Media.dll": {}
+        },
+        "runtime": {
+          "lib/UAP10/Plugin.Media.Abstractions.dll": {},
+          "lib/UAP10/Plugin.Media.dll": {}
+        }
+      },
+      "Xamarin.FFImageLoading/2.2.9": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.Net.Http": "2.2.29"
+        },
+        "compile": {
+          "lib/portable-netcore45+wpa81/FFImageLoading.Platform.dll": {},
+          "lib/portable-netcore45+wpa81/FFImageLoading.dll": {}
+        },
+        "runtime": {
+          "lib/portable-netcore45+wpa81/FFImageLoading.Platform.dll": {},
+          "lib/portable-netcore45+wpa81/FFImageLoading.dll": {}
+        }
+      },
+      "Xamarin.FFImageLoading.Forms/2.2.9": {
+        "type": "package",
+        "dependencies": {
+          "Xamarin.FFImageLoading": "2.2.9",
+          "Xamarin.Forms": "1.4.4.6392"
+        },
+        "compile": {
+          "lib/uap10.0/FFImageLoading.Forms.WinUWP.dll": {},
+          "lib/uap10.0/FFImageLoading.Forms.dll": {}
+        },
+        "runtime": {
+          "lib/uap10.0/FFImageLoading.Forms.WinUWP.dll": {},
+          "lib/uap10.0/FFImageLoading.Forms.dll": {}
+        }
+      },
+      "Xamarin.FFImageLoading.Transformations/2.2.9": {
+        "type": "package",
+        "dependencies": {
+          "Xamarin.FFImageLoading": "2.2.9"
+        },
+        "compile": {
+          "lib/portable-netcore45+wpa81/FFImageLoading.Transformations.dll": {}
+        },
+        "runtime": {
+          "lib/portable-netcore45+wpa81/FFImageLoading.Transformations.dll": {}
+        }
+      },
       "Xamarin.Forms/2.3.3.193": {
         "type": "package",
         "compile": {
@@ -7452,6 +8216,47 @@
       }
     },
     "UAP,Version=v10.0/win10-x64-aot": {
+      "AWSSDK.Core/3.3.10.1": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.NETCore.UniversalWindowsPlatform": "5.2.2",
+          "PCLCrypto": "1.0.2.15130",
+          "PCLStorage": "1.0.2"
+        },
+        "compile": {
+          "lib/uap/AWSSDK.Core.dll": {}
+        },
+        "runtime": {
+          "lib/uap/AWSSDK.Core.dll": {}
+        }
+      },
+      "AWSSDK.S3/3.3.5.10": {
+        "type": "package",
+        "dependencies": {
+          "AWSSDK.Core": "[3.3.10.1, 3.4.0)"
+        },
+        "compile": {
+          "lib/netstandard1.3/AWSSDK.S3.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard1.3/AWSSDK.S3.dll": {}
+        }
+      },
+      "Microsoft.Bcl/1.1.10": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.Bcl.Build": "1.0.14"
+        },
+        "compile": {
+          "lib/win8/_._": {}
+        },
+        "runtime": {
+          "lib/win8/_._": {}
+        }
+      },
+      "Microsoft.Bcl.Build/1.0.14": {
+        "type": "package"
+      },
       "Microsoft.CSharp/4.0.0": {
         "type": "package",
         "dependencies": {
@@ -7477,6 +8282,21 @@
         },
         "runtime": {
           "lib/netcore50/Microsoft.CSharp.dll": {}
+        }
+      },
+      "Microsoft.Net.Http/2.2.29": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.Bcl": "1.1.10",
+          "Microsoft.Bcl.Build": "1.0.14"
+        },
+        "compile": {
+          "lib/win8/System.Net.Http.Extensions.dll": {},
+          "lib/win8/System.Net.Http.Primitives.dll": {}
+        },
+        "runtime": {
+          "lib/win8/System.Net.Http.Extensions.dll": {},
+          "lib/win8/System.Net.Http.Primitives.dll": {}
         }
       },
       "Microsoft.NETCore/5.0.0": {
@@ -7718,6 +8538,17 @@
           "lib/portable-win81+wpa81/PCLCrypto.dll": {}
         }
       },
+      "PCLStorage/1.0.2": {
+        "type": "package",
+        "compile": {
+          "lib/portable-win8+wpa81/PCLStorage.Abstractions.dll": {},
+          "lib/portable-win8+wpa81/PCLStorage.dll": {}
+        },
+        "runtime": {
+          "lib/portable-win8+wpa81/PCLStorage.Abstractions.dll": {},
+          "lib/portable-win8+wpa81/PCLStorage.dll": {}
+        }
+      },
       "PInvoke.BCrypt/0.3.2": {
         "type": "package",
         "dependencies": {
@@ -7763,6 +8594,78 @@
         },
         "runtime": {
           "lib/portable-net45+win+wpa81+MonoAndroid10+xamarinios10+MonoTouch10/PInvoke.Windows.Core.dll": {}
+        }
+      },
+      "Plugin.Visual1993.CloudImage/1.0.0": {
+        "type": "package",
+        "dependencies": {
+          "AWSSDK.S3": "3.3.5.10",
+          "Newtonsoft.Json": "9.0.1",
+          "PCLStorage": "1.0.2",
+          "Plugin.Visual1993.Common": "1.0.0",
+          "Xam.Plugin.Media": "2.6.2",
+          "Xamarin.Forms": "2.3.3"
+        },
+        "compile": {
+          "lib/portable-net45+wp8+wpa81+win8+MonoAndroid10+MonoTouch10+Xamarin.iOS10+UAP10/CloudImage.dll": {}
+        },
+        "runtime": {
+          "lib/portable-net45+wp8+wpa81+win8+MonoAndroid10+MonoTouch10+Xamarin.iOS10+UAP10/CloudImage.dll": {}
+        }
+      },
+      "Plugin.Visual1993.Common/1.0.0": {
+        "type": "package",
+        "dependencies": {
+          "Newtonsoft.Json": "9.0.1",
+          "Xamarin.Forms": "2.3.3"
+        },
+        "compile": {
+          "lib/portable-net45+wp8+wpa81+win8+MonoAndroid10+MonoTouch10+Xamarin.iOS10+UAP10/Common.dll": {}
+        },
+        "runtime": {
+          "lib/portable-net45+wp8+wpa81+win8+MonoAndroid10+MonoTouch10+Xamarin.iOS10+UAP10/Common.dll": {}
+        }
+      },
+      "Plugin.Visual1993.Controls/1.0.0": {
+        "type": "package",
+        "dependencies": {
+          "Newtonsoft.Json": "9.0.1",
+          "Plugin.Visual1993.Common": "1.0.0",
+          "Xamarin.FFImageLoading.Forms": "2.2.9",
+          "Xamarin.FFImageLoading.Transformations": "2.2.9",
+          "Xamarin.Forms": "2.3.3"
+        },
+        "compile": {
+          "lib/portable-net45+wp8+wpa81+win8+MonoAndroid10+MonoTouch10+Xamarin.iOS10+UAP10/Plugin.Visual1993.Controls.dll": {}
+        },
+        "runtime": {
+          "lib/portable-net45+wp8+wpa81+win8+MonoAndroid10+MonoTouch10+Xamarin.iOS10+UAP10/Plugin.Visual1993.Controls.dll": {}
+        }
+      },
+      "Plugin.Visual1993.Core/1.0.2": {
+        "type": "package",
+        "dependencies": {
+          "Newtonsoft.Json": "9.0.1"
+        },
+        "compile": {
+          "lib/portable-net45+wp8+wpa81+win8+MonoAndroid10+MonoTouch10+Xamarin.iOS10+UAP10/Core.dll": {}
+        },
+        "runtime": {
+          "lib/portable-net45+wp8+wpa81+win8+MonoAndroid10+MonoTouch10+Xamarin.iOS10+UAP10/Core.dll": {}
+        }
+      },
+      "Plugin.Visual1993.Gateway/1.0.0": {
+        "type": "package",
+        "dependencies": {
+          "Newtonsoft.Json": "9.0.1",
+          "PCLCrypto": "2.0.147",
+          "Plugin.Visual1993.Core": "1.0.2"
+        },
+        "compile": {
+          "lib/portable-net45+wp8+wpa81+win8+MonoAndroid10+MonoTouch10+Xamarin.iOS10+UAP10/Plugin.Visual1993.Gateway.Abstractions.dll": {}
+        },
+        "runtime": {
+          "lib/portable-net45+wp8+wpa81+win8+MonoAndroid10+MonoTouch10+Xamarin.iOS10+UAP10/Plugin.Visual1993.Gateway.Abstractions.dll": {}
         }
       },
       "System.AppContext/4.0.0": {
@@ -9232,6 +10135,58 @@
           "lib/dotnet/Validation.dll": {}
         }
       },
+      "Xam.Plugin.Media/2.6.2": {
+        "type": "package",
+        "compile": {
+          "lib/UAP10/Plugin.Media.Abstractions.dll": {},
+          "lib/UAP10/Plugin.Media.dll": {}
+        },
+        "runtime": {
+          "lib/UAP10/Plugin.Media.Abstractions.dll": {},
+          "lib/UAP10/Plugin.Media.dll": {}
+        }
+      },
+      "Xamarin.FFImageLoading/2.2.9": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.Net.Http": "2.2.29"
+        },
+        "compile": {
+          "lib/portable-netcore45+wpa81/FFImageLoading.Platform.dll": {},
+          "lib/portable-netcore45+wpa81/FFImageLoading.dll": {}
+        },
+        "runtime": {
+          "lib/portable-netcore45+wpa81/FFImageLoading.Platform.dll": {},
+          "lib/portable-netcore45+wpa81/FFImageLoading.dll": {}
+        }
+      },
+      "Xamarin.FFImageLoading.Forms/2.2.9": {
+        "type": "package",
+        "dependencies": {
+          "Xamarin.FFImageLoading": "2.2.9",
+          "Xamarin.Forms": "1.4.4.6392"
+        },
+        "compile": {
+          "lib/uap10.0/FFImageLoading.Forms.WinUWP.dll": {},
+          "lib/uap10.0/FFImageLoading.Forms.dll": {}
+        },
+        "runtime": {
+          "lib/uap10.0/FFImageLoading.Forms.WinUWP.dll": {},
+          "lib/uap10.0/FFImageLoading.Forms.dll": {}
+        }
+      },
+      "Xamarin.FFImageLoading.Transformations/2.2.9": {
+        "type": "package",
+        "dependencies": {
+          "Xamarin.FFImageLoading": "2.2.9"
+        },
+        "compile": {
+          "lib/portable-netcore45+wpa81/FFImageLoading.Transformations.dll": {}
+        },
+        "runtime": {
+          "lib/portable-netcore45+wpa81/FFImageLoading.Transformations.dll": {}
+        }
+      },
       "Xamarin.Forms/2.3.3.193": {
         "type": "package",
         "compile": {
@@ -9249,6 +10204,47 @@
       }
     },
     "UAP,Version=v10.0/win10-x86": {
+      "AWSSDK.Core/3.3.10.1": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.NETCore.UniversalWindowsPlatform": "5.2.2",
+          "PCLCrypto": "1.0.2.15130",
+          "PCLStorage": "1.0.2"
+        },
+        "compile": {
+          "lib/uap/AWSSDK.Core.dll": {}
+        },
+        "runtime": {
+          "lib/uap/AWSSDK.Core.dll": {}
+        }
+      },
+      "AWSSDK.S3/3.3.5.10": {
+        "type": "package",
+        "dependencies": {
+          "AWSSDK.Core": "[3.3.10.1, 3.4.0)"
+        },
+        "compile": {
+          "lib/netstandard1.3/AWSSDK.S3.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard1.3/AWSSDK.S3.dll": {}
+        }
+      },
+      "Microsoft.Bcl/1.1.10": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.Bcl.Build": "1.0.14"
+        },
+        "compile": {
+          "lib/win8/_._": {}
+        },
+        "runtime": {
+          "lib/win8/_._": {}
+        }
+      },
+      "Microsoft.Bcl.Build/1.0.14": {
+        "type": "package"
+      },
       "Microsoft.CSharp/4.0.0": {
         "type": "package",
         "dependencies": {
@@ -9274,6 +10270,21 @@
         },
         "runtime": {
           "lib/netcore50/Microsoft.CSharp.dll": {}
+        }
+      },
+      "Microsoft.Net.Http/2.2.29": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.Bcl": "1.1.10",
+          "Microsoft.Bcl.Build": "1.0.14"
+        },
+        "compile": {
+          "lib/win8/System.Net.Http.Extensions.dll": {},
+          "lib/win8/System.Net.Http.Primitives.dll": {}
+        },
+        "runtime": {
+          "lib/win8/System.Net.Http.Extensions.dll": {},
+          "lib/win8/System.Net.Http.Primitives.dll": {}
         }
       },
       "Microsoft.NETCore/5.0.0": {
@@ -9536,6 +10547,17 @@
           "lib/portable-win81+wpa81/PCLCrypto.dll": {}
         }
       },
+      "PCLStorage/1.0.2": {
+        "type": "package",
+        "compile": {
+          "lib/portable-win8+wpa81/PCLStorage.Abstractions.dll": {},
+          "lib/portable-win8+wpa81/PCLStorage.dll": {}
+        },
+        "runtime": {
+          "lib/portable-win8+wpa81/PCLStorage.Abstractions.dll": {},
+          "lib/portable-win8+wpa81/PCLStorage.dll": {}
+        }
+      },
       "PInvoke.BCrypt/0.3.2": {
         "type": "package",
         "dependencies": {
@@ -9581,6 +10603,78 @@
         },
         "runtime": {
           "lib/portable-net45+win+wpa81+MonoAndroid10+xamarinios10+MonoTouch10/PInvoke.Windows.Core.dll": {}
+        }
+      },
+      "Plugin.Visual1993.CloudImage/1.0.0": {
+        "type": "package",
+        "dependencies": {
+          "AWSSDK.S3": "3.3.5.10",
+          "Newtonsoft.Json": "9.0.1",
+          "PCLStorage": "1.0.2",
+          "Plugin.Visual1993.Common": "1.0.0",
+          "Xam.Plugin.Media": "2.6.2",
+          "Xamarin.Forms": "2.3.3"
+        },
+        "compile": {
+          "lib/portable-net45+wp8+wpa81+win8+MonoAndroid10+MonoTouch10+Xamarin.iOS10+UAP10/CloudImage.dll": {}
+        },
+        "runtime": {
+          "lib/portable-net45+wp8+wpa81+win8+MonoAndroid10+MonoTouch10+Xamarin.iOS10+UAP10/CloudImage.dll": {}
+        }
+      },
+      "Plugin.Visual1993.Common/1.0.0": {
+        "type": "package",
+        "dependencies": {
+          "Newtonsoft.Json": "9.0.1",
+          "Xamarin.Forms": "2.3.3"
+        },
+        "compile": {
+          "lib/portable-net45+wp8+wpa81+win8+MonoAndroid10+MonoTouch10+Xamarin.iOS10+UAP10/Common.dll": {}
+        },
+        "runtime": {
+          "lib/portable-net45+wp8+wpa81+win8+MonoAndroid10+MonoTouch10+Xamarin.iOS10+UAP10/Common.dll": {}
+        }
+      },
+      "Plugin.Visual1993.Controls/1.0.0": {
+        "type": "package",
+        "dependencies": {
+          "Newtonsoft.Json": "9.0.1",
+          "Plugin.Visual1993.Common": "1.0.0",
+          "Xamarin.FFImageLoading.Forms": "2.2.9",
+          "Xamarin.FFImageLoading.Transformations": "2.2.9",
+          "Xamarin.Forms": "2.3.3"
+        },
+        "compile": {
+          "lib/portable-net45+wp8+wpa81+win8+MonoAndroid10+MonoTouch10+Xamarin.iOS10+UAP10/Plugin.Visual1993.Controls.dll": {}
+        },
+        "runtime": {
+          "lib/portable-net45+wp8+wpa81+win8+MonoAndroid10+MonoTouch10+Xamarin.iOS10+UAP10/Plugin.Visual1993.Controls.dll": {}
+        }
+      },
+      "Plugin.Visual1993.Core/1.0.2": {
+        "type": "package",
+        "dependencies": {
+          "Newtonsoft.Json": "9.0.1"
+        },
+        "compile": {
+          "lib/portable-net45+wp8+wpa81+win8+MonoAndroid10+MonoTouch10+Xamarin.iOS10+UAP10/Core.dll": {}
+        },
+        "runtime": {
+          "lib/portable-net45+wp8+wpa81+win8+MonoAndroid10+MonoTouch10+Xamarin.iOS10+UAP10/Core.dll": {}
+        }
+      },
+      "Plugin.Visual1993.Gateway/1.0.0": {
+        "type": "package",
+        "dependencies": {
+          "Newtonsoft.Json": "9.0.1",
+          "PCLCrypto": "2.0.147",
+          "Plugin.Visual1993.Core": "1.0.2"
+        },
+        "compile": {
+          "lib/portable-net45+wp8+wpa81+win8+MonoAndroid10+MonoTouch10+Xamarin.iOS10+UAP10/Plugin.Visual1993.Gateway.Abstractions.dll": {}
+        },
+        "runtime": {
+          "lib/portable-net45+wp8+wpa81+win8+MonoAndroid10+MonoTouch10+Xamarin.iOS10+UAP10/Plugin.Visual1993.Gateway.Abstractions.dll": {}
         }
       },
       "System.AppContext/4.0.0": {
@@ -11073,6 +12167,58 @@
           "lib/dotnet/Validation.dll": {}
         }
       },
+      "Xam.Plugin.Media/2.6.2": {
+        "type": "package",
+        "compile": {
+          "lib/UAP10/Plugin.Media.Abstractions.dll": {},
+          "lib/UAP10/Plugin.Media.dll": {}
+        },
+        "runtime": {
+          "lib/UAP10/Plugin.Media.Abstractions.dll": {},
+          "lib/UAP10/Plugin.Media.dll": {}
+        }
+      },
+      "Xamarin.FFImageLoading/2.2.9": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.Net.Http": "2.2.29"
+        },
+        "compile": {
+          "lib/portable-netcore45+wpa81/FFImageLoading.Platform.dll": {},
+          "lib/portable-netcore45+wpa81/FFImageLoading.dll": {}
+        },
+        "runtime": {
+          "lib/portable-netcore45+wpa81/FFImageLoading.Platform.dll": {},
+          "lib/portable-netcore45+wpa81/FFImageLoading.dll": {}
+        }
+      },
+      "Xamarin.FFImageLoading.Forms/2.2.9": {
+        "type": "package",
+        "dependencies": {
+          "Xamarin.FFImageLoading": "2.2.9",
+          "Xamarin.Forms": "1.4.4.6392"
+        },
+        "compile": {
+          "lib/uap10.0/FFImageLoading.Forms.WinUWP.dll": {},
+          "lib/uap10.0/FFImageLoading.Forms.dll": {}
+        },
+        "runtime": {
+          "lib/uap10.0/FFImageLoading.Forms.WinUWP.dll": {},
+          "lib/uap10.0/FFImageLoading.Forms.dll": {}
+        }
+      },
+      "Xamarin.FFImageLoading.Transformations/2.2.9": {
+        "type": "package",
+        "dependencies": {
+          "Xamarin.FFImageLoading": "2.2.9"
+        },
+        "compile": {
+          "lib/portable-netcore45+wpa81/FFImageLoading.Transformations.dll": {}
+        },
+        "runtime": {
+          "lib/portable-netcore45+wpa81/FFImageLoading.Transformations.dll": {}
+        }
+      },
       "Xamarin.Forms/2.3.3.193": {
         "type": "package",
         "compile": {
@@ -11090,6 +12236,47 @@
       }
     },
     "UAP,Version=v10.0/win10-x86-aot": {
+      "AWSSDK.Core/3.3.10.1": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.NETCore.UniversalWindowsPlatform": "5.2.2",
+          "PCLCrypto": "1.0.2.15130",
+          "PCLStorage": "1.0.2"
+        },
+        "compile": {
+          "lib/uap/AWSSDK.Core.dll": {}
+        },
+        "runtime": {
+          "lib/uap/AWSSDK.Core.dll": {}
+        }
+      },
+      "AWSSDK.S3/3.3.5.10": {
+        "type": "package",
+        "dependencies": {
+          "AWSSDK.Core": "[3.3.10.1, 3.4.0)"
+        },
+        "compile": {
+          "lib/netstandard1.3/AWSSDK.S3.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard1.3/AWSSDK.S3.dll": {}
+        }
+      },
+      "Microsoft.Bcl/1.1.10": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.Bcl.Build": "1.0.14"
+        },
+        "compile": {
+          "lib/win8/_._": {}
+        },
+        "runtime": {
+          "lib/win8/_._": {}
+        }
+      },
+      "Microsoft.Bcl.Build/1.0.14": {
+        "type": "package"
+      },
       "Microsoft.CSharp/4.0.0": {
         "type": "package",
         "dependencies": {
@@ -11115,6 +12302,21 @@
         },
         "runtime": {
           "lib/netcore50/Microsoft.CSharp.dll": {}
+        }
+      },
+      "Microsoft.Net.Http/2.2.29": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.Bcl": "1.1.10",
+          "Microsoft.Bcl.Build": "1.0.14"
+        },
+        "compile": {
+          "lib/win8/System.Net.Http.Extensions.dll": {},
+          "lib/win8/System.Net.Http.Primitives.dll": {}
+        },
+        "runtime": {
+          "lib/win8/System.Net.Http.Extensions.dll": {},
+          "lib/win8/System.Net.Http.Primitives.dll": {}
         }
       },
       "Microsoft.NETCore/5.0.0": {
@@ -11356,6 +12558,17 @@
           "lib/portable-win81+wpa81/PCLCrypto.dll": {}
         }
       },
+      "PCLStorage/1.0.2": {
+        "type": "package",
+        "compile": {
+          "lib/portable-win8+wpa81/PCLStorage.Abstractions.dll": {},
+          "lib/portable-win8+wpa81/PCLStorage.dll": {}
+        },
+        "runtime": {
+          "lib/portable-win8+wpa81/PCLStorage.Abstractions.dll": {},
+          "lib/portable-win8+wpa81/PCLStorage.dll": {}
+        }
+      },
       "PInvoke.BCrypt/0.3.2": {
         "type": "package",
         "dependencies": {
@@ -11401,6 +12614,78 @@
         },
         "runtime": {
           "lib/portable-net45+win+wpa81+MonoAndroid10+xamarinios10+MonoTouch10/PInvoke.Windows.Core.dll": {}
+        }
+      },
+      "Plugin.Visual1993.CloudImage/1.0.0": {
+        "type": "package",
+        "dependencies": {
+          "AWSSDK.S3": "3.3.5.10",
+          "Newtonsoft.Json": "9.0.1",
+          "PCLStorage": "1.0.2",
+          "Plugin.Visual1993.Common": "1.0.0",
+          "Xam.Plugin.Media": "2.6.2",
+          "Xamarin.Forms": "2.3.3"
+        },
+        "compile": {
+          "lib/portable-net45+wp8+wpa81+win8+MonoAndroid10+MonoTouch10+Xamarin.iOS10+UAP10/CloudImage.dll": {}
+        },
+        "runtime": {
+          "lib/portable-net45+wp8+wpa81+win8+MonoAndroid10+MonoTouch10+Xamarin.iOS10+UAP10/CloudImage.dll": {}
+        }
+      },
+      "Plugin.Visual1993.Common/1.0.0": {
+        "type": "package",
+        "dependencies": {
+          "Newtonsoft.Json": "9.0.1",
+          "Xamarin.Forms": "2.3.3"
+        },
+        "compile": {
+          "lib/portable-net45+wp8+wpa81+win8+MonoAndroid10+MonoTouch10+Xamarin.iOS10+UAP10/Common.dll": {}
+        },
+        "runtime": {
+          "lib/portable-net45+wp8+wpa81+win8+MonoAndroid10+MonoTouch10+Xamarin.iOS10+UAP10/Common.dll": {}
+        }
+      },
+      "Plugin.Visual1993.Controls/1.0.0": {
+        "type": "package",
+        "dependencies": {
+          "Newtonsoft.Json": "9.0.1",
+          "Plugin.Visual1993.Common": "1.0.0",
+          "Xamarin.FFImageLoading.Forms": "2.2.9",
+          "Xamarin.FFImageLoading.Transformations": "2.2.9",
+          "Xamarin.Forms": "2.3.3"
+        },
+        "compile": {
+          "lib/portable-net45+wp8+wpa81+win8+MonoAndroid10+MonoTouch10+Xamarin.iOS10+UAP10/Plugin.Visual1993.Controls.dll": {}
+        },
+        "runtime": {
+          "lib/portable-net45+wp8+wpa81+win8+MonoAndroid10+MonoTouch10+Xamarin.iOS10+UAP10/Plugin.Visual1993.Controls.dll": {}
+        }
+      },
+      "Plugin.Visual1993.Core/1.0.2": {
+        "type": "package",
+        "dependencies": {
+          "Newtonsoft.Json": "9.0.1"
+        },
+        "compile": {
+          "lib/portable-net45+wp8+wpa81+win8+MonoAndroid10+MonoTouch10+Xamarin.iOS10+UAP10/Core.dll": {}
+        },
+        "runtime": {
+          "lib/portable-net45+wp8+wpa81+win8+MonoAndroid10+MonoTouch10+Xamarin.iOS10+UAP10/Core.dll": {}
+        }
+      },
+      "Plugin.Visual1993.Gateway/1.0.0": {
+        "type": "package",
+        "dependencies": {
+          "Newtonsoft.Json": "9.0.1",
+          "PCLCrypto": "2.0.147",
+          "Plugin.Visual1993.Core": "1.0.2"
+        },
+        "compile": {
+          "lib/portable-net45+wp8+wpa81+win8+MonoAndroid10+MonoTouch10+Xamarin.iOS10+UAP10/Plugin.Visual1993.Gateway.Abstractions.dll": {}
+        },
+        "runtime": {
+          "lib/portable-net45+wp8+wpa81+win8+MonoAndroid10+MonoTouch10+Xamarin.iOS10+UAP10/Plugin.Visual1993.Gateway.Abstractions.dll": {}
         }
       },
       "System.AppContext/4.0.0": {
@@ -12870,6 +14155,58 @@
           "lib/dotnet/Validation.dll": {}
         }
       },
+      "Xam.Plugin.Media/2.6.2": {
+        "type": "package",
+        "compile": {
+          "lib/UAP10/Plugin.Media.Abstractions.dll": {},
+          "lib/UAP10/Plugin.Media.dll": {}
+        },
+        "runtime": {
+          "lib/UAP10/Plugin.Media.Abstractions.dll": {},
+          "lib/UAP10/Plugin.Media.dll": {}
+        }
+      },
+      "Xamarin.FFImageLoading/2.2.9": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.Net.Http": "2.2.29"
+        },
+        "compile": {
+          "lib/portable-netcore45+wpa81/FFImageLoading.Platform.dll": {},
+          "lib/portable-netcore45+wpa81/FFImageLoading.dll": {}
+        },
+        "runtime": {
+          "lib/portable-netcore45+wpa81/FFImageLoading.Platform.dll": {},
+          "lib/portable-netcore45+wpa81/FFImageLoading.dll": {}
+        }
+      },
+      "Xamarin.FFImageLoading.Forms/2.2.9": {
+        "type": "package",
+        "dependencies": {
+          "Xamarin.FFImageLoading": "2.2.9",
+          "Xamarin.Forms": "1.4.4.6392"
+        },
+        "compile": {
+          "lib/uap10.0/FFImageLoading.Forms.WinUWP.dll": {},
+          "lib/uap10.0/FFImageLoading.Forms.dll": {}
+        },
+        "runtime": {
+          "lib/uap10.0/FFImageLoading.Forms.WinUWP.dll": {},
+          "lib/uap10.0/FFImageLoading.Forms.dll": {}
+        }
+      },
+      "Xamarin.FFImageLoading.Transformations/2.2.9": {
+        "type": "package",
+        "dependencies": {
+          "Xamarin.FFImageLoading": "2.2.9"
+        },
+        "compile": {
+          "lib/portable-netcore45+wpa81/FFImageLoading.Transformations.dll": {}
+        },
+        "runtime": {
+          "lib/portable-netcore45+wpa81/FFImageLoading.Transformations.dll": {}
+        }
+      },
       "Xamarin.Forms/2.3.3.193": {
         "type": "package",
         "compile": {
@@ -12888,6 +14225,185 @@
     }
   },
   "libraries": {
+    "AWSSDK.Core/3.3.10.1": {
+      "sha512": "coEWmP6qeiLoz2LD4WJxiXIAVD2z2Mv8o8NhzCwhQNTaEjJlj69pUwUU9mM+1AoM2RlyGzSrpXfn7L12IAwVEw==",
+      "type": "package",
+      "files": [
+        "AWSSDK.Core.3.3.10.1.nupkg.sha512",
+        "AWSSDK.Core.nuspec",
+        "lib/MonoAndroid10/AWSSDK.Core.XML",
+        "lib/MonoAndroid10/AWSSDK.Core.dll",
+        "lib/MonoAndroid10/AWSSDK.Core.pdb",
+        "lib/MonoTouch10/AWSSDK.Core.XML",
+        "lib/MonoTouch10/AWSSDK.Core.dll",
+        "lib/Xamarin.Mac20/AWSSDK.Core.XML",
+        "lib/Xamarin.Mac20/AWSSDK.Core.dll",
+        "lib/Xamarin.iOS10/AWSSDK.Core.XML",
+        "lib/Xamarin.iOS10/AWSSDK.Core.dll",
+        "lib/net35/AWSSDK.Core.XML",
+        "lib/net35/AWSSDK.Core.dll",
+        "lib/net35/AWSSDK.Core.pdb",
+        "lib/net45/AWSSDK.Core.XML",
+        "lib/net45/AWSSDK.Core.dll",
+        "lib/net45/AWSSDK.Core.pdb",
+        "lib/netstandard1.3/AWSSDK.Core.dll",
+        "lib/netstandard1.3/AWSSDK.Core.pdb",
+        "lib/netstandard1.3/AWSSDK.Core.xml",
+        "lib/portable-net45+win8+wpa81+wp8/AWSSDK.Core.XML",
+        "lib/portable-net45+win8+wpa81+wp8/AWSSDK.Core.dll",
+        "lib/portable-net45+win8+wpa81+wp8/AWSSDK.Core.pdb",
+        "lib/uap/AWSSDK.Core.XML",
+        "lib/uap/AWSSDK.Core.dll",
+        "lib/uap/AWSSDK.Core.pdb",
+        "lib/win8/AWSSDK.Core.XML",
+        "lib/win8/AWSSDK.Core.dll",
+        "lib/win8/AWSSDK.Core.pdb",
+        "lib/wp8/AWSSDK.Core.XML",
+        "lib/wp8/AWSSDK.Core.dll",
+        "lib/wp8/AWSSDK.Core.pdb",
+        "lib/wpa81/AWSSDK.Core.XML",
+        "lib/wpa81/AWSSDK.Core.dll",
+        "lib/wpa81/AWSSDK.Core.pdb",
+        "tools/account-management.ps1"
+      ]
+    },
+    "AWSSDK.S3/3.3.5.10": {
+      "sha512": "RTJdrmOjD8eob+0envRxDAPUrzE+L5p/N07tyjU6pwSJEEhmWJ8vGfznBhHOHTGRXOzQjJmbjC/lAoJWI/Twsw==",
+      "type": "package",
+      "files": [
+        "AWSSDK.S3.3.3.5.10.nupkg.sha512",
+        "AWSSDK.S3.nuspec",
+        "analyzers/dotnet/cs/AWSSDK.S3.CodeAnalysis.dll",
+        "lib/MonoAndroid10/AWSSDK.S3.XML",
+        "lib/MonoAndroid10/AWSSDK.S3.dll",
+        "lib/MonoTouch10/AWSSDK.S3.XML",
+        "lib/MonoTouch10/AWSSDK.S3.dll",
+        "lib/MonoTouch10/AWSSDK.S3.pdb",
+        "lib/Xamarin.iOS10/AWSSDK.S3.XML",
+        "lib/Xamarin.iOS10/AWSSDK.S3.dll",
+        "lib/net35/AWSSDK.S3.XML",
+        "lib/net35/AWSSDK.S3.dll",
+        "lib/net35/AWSSDK.S3.pdb",
+        "lib/net45/AWSSDK.S3.XML",
+        "lib/net45/AWSSDK.S3.dll",
+        "lib/net45/AWSSDK.S3.pdb",
+        "lib/netstandard1.3/AWSSDK.S3.dll",
+        "lib/netstandard1.3/AWSSDK.S3.pdb",
+        "lib/netstandard1.3/AWSSDK.S3.xml",
+        "lib/portable-net45+win8+wpa81+wp8/AWSSDK.S3.XML",
+        "lib/portable-net45+win8+wpa81+wp8/AWSSDK.S3.dll",
+        "lib/portable-net45+win8+wpa81+wp8/AWSSDK.S3.pdb",
+        "tools/install.ps1",
+        "tools/uninstall.ps1"
+      ]
+    },
+    "Microsoft.Bcl/1.1.10": {
+      "sha512": "+tTqoh/M1pyL8El3qLy30EcwnAtyvFoDZJtdG9Cbg/WdFbh4N8kyrq198XHuEL7lnJbeD0DRO8jcX5IIOh05cQ==",
+      "type": "package",
+      "files": [
+        "License-Stable.rtf",
+        "Microsoft.Bcl.1.1.10.nupkg.sha512",
+        "Microsoft.Bcl.nuspec",
+        "lib/Xamarin.iOS10/_._",
+        "lib/monoandroid/_._",
+        "lib/monotouch/_._",
+        "lib/net40/System.IO.dll",
+        "lib/net40/System.IO.xml",
+        "lib/net40/System.Runtime.dll",
+        "lib/net40/System.Runtime.xml",
+        "lib/net40/System.Threading.Tasks.dll",
+        "lib/net40/System.Threading.Tasks.xml",
+        "lib/net40/ensureRedirect.xml",
+        "lib/net45/_._",
+        "lib/portable-net40+sl4+win8+wp71+wpa81/System.IO.dll",
+        "lib/portable-net40+sl4+win8+wp71+wpa81/System.IO.xml",
+        "lib/portable-net40+sl4+win8+wp71+wpa81/System.Runtime.dll",
+        "lib/portable-net40+sl4+win8+wp71+wpa81/System.Runtime.xml",
+        "lib/portable-net40+sl4+win8+wp71+wpa81/System.Threading.Tasks.dll",
+        "lib/portable-net40+sl4+win8+wp71+wpa81/System.Threading.Tasks.xml",
+        "lib/portable-net40+sl4+win8+wp71+wpa81/ensureRedirect.xml",
+        "lib/portable-net40+sl4+win8+wp8+wpa81/System.IO.dll",
+        "lib/portable-net40+sl4+win8+wp8+wpa81/System.IO.xml",
+        "lib/portable-net40+sl4+win8+wp8+wpa81/System.Runtime.dll",
+        "lib/portable-net40+sl4+win8+wp8+wpa81/System.Runtime.xml",
+        "lib/portable-net40+sl4+win8+wp8+wpa81/System.Threading.Tasks.dll",
+        "lib/portable-net40+sl4+win8+wp8+wpa81/System.Threading.Tasks.xml",
+        "lib/portable-net40+sl4+win8+wp8+wpa81/ensureRedirect.xml",
+        "lib/portable-net40+sl4+win8/System.IO.dll",
+        "lib/portable-net40+sl4+win8/System.IO.xml",
+        "lib/portable-net40+sl4+win8/System.Runtime.dll",
+        "lib/portable-net40+sl4+win8/System.Runtime.xml",
+        "lib/portable-net40+sl4+win8/System.Threading.Tasks.dll",
+        "lib/portable-net40+sl4+win8/System.Threading.Tasks.xml",
+        "lib/portable-net40+sl4+win8/ensureRedirect.xml",
+        "lib/portable-net40+sl5+win8+wp8+wpa81/System.IO.dll",
+        "lib/portable-net40+sl5+win8+wp8+wpa81/System.IO.xml",
+        "lib/portable-net40+sl5+win8+wp8+wpa81/System.Runtime.dll",
+        "lib/portable-net40+sl5+win8+wp8+wpa81/System.Runtime.xml",
+        "lib/portable-net40+sl5+win8+wp8+wpa81/System.Threading.Tasks.dll",
+        "lib/portable-net40+sl5+win8+wp8+wpa81/System.Threading.Tasks.xml",
+        "lib/portable-net40+sl5+win8+wp8+wpa81/ensureRedirect.xml",
+        "lib/portable-net40+win8+wp8+wpa81/System.IO.dll",
+        "lib/portable-net40+win8+wp8+wpa81/System.IO.xml",
+        "lib/portable-net40+win8+wp8+wpa81/System.Runtime.dll",
+        "lib/portable-net40+win8+wp8+wpa81/System.Runtime.xml",
+        "lib/portable-net40+win8+wp8+wpa81/System.Threading.Tasks.dll",
+        "lib/portable-net40+win8+wp8+wpa81/System.Threading.Tasks.xml",
+        "lib/portable-net40+win8+wp8+wpa81/ensureRedirect.xml",
+        "lib/portable-net40+win8/System.IO.dll",
+        "lib/portable-net40+win8/System.IO.xml",
+        "lib/portable-net40+win8/System.Runtime.dll",
+        "lib/portable-net40+win8/System.Runtime.xml",
+        "lib/portable-net40+win8/System.Threading.Tasks.dll",
+        "lib/portable-net40+win8/System.Threading.Tasks.xml",
+        "lib/portable-net40+win8/ensureRedirect.xml",
+        "lib/portable-net45+win8+wp8+wpa81/_._",
+        "lib/portable-net45+win8+wpa81/_._",
+        "lib/portable-net451+win81+wpa81/_._",
+        "lib/portable-net451+win81/_._",
+        "lib/portable-win81+wp81+wpa81/_._",
+        "lib/sl4-windowsphone71/System.IO.dll",
+        "lib/sl4-windowsphone71/System.IO.xml",
+        "lib/sl4-windowsphone71/System.Runtime.dll",
+        "lib/sl4-windowsphone71/System.Runtime.xml",
+        "lib/sl4-windowsphone71/System.Threading.Tasks.dll",
+        "lib/sl4-windowsphone71/System.Threading.Tasks.xml",
+        "lib/sl4-windowsphone71/ensureRedirect.xml",
+        "lib/sl4/System.IO.dll",
+        "lib/sl4/System.IO.xml",
+        "lib/sl4/System.Runtime.dll",
+        "lib/sl4/System.Runtime.xml",
+        "lib/sl4/System.Threading.Tasks.dll",
+        "lib/sl4/System.Threading.Tasks.xml",
+        "lib/sl5/System.IO.dll",
+        "lib/sl5/System.IO.xml",
+        "lib/sl5/System.Runtime.dll",
+        "lib/sl5/System.Runtime.xml",
+        "lib/sl5/System.Threading.Tasks.dll",
+        "lib/sl5/System.Threading.Tasks.xml",
+        "lib/win8/_._",
+        "lib/wp8/_._",
+        "lib/wpa81/_._"
+      ]
+    },
+    "Microsoft.Bcl.Build/1.0.14": {
+      "sha512": "cDLKSvNvRa519hplsbSoYqO69TjdDIhfjtKUM0g20/nVROoWsGav9KCI9HtnGjLmdV1+TcUUDhbotcllibjPEA==",
+      "type": "package",
+      "files": [
+        "License-Stable.rtf",
+        "Microsoft.Bcl.Build.1.0.14.nupkg.sha512",
+        "Microsoft.Bcl.Build.nuspec",
+        "content/net40/_._",
+        "content/netcore45/_._",
+        "content/portable-net40+win8+sl4+wp71+wpa81/_._",
+        "content/sl4-windowsphone71/_._",
+        "content/sl4/_._",
+        "tools/Install.ps1",
+        "tools/Microsoft.Bcl.Build.Tasks.dll",
+        "tools/Microsoft.Bcl.Build.targets",
+        "tools/Uninstall.ps1"
+      ]
+    },
     "Microsoft.CSharp/4.0.0": {
       "sha512": "oWqeKUxHXdK6dL2CFjgMcaBISbkk+AqEg+yvJHE4DElNzS4QaTsCflgkkqZwVlWby1Dg9zo9n+iCAMFefFdJ/A==",
       "type": "package",
@@ -12925,6 +14441,72 @@
         "ref/wpa81/_._",
         "ref/xamarinios10/_._",
         "ref/xamarinmac20/_._"
+      ]
+    },
+    "Microsoft.Net.Http/2.2.29": {
+      "sha512": "fc4CPEewJ30Xgal+fSq1lYIBt582A7eKlAL7O4HXiYAiTp2VTnA4osSvk7T2n8aS4xTCPVJusQk3yKLT0XSpkg==",
+      "type": "package",
+      "files": [
+        "License-Stable.rtf",
+        "Microsoft.Net.Http.2.2.29.nupkg.sha512",
+        "Microsoft.Net.Http.nuspec",
+        "lib/Xamarin.iOS10/System.Net.Http.Extensions.XML",
+        "lib/Xamarin.iOS10/System.Net.Http.Extensions.dll",
+        "lib/Xamarin.iOS10/System.Net.Http.Primitives.dll",
+        "lib/Xamarin.iOS10/System.Net.Http.Primitives.xml",
+        "lib/monoandroid/System.Net.Http.Extensions.XML",
+        "lib/monoandroid/System.Net.Http.Extensions.dll",
+        "lib/monoandroid/System.Net.Http.Primitives.dll",
+        "lib/monoandroid/System.Net.Http.Primitives.xml",
+        "lib/monotouch/System.Net.Http.Extensions.XML",
+        "lib/monotouch/System.Net.Http.Extensions.dll",
+        "lib/monotouch/System.Net.Http.Primitives.dll",
+        "lib/monotouch/System.Net.Http.Primitives.xml",
+        "lib/net40/System.Net.Http.Extensions.XML",
+        "lib/net40/System.Net.Http.Extensions.dll",
+        "lib/net40/System.Net.Http.Primitives.dll",
+        "lib/net40/System.Net.Http.Primitives.xml",
+        "lib/net40/System.Net.Http.WebRequest.dll",
+        "lib/net40/System.Net.Http.WebRequest.xml",
+        "lib/net40/System.Net.Http.dll",
+        "lib/net40/System.Net.Http.xml",
+        "lib/net40/ensureRedirect.xml",
+        "lib/net45/System.Net.Http.Extensions.XML",
+        "lib/net45/System.Net.Http.Extensions.dll",
+        "lib/net45/System.Net.Http.Primitives.dll",
+        "lib/net45/System.Net.Http.Primitives.xml",
+        "lib/net45/ensureRedirect.xml",
+        "lib/portable-net40+sl4+win8+wp71+wpa81/System.Net.Http.Extensions.XML",
+        "lib/portable-net40+sl4+win8+wp71+wpa81/System.Net.Http.Extensions.dll",
+        "lib/portable-net40+sl4+win8+wp71+wpa81/System.Net.Http.Primitives.XML",
+        "lib/portable-net40+sl4+win8+wp71+wpa81/System.Net.Http.Primitives.dll",
+        "lib/portable-net40+sl4+win8+wp71+wpa81/System.Net.Http.dll",
+        "lib/portable-net40+sl4+win8+wp71+wpa81/System.Net.Http.xml",
+        "lib/portable-net40+sl4+win8+wp71+wpa81/ensureRedirect.xml",
+        "lib/portable-net45+win8+wpa81/System.Net.Http.Extensions.XML",
+        "lib/portable-net45+win8+wpa81/System.Net.Http.Extensions.dll",
+        "lib/portable-net45+win8+wpa81/System.Net.Http.Primitives.dll",
+        "lib/portable-net45+win8+wpa81/System.Net.Http.Primitives.xml",
+        "lib/portable-net45+win8+wpa81/ensureRedirect.xml",
+        "lib/portable-net45+win8/System.Net.Http.Extensions.XML",
+        "lib/portable-net45+win8/System.Net.Http.Extensions.dll",
+        "lib/portable-net45+win8/System.Net.Http.Primitives.dll",
+        "lib/portable-net45+win8/System.Net.Http.Primitives.xml",
+        "lib/portable-net45+win8/ensureRedirect.xml",
+        "lib/sl4-windowsphone71/System.Net.Http.Extensions.XML",
+        "lib/sl4-windowsphone71/System.Net.Http.Extensions.dll",
+        "lib/sl4-windowsphone71/System.Net.Http.Primitives.XML",
+        "lib/sl4-windowsphone71/System.Net.Http.Primitives.dll",
+        "lib/sl4-windowsphone71/System.Net.Http.dll",
+        "lib/sl4-windowsphone71/System.Net.Http.xml",
+        "lib/win8/System.Net.Http.Extensions.XML",
+        "lib/win8/System.Net.Http.Extensions.dll",
+        "lib/win8/System.Net.Http.Primitives.dll",
+        "lib/win8/System.Net.Http.Primitives.xml",
+        "lib/wpa81/System.Net.Http.Extensions.XML",
+        "lib/wpa81/System.Net.Http.Extensions.dll",
+        "lib/wpa81/System.Net.Http.Primitives.dll",
+        "lib/wpa81/System.Net.Http.Primitives.xml"
       ]
     },
     "Microsoft.NETCore/5.0.0": {
@@ -13554,6 +15136,50 @@
         "lib/xamarinios10/PCLCrypto.xml"
       ]
     },
+    "PCLStorage/1.0.2": {
+      "sha512": "9If+1ZFCk3QaT/asfiL+J9FMnx2CTMrLCU8tDMUOI/aCGWGWl9vJ1/KcMkjf92op23ZknenvYJZBLDAqE3sFlg==",
+      "type": "package",
+      "files": [
+        "PCLStorage.1.0.2.nupkg.sha512",
+        "PCLStorage.nuspec",
+        "lib/monoandroid/PCLStorage.Abstractions.dll",
+        "lib/monoandroid/PCLStorage.Abstractions.xml",
+        "lib/monoandroid/PCLStorage.dll",
+        "lib/monoandroid/PCLStorage.xml",
+        "lib/monotouch/PCLStorage.Abstractions.dll",
+        "lib/monotouch/PCLStorage.Abstractions.xml",
+        "lib/monotouch/PCLStorage.dll",
+        "lib/monotouch/PCLStorage.xml",
+        "lib/net45/PCLStorage.Abstractions.dll",
+        "lib/net45/PCLStorage.Abstractions.xml",
+        "lib/net45/PCLStorage.dll",
+        "lib/net45/PCLStorage.xml",
+        "lib/portable-Xamarin.iOS+Xamarin.Mac/PCLStorage.Abstractions.dll",
+        "lib/portable-Xamarin.iOS+Xamarin.Mac/PCLStorage.Abstractions.xml",
+        "lib/portable-Xamarin.iOS+Xamarin.Mac/PCLStorage.dll",
+        "lib/portable-Xamarin.iOS+Xamarin.Mac/PCLStorage.xml",
+        "lib/portable-net45+sl5+wp8+wpa81+win8+monoandroid+monotouch+Xamarin.iOS+Xamarin.Mac/PCLStorage.Abstractions.dll",
+        "lib/portable-net45+sl5+wp8+wpa81+win8+monoandroid+monotouch+Xamarin.iOS+Xamarin.Mac/PCLStorage.Abstractions.xml",
+        "lib/portable-net45+sl5+wp8+wpa81+win8+monoandroid+monotouch+Xamarin.iOS+Xamarin.Mac/PCLStorage.dll",
+        "lib/portable-net45+sl5+wp8+wpa81+win8+monoandroid+monotouch+Xamarin.iOS+Xamarin.Mac/PCLStorage.xml",
+        "lib/portable-net45+wp8+wpa81+win8+monoandroid+monotouch+Xamarin.iOS+Xamarin.Mac/PCLStorage.Abstractions.dll",
+        "lib/portable-net45+wp8+wpa81+win8+monoandroid+monotouch+Xamarin.iOS+Xamarin.Mac/PCLStorage.Abstractions.xml",
+        "lib/portable-net45+wp8+wpa81+win8+monoandroid+monotouch+Xamarin.iOS+Xamarin.Mac/PCLStorage.dll",
+        "lib/portable-net45+wp8+wpa81+win8+monoandroid+monotouch+Xamarin.iOS+Xamarin.Mac/PCLStorage.xml",
+        "lib/portable-win8+wpa81/PCLStorage.Abstractions.dll",
+        "lib/portable-win8+wpa81/PCLStorage.Abstractions.xml",
+        "lib/portable-win8+wpa81/PCLStorage.dll",
+        "lib/portable-win8+wpa81/PCLStorage.xml",
+        "lib/sl5/PCLStorage.Abstractions.dll",
+        "lib/sl5/PCLStorage.Abstractions.xml",
+        "lib/sl5/PCLStorage.dll",
+        "lib/sl5/PCLStorage.xml",
+        "lib/wp8/PCLStorage.Abstractions.dll",
+        "lib/wp8/PCLStorage.Abstractions.xml",
+        "lib/wp8/PCLStorage.dll",
+        "lib/wp8/PCLStorage.xml"
+      ]
+    },
     "PInvoke.BCrypt/0.3.2": {
       "sha512": "6nSjPx88F+dcQgxfbM/lkYhi/zQWxwBcGAS3de/Q7YmPr5QdLNv5ZMk2UEFpMQhlFNya4TdUy5i3HKA12uMa7Q==",
       "type": "package",
@@ -13606,6 +15232,51 @@
         "lib/portable-net40+win+wpa81+MonoAndroid10+xamarinios10+MonoTouch10/PInvoke.Windows.Core.xml",
         "lib/portable-net45+win+wpa81+MonoAndroid10+xamarinios10+MonoTouch10/PInvoke.Windows.Core.dll",
         "lib/portable-net45+win+wpa81+MonoAndroid10+xamarinios10+MonoTouch10/PInvoke.Windows.Core.xml"
+      ]
+    },
+    "Plugin.Visual1993.CloudImage/1.0.0": {
+      "sha512": "hldZSrdLms+K2AinVauSxESC3ki0PM4T4XX04Z2jMDDar50MDo5cAONR3MKtQ304boeQ6hmsvGXksmk4/P3vOg==",
+      "type": "package",
+      "files": [
+        "Plugin.Visual1993.CloudImage.1.0.0.nupkg.sha512",
+        "Plugin.Visual1993.CloudImage.nuspec",
+        "lib/portable-net45+wp8+wpa81+win8+MonoAndroid10+MonoTouch10+Xamarin.iOS10+UAP10/CloudImage.dll"
+      ]
+    },
+    "Plugin.Visual1993.Common/1.0.0": {
+      "sha512": "LM+NqNs9+2FYVgLhmGDfsyM+lfcINAYIWo+lbFDLNkub8goiEG3H0A5JtY4WCatn0k/3JaYNrR6AA/MrsVAUoQ==",
+      "type": "package",
+      "files": [
+        "Plugin.Visual1993.Common.1.0.0.nupkg.sha512",
+        "Plugin.Visual1993.Common.nuspec",
+        "lib/portable-net45+wp8+wpa81+win8+MonoAndroid10+MonoTouch10+Xamarin.iOS10+UAP10/Common.dll"
+      ]
+    },
+    "Plugin.Visual1993.Controls/1.0.0": {
+      "sha512": "Y9Hxsn7EG3jZOFVt4qEPnlVz9ygrqBk1f94OYKo/MAed0bBTOTkEy4zTyER1MeO+PBYZ9Dc3Uh+DfnJ8aNcPww==",
+      "type": "package",
+      "files": [
+        "Plugin.Visual1993.Controls.1.0.0.nupkg.sha512",
+        "Plugin.Visual1993.Controls.nuspec",
+        "lib/portable-net45+wp8+wpa81+win8+MonoAndroid10+MonoTouch10+Xamarin.iOS10+UAP10/Plugin.Visual1993.Controls.dll"
+      ]
+    },
+    "Plugin.Visual1993.Core/1.0.2": {
+      "sha512": "4+pTAq9uZFcQKd6RtQmyJTDlZY+lZClRONaEQFm6q+BPdRK/Q6Xj22e0P3jh078P8V0jZAQM+C5JrNnEzqgZig==",
+      "type": "package",
+      "files": [
+        "Plugin.Visual1993.Core.1.0.2.nupkg.sha512",
+        "Plugin.Visual1993.Core.nuspec",
+        "lib/portable-net45+wp8+wpa81+win8+MonoAndroid10+MonoTouch10+Xamarin.iOS10+UAP10/Core.dll"
+      ]
+    },
+    "Plugin.Visual1993.Gateway/1.0.0": {
+      "sha512": "UY8PJ1TVHZZJX8ZKK5O1w/H8+4RxLnAwEzKz8NNSPX6oXuYh5shIJb8k03oP/GQVAWBpw29J+tQ9ip0bsUj4xQ==",
+      "type": "package",
+      "files": [
+        "Plugin.Visual1993.Gateway.1.0.0.nupkg.sha512",
+        "Plugin.Visual1993.Gateway.nuspec",
+        "lib/portable-net45+wp8+wpa81+win8+MonoAndroid10+MonoTouch10+Xamarin.iOS10+UAP10/Plugin.Visual1993.Gateway.Abstractions.dll"
       ]
     },
     "System.AppContext/4.0.0": {
@@ -16144,6 +17815,151 @@
         "tools/uninstall_snippets.cmd"
       ]
     },
+    "Xam.Plugin.Media/2.6.2": {
+      "sha512": "WN5n0205WfjS1zUsLoyfKT4nkTlUtFSvpJ0GvuQ4v3A7AJeXLASAQOB7iND8aVLFI/fg7qHZ6qxzLroAhJaa7g==",
+      "type": "package",
+      "files": [
+        "Xam.Plugin.Media.2.6.2.nupkg.sha512",
+        "Xam.Plugin.Media.nuspec",
+        "lib/MonoAndroid10/Plugin.Media.Abstractions.dll",
+        "lib/MonoAndroid10/Plugin.Media.Abstractions.pdb",
+        "lib/MonoAndroid10/Plugin.Media.Abstractions.xml",
+        "lib/MonoAndroid10/Plugin.Media.dll",
+        "lib/MonoAndroid10/Plugin.Media.pdb",
+        "lib/MonoAndroid10/Plugin.Media.xml",
+        "lib/UAP10/Plugin.Media.Abstractions.dll",
+        "lib/UAP10/Plugin.Media.Abstractions.pdb",
+        "lib/UAP10/Plugin.Media.Abstractions.xml",
+        "lib/UAP10/Plugin.Media.dll",
+        "lib/UAP10/Plugin.Media.pdb",
+        "lib/UAP10/Plugin.Media.xml",
+        "lib/Xamarin.iOS10/Plugin.Media.Abstractions.dll",
+        "lib/Xamarin.iOS10/Plugin.Media.Abstractions.xml",
+        "lib/Xamarin.iOS10/Plugin.Media.dll",
+        "lib/Xamarin.iOS10/Plugin.Media.xml",
+        "lib/net45/Plugin.Media.Abstractions.dll",
+        "lib/net45/Plugin.Media.Abstractions.xml",
+        "lib/net45/Plugin.Media.dll",
+        "lib/net45/Plugin.Media.xml",
+        "lib/portable-net45+wp80+win8+wpa81/Plugin.Media.Abstractions.dll",
+        "lib/portable-net45+wp80+win8+wpa81/Plugin.Media.Abstractions.pdb",
+        "lib/portable-net45+wp80+win8+wpa81/Plugin.Media.Abstractions.xml",
+        "lib/portable-net45+wp80+win8+wpa81/Plugin.Media.dll",
+        "lib/portable-net45+wp80+win8+wpa81/Plugin.Media.pdb",
+        "lib/portable-net45+wp80+win8+wpa81/Plugin.Media.xml",
+        "lib/win8/Plugin.Media.Abstractions.dll",
+        "lib/win8/Plugin.Media.Abstractions.pdb",
+        "lib/win8/Plugin.Media.Abstractions.xml",
+        "lib/win8/Plugin.Media.dll",
+        "lib/win8/Plugin.Media.pdb",
+        "lib/win8/Plugin.Media.xml",
+        "lib/wp8/Plugin.Media.Abstractions.dll",
+        "lib/wp8/Plugin.Media.Abstractions.pdb",
+        "lib/wp8/Plugin.Media.Abstractions.xml",
+        "lib/wp8/Plugin.Media.dll",
+        "lib/wp8/Plugin.Media.pdb",
+        "lib/wp8/Plugin.Media.xml",
+        "lib/wpa81/Plugin.Media.Abstractions.dll",
+        "lib/wpa81/Plugin.Media.Abstractions.pdb",
+        "lib/wpa81/Plugin.Media.Abstractions.xml",
+        "lib/wpa81/Plugin.Media.dll",
+        "lib/wpa81/Plugin.Media.pdb",
+        "lib/wpa81/Plugin.Media.pri",
+        "lib/wpa81/Plugin.Media.xml",
+        "lib/wpa81/Plugin.Media/CameraCaptureUI.xaml",
+        "lib/wpa81/Plugin.Media/CameraCaptureUI.xbf",
+        "lib/wpa81/Plugin.Media/CameraCaptureUIPage.xaml",
+        "lib/wpa81/Plugin.Media/CameraCaptureUIPage.xbf",
+        "lib/wpa81/Plugin.Media/Plugin.Media.xr.xml",
+        "readme.txt"
+      ]
+    },
+    "Xamarin.FFImageLoading/2.2.9": {
+      "sha512": "+ynlYKS42vQdVUzBTydlw+DyyagQ2GOqjaHjMI7ekHD21ituiRwljkepphAi5YXFepNEODXsuRBEFOF+714fgg==",
+      "type": "package",
+      "files": [
+        "Xamarin.FFImageLoading.2.2.9.nupkg.sha512",
+        "Xamarin.FFImageLoading.nuspec",
+        "lib/MonoAndroid10/FFImageLoading.Platform.dll",
+        "lib/MonoAndroid10/FFImageLoading.Platform.pdb",
+        "lib/MonoAndroid10/FFImageLoading.Platform.xml",
+        "lib/MonoAndroid10/FFImageLoading.dll",
+        "lib/MonoAndroid10/FFImageLoading.pdb",
+        "lib/MonoAndroid10/FFImageLoading.xml",
+        "lib/Xamarin.iOS10/FFImageLoading.Platform.dll",
+        "lib/Xamarin.iOS10/FFImageLoading.Platform.pdb",
+        "lib/Xamarin.iOS10/FFImageLoading.Platform.xml",
+        "lib/Xamarin.iOS10/FFImageLoading.dll",
+        "lib/Xamarin.iOS10/FFImageLoading.pdb",
+        "lib/Xamarin.iOS10/FFImageLoading.xml",
+        "lib/portable-net45+win8+wpa81+wp8/FFImageLoading.Platform.dll",
+        "lib/portable-net45+win8+wpa81+wp8/FFImageLoading.Platform.xml",
+        "lib/portable-net45+win8+wpa81+wp8/FFImageLoading.dll",
+        "lib/portable-net45+win8+wpa81+wp8/FFImageLoading.pdb",
+        "lib/portable-net45+win8+wpa81+wp8/FFImageLoading.xml",
+        "lib/portable-netcore45+wpa81/FFImageLoading.Platform.dll",
+        "lib/portable-netcore45+wpa81/FFImageLoading.Platform.pdb",
+        "lib/portable-netcore45+wpa81/FFImageLoading.Platform.xml",
+        "lib/portable-netcore45+wpa81/FFImageLoading.dll",
+        "lib/portable-netcore45+wpa81/FFImageLoading.pdb",
+        "lib/portable-netcore45+wpa81/FFImageLoading.xml"
+      ]
+    },
+    "Xamarin.FFImageLoading.Forms/2.2.9": {
+      "sha512": "B0P2HABxBT8vLiiTjVVtCUG/iSc/MmDsEDgaU52xYzhu/PwwOD+9dFp/pLoQSfS1sRBKnMEjvgLCei07zjul7A==",
+      "type": "package",
+      "files": [
+        "Xamarin.FFImageLoading.Forms.2.2.9.nupkg.sha512",
+        "Xamarin.FFImageLoading.Forms.nuspec",
+        "lib/MonoAndroid10/FFImageLoading.Forms.Droid.dll",
+        "lib/MonoAndroid10/FFImageLoading.Forms.Droid.pdb",
+        "lib/MonoAndroid10/FFImageLoading.Forms.Droid.xml",
+        "lib/MonoAndroid10/FFImageLoading.Forms.dll",
+        "lib/MonoAndroid10/FFImageLoading.Forms.pdb",
+        "lib/MonoAndroid10/FFImageLoading.Forms.xml",
+        "lib/Xamarin.iOS10/FFImageLoading.Forms.Touch.dll",
+        "lib/Xamarin.iOS10/FFImageLoading.Forms.Touch.pdb",
+        "lib/Xamarin.iOS10/FFImageLoading.Forms.Touch.xml",
+        "lib/Xamarin.iOS10/FFImageLoading.Forms.dll",
+        "lib/Xamarin.iOS10/FFImageLoading.Forms.pdb",
+        "lib/Xamarin.iOS10/FFImageLoading.Forms.xml",
+        "lib/portable-net45+win8+wpa81+wp8/FFImageLoading.Forms.dll",
+        "lib/portable-net45+win8+wpa81+wp8/FFImageLoading.Forms.pdb",
+        "lib/portable-net45+win8+wpa81+wp8/FFImageLoading.Forms.xml",
+        "lib/portable-netcore45+wpa81/FFImageLoading.Forms.WinRT.dll",
+        "lib/portable-netcore45+wpa81/FFImageLoading.Forms.WinRT.pdb",
+        "lib/portable-netcore45+wpa81/FFImageLoading.Forms.WinRT.xml",
+        "lib/portable-netcore45+wpa81/FFImageLoading.Forms.dll",
+        "lib/portable-netcore45+wpa81/FFImageLoading.Forms.pdb",
+        "lib/portable-netcore45+wpa81/FFImageLoading.Forms.xml",
+        "lib/uap10.0/FFImageLoading.Forms.WinUWP.dll",
+        "lib/uap10.0/FFImageLoading.Forms.WinUWP.pdb",
+        "lib/uap10.0/FFImageLoading.Forms.WinUWP.xml",
+        "lib/uap10.0/FFImageLoading.Forms.dll",
+        "lib/uap10.0/FFImageLoading.Forms.pdb",
+        "lib/uap10.0/FFImageLoading.Forms.xml"
+      ]
+    },
+    "Xamarin.FFImageLoading.Transformations/2.2.9": {
+      "sha512": "HSI3jmO1LkNQlB0vTtoYWGmRqQYg0oJ3wATRipaH94OMI0cDeA43fZYFgBOUPjTEDsIB6eH2xllUFmTlMIxE2Q==",
+      "type": "package",
+      "files": [
+        "Xamarin.FFImageLoading.Transformations.2.2.9.nupkg.sha512",
+        "Xamarin.FFImageLoading.Transformations.nuspec",
+        "lib/MonoAndroid10/FFImageLoading.Transformations.dll",
+        "lib/MonoAndroid10/FFImageLoading.Transformations.pdb",
+        "lib/MonoAndroid10/FFImageLoading.Transformations.xml",
+        "lib/Xamarin.iOS10/FFImageLoading.Transformations.dll",
+        "lib/Xamarin.iOS10/FFImageLoading.Transformations.pdb",
+        "lib/Xamarin.iOS10/FFImageLoading.Transformations.xml",
+        "lib/portable-net45+win8+wpa81+wp8/FFImageLoading.Transformations.dll",
+        "lib/portable-net45+win8+wpa81+wp8/FFImageLoading.Transformations.pdb",
+        "lib/portable-net45+win8+wpa81+wp8/FFImageLoading.Transformations.xml",
+        "lib/portable-netcore45+wpa81/FFImageLoading.Transformations.dll",
+        "lib/portable-netcore45+wpa81/FFImageLoading.Transformations.pdb",
+        "lib/portable-netcore45+wpa81/FFImageLoading.Transformations.xml"
+      ]
+    },
     "Xamarin.Forms/2.3.3.193": {
       "sha512": "RnZGA4K1MoN5qDKBvBd0BTkWcXQ42p4qCP6VYBoGD/PIlPMyLTUcRnfcPg+jPOjSy7mlNoCMZc+6KL38/wVE5g==",
       "type": "package",
@@ -16312,6 +18128,9 @@
       "Microsoft.NETCore.UniversalWindowsPlatform >= 5.0.0",
       "Newtonsoft.Json >= 9.0.1",
       "PCLCrypto >= 2.0.147",
+      "Plugin.Visual1993.CloudImage >= 1.0.0",
+      "Plugin.Visual1993.Controls >= 1.0.0",
+      "Plugin.Visual1993.Gateway >= 1.0.0",
       "Xamarin.Forms >= 2.3.3.193"
     ],
     "UAP,Version=v10.0": []

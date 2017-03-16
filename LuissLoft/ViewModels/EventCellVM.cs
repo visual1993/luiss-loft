@@ -12,6 +12,7 @@ namespace LuissLoft
 	public class EventCellVM : CellViewModelBase
 	{
 		public Page UIPage;
+		public Event Obj;
 
 		public EventCellVM(Event i)
 		{
@@ -21,7 +22,7 @@ namespace LuissLoft
 		public void UpdateVM()
 		{
 			Title = Obj.data.Name;
-			Copertina = Obj.data.Image?.ImageSource ?? Tema.DefaultCopertinaURL;
+			Copertina = Obj.data.Image?.ImageSource;// ?? Tema.DefaultCopertinaURL;
 			Description = Obj.data.Description;
 			DataInizio = Obj.data.StartDate.ToString("g");
 			DataFormatted = new FormattedString
@@ -29,12 +30,12 @@ namespace LuissLoft
 				Spans = {
 					new Span { ForegroundColor=Color.Black,
 						Text=Obj.data.StartDate.Day.ToString("F0"),
-						FontAttributes= FontAttributes.Bold, FontSize=Tema.FontLarge,
+						FontAttributes= FontAttributes.Bold, FontSize=Tema.fontSizeLarge,
 					},
 					new Span{Text=Environment.NewLine},
 					new Span { ForegroundColor=Color.Red,
-						Text=Obj.data.StartDate.ToString("ddd").ToUpperInvariant(),
-						FontAttributes= FontAttributes.None, FontSize=Tema.FontMedium,
+						Text=Obj.data.StartDate.ToString("MMM").ToUpperInvariant(),
+						FontAttributes= FontAttributes.None, FontSize=Tema.fontSizeMedium,
 					}
 				}
 			};

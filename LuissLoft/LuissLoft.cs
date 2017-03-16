@@ -34,9 +34,11 @@ namespace LuissLoft
 			};
 			button.Clicked += async(sender, e) =>
 			{
-				await introduzione.RotateXTo(360, 1000);
-				await introduzione.RotateXTo(0, 1000);
-				//await DoTest();
+				var pageVM = new EventsPageVM { };
+				pageVM.DownloadData().ContinueWith((arg) => { pageVM.UpdateVM(); });
+				await App.Current.MainPage.Navigation.PushAsync(new EventsPage(pageVM));
+				//await introduzione.RotateXTo(360, 1000);
+				//await introduzione.RotateXTo(0, 1000);
 			};
 			var content = new ContentPage
 			{
