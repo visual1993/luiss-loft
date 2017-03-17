@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+   <metadata minClientVersion="2.8.1">
+       <id>Plugin.Visual1993.Core</id>
+       <version>1.0.2</version>
+       <title>Visual1993 Core</title>
+       <authors>Visual 1993 srl</authors>
+       <owners>Visual 1993 srl</owners>
+       <requireLicenseAcceptance>false</requireLicenseAcceptance>
+       <description>
+         Visual1993 Core
+       </description>
+       <tags>visual1993, core</tags>
+		<dependencies>
+    	<dependency id="Newtonsoft.Json" version="9.0.1" />
+	</dependencies>
+   </metadata>
+	
+   <files>
+     <!--Core-->
+		<file src="bin/Release/Core.dll" target="lib/portable-net45+wp8+wpa81+win8+MonoAndroid10+MonoTouch10+Xamarin.iOS10+UAP10/Core.dll" />
+   </files>
+	
+</package>
