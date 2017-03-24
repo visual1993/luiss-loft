@@ -15,6 +15,10 @@
     <Compile Include="$(MSBuildThisFileDirectory)Views\EventCellView.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\EventCellVM.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\Event.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Pagine\EventDetailXAMLView.xaml.cs">
+      <DependentUpon>EventDetailXAMLView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\EvenDetailViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="$(MSBuildThisFileDirectory)Models\" />
@@ -22,5 +26,10 @@
     <Folder Include="$(MSBuildThisFileDirectory)Visual1993\" />
     <Folder Include="$(MSBuildThisFileDirectory)Views\" />
     <Folder Include="$(MSBuildThisFileDirectory)ViewModels\" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Pagine\EventDetailXAMLView.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
   </ItemGroup>
 </Project>

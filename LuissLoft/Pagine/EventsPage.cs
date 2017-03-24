@@ -30,6 +30,10 @@ namespace LuissLoft
 			{
 				var item = (EventCellVM)e.Item; if (item == null) { return;}
 				listPoints.SelectedItem = null;
+
+				var pageViewModel = new EventDetailViewModel { ObjEvent=item.Obj};
+				pageViewModel.UpdateVM();
+				Navigation.PushAsync(new EventDetailXAMLView(pageViewModel));
 			};
 			listPoints.Refreshing += async (sender, e) =>
 			{
