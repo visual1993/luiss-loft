@@ -107,6 +107,7 @@
     <None Include="LuissLoft.UWP_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Assets\loftLogo.png" />
     <Content Include="Properties\Default.rd.xml" />
     <Content Include="Assets\LockScreenLogo.scale-200.png" />
     <Content Include="Assets\SplashScreen.scale-200.png" />
@@ -127,6 +128,7 @@
     </Page>
   </ItemGroup>
   <Import Project="..\LuissLoft\LuissLoft.projitems" Label="Shared" />
+  <Import Project="..\CommonClasses\CommonClasses.projitems" Label="Shared" />
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>
   </PropertyGroup>

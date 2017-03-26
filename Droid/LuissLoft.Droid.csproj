@@ -191,7 +191,9 @@
     <AndroidResource Include="Resources\drawable-hdpi\icon.png" />
     <AndroidResource Include="Resources\drawable-xhdpi\icon.png" />
     <AndroidResource Include="Resources\drawable-xxhdpi\icon.png" />
+    <AndroidResource Include="Resources\drawable\loftLogo.png" />
   </ItemGroup>
+  <Import Project="..\CommonClasses\CommonClasses.projitems" Label="Shared" Condition="Exists('..\CommonClasses\CommonClasses.projitems')" />
   <Import Project="..\LuissLoft\LuissLoft.projitems" Label="Shared" Condition="Exists('..\LuissLoft\LuissLoft.projitems')" />
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
   <Import Project="..\packages\Xamarin.Android.Support.Vector.Drawable.23.3.0\build\Xamarin.Android.Support.Vector.Drawable.targets" Condition="Exists('..\packages\Xamarin.Android.Support.Vector.Drawable.23.3.0\build\Xamarin.Android.Support.Vector.Drawable.targets')" />

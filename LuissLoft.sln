@@ -10,10 +10,17 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LuissLoft.Droid", "Droid\Lu
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LuissLoft.UWP", "LuissLoft.UWP\LuissLoft.UWP.csproj", "{2D4FFD95-F4A3-4791-BC84-EC262C865846}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LoftServer", "LoftServer\LoftServer.csproj", "{B929C80D-8180-4062-A4AD-E47A11DEBF24}"
+EndProject
+Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "CommonClasses", "CommonClasses\CommonClasses.shproj", "{A6AD098D-EFA0-4BB7-BE88-0E4CA39EF6FC}"
+EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
+		CommonClasses\CommonClasses.projitems*{b929c80d-8180-4062-a4ad-e47a11debf24}*SharedItemsImports = 4
 		LuissLoft\LuissLoft.projitems*{30822150-cd0e-426e-97c2-c8ff659466c2}*SharedItemsImports = 13
+		CommonClasses\CommonClasses.projitems*{2d4ffd95-f4a3-4791-bc84-ec262c865846}*SharedItemsImports = 4
 		LuissLoft\LuissLoft.projitems*{2d4ffd95-f4a3-4791-bc84-ec262c865846}*SharedItemsImports = 4
+		CommonClasses\CommonClasses.projitems*{a6ad098d-efa0-4bb7-be88-0e4ca39ef6fc}*SharedItemsImports = 13
 	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -94,6 +101,30 @@ Global
 		{2D4FFD95-F4A3-4791-BC84-EC262C865846}.Release|x86.ActiveCfg = Release|x86
 		{2D4FFD95-F4A3-4791-BC84-EC262C865846}.Release|x86.Build.0 = Release|x86
 		{2D4FFD95-F4A3-4791-BC84-EC262C865846}.Release|x86.Deploy.0 = Release|x86
+		{B929C80D-8180-4062-A4AD-E47A11DEBF24}.Debug|Any CPU.ActiveCfg = Debug|iPhoneSimulator
+		{B929C80D-8180-4062-A4AD-E47A11DEBF24}.Debug|Any CPU.Build.0 = Debug|iPhoneSimulator
+		{B929C80D-8180-4062-A4AD-E47A11DEBF24}.Debug|ARM.ActiveCfg = Debug|iPhoneSimulator
+		{B929C80D-8180-4062-A4AD-E47A11DEBF24}.Debug|ARM.Build.0 = Debug|iPhoneSimulator
+		{B929C80D-8180-4062-A4AD-E47A11DEBF24}.Debug|iPhone.ActiveCfg = Debug|iPhoneSimulator
+		{B929C80D-8180-4062-A4AD-E47A11DEBF24}.Debug|iPhone.Build.0 = Debug|iPhoneSimulator
+		{B929C80D-8180-4062-A4AD-E47A11DEBF24}.Debug|iPhoneSimulator.ActiveCfg = Debug|iPhoneSimulator
+		{B929C80D-8180-4062-A4AD-E47A11DEBF24}.Debug|iPhoneSimulator.Build.0 = Debug|iPhoneSimulator
+		{B929C80D-8180-4062-A4AD-E47A11DEBF24}.Debug|x64.ActiveCfg = Debug|iPhoneSimulator
+		{B929C80D-8180-4062-A4AD-E47A11DEBF24}.Debug|x64.Build.0 = Debug|iPhoneSimulator
+		{B929C80D-8180-4062-A4AD-E47A11DEBF24}.Debug|x86.ActiveCfg = Debug|iPhoneSimulator
+		{B929C80D-8180-4062-A4AD-E47A11DEBF24}.Debug|x86.Build.0 = Debug|iPhoneSimulator
+		{B929C80D-8180-4062-A4AD-E47A11DEBF24}.Release|Any CPU.ActiveCfg = Release|iPhoneSimulator
+		{B929C80D-8180-4062-A4AD-E47A11DEBF24}.Release|Any CPU.Build.0 = Release|iPhoneSimulator
+		{B929C80D-8180-4062-A4AD-E47A11DEBF24}.Release|ARM.ActiveCfg = Release|iPhoneSimulator
+		{B929C80D-8180-4062-A4AD-E47A11DEBF24}.Release|ARM.Build.0 = Release|iPhoneSimulator
+		{B929C80D-8180-4062-A4AD-E47A11DEBF24}.Release|iPhone.ActiveCfg = Release|iPhoneSimulator
+		{B929C80D-8180-4062-A4AD-E47A11DEBF24}.Release|iPhone.Build.0 = Release|iPhoneSimulator
+		{B929C80D-8180-4062-A4AD-E47A11DEBF24}.Release|iPhoneSimulator.ActiveCfg = Release|iPhoneSimulator
+		{B929C80D-8180-4062-A4AD-E47A11DEBF24}.Release|iPhoneSimulator.Build.0 = Release|iPhoneSimulator
+		{B929C80D-8180-4062-A4AD-E47A11DEBF24}.Release|x64.ActiveCfg = Release|iPhoneSimulator
+		{B929C80D-8180-4062-A4AD-E47A11DEBF24}.Release|x64.Build.0 = Release|iPhoneSimulator
+		{B929C80D-8180-4062-A4AD-E47A11DEBF24}.Release|x86.ActiveCfg = Release|iPhoneSimulator
+		{B929C80D-8180-4062-A4AD-E47A11DEBF24}.Release|x86.Build.0 = Release|iPhoneSimulator
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -7,6 +7,8 @@ using System.Collections.ObjectModel;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Visual1993.Data;
+using CommonClasses;
+using Newtonsoft.Json;
 
 namespace LuissLoft
 {
@@ -76,11 +78,13 @@ namespace LuissLoft
 		public async Task DownloadData()
 		{
 			IsLoadingData = true;
-			var res = await Event.getAll();
+			/*var res = await Event.getAll();
 			if (res.IsValidForAtLeastOneItem)
 			{
 				EventsObj = res.items;
-			}
+			}*/
+			var res = await DownloadEvents();
+			EventsObj = res.items;
 			IsLoadingData = false;
 		}
 		public void UpdateVM()
@@ -96,7 +100,7 @@ namespace LuissLoft
 				if (Events.Count == 0) { IsListEmpty = true; }
 			});
 		}
-		public List<Event> EventsObj = new List<Event>();
+		public List<GoogleEvent> EventsObj = new List<GoogleEvent>();
 		public ObservableCollection<EventCellVM> Events { get; } = new ObservableCollection<EventCellVM>();
 
 		private bool isShowingSerateEliminate = false;
@@ -105,7 +109,18 @@ namespace LuissLoft
 			get { return isShowingSerateEliminate;}
 			set { isShowingSerateEliminate = value; this.RaisePropertyChanged();}
 		}
-
+		public async Task<CommonClasses.GoogleEvent.EventsResponse> DownloadEvents()
+		{
+			try
+			{
+				var ws = new Visual1993.Data.WebServiceV2();
+				var res = await ws.UrlToString(Globals.RestApiV1+"loft/events");
+				return JsonConvert.DeserializeObject<GoogleEvent.EventsResponse>(res);
+			}
+			catch {
+				return new GoogleEvent.EventsResponse();
+			}
+		}
 	}
 
 }

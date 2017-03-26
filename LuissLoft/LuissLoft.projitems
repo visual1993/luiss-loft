@@ -19,6 +19,8 @@
       <DependentUpon>EventDetailXAMLView.xaml</DependentUpon>
     </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\EvenDetailViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\EventCellVM_Event.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Globals.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="$(MSBuildThisFileDirectory)Models\" />

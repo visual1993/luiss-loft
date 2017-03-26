@@ -29,7 +29,7 @@
 			/>
 
 			<Label
-				Text="Descrizione di prova, questa è una descrizione più lunga del solito"
+				Text="{Binding Description}"
 				TextColor="White"
 				FontSize="25"
 				Grid.Row="2"
@@ -42,8 +42,8 @@
 				Grid.Row="1"
 				Grid.Column="1"
 				>
-				<Label TextColor="Red" FontSize="20" Text="Data Inizio"/>
-				<Label TextColor="Green" FontSize="20" Text="Durata"/>
+				<Label TextColor="Red" FontSize="20" Text="{Binding StartTime}"/>
+				<Label TextColor="Green" FontSize="20" Text="{Binding EndTime}"/>
 			</StackLayout>
 			
 		</Grid>

@@ -10,32 +10,32 @@ using CommonClasses;
 
 namespace LuissLoft
 {
-	public class EventCellVM : CellViewModelBase
+	public class EventCellVM_Event : CellViewModelBase
 	{
 		public Page UIPage;
-		public GoogleEvent Obj;
+		public Event Obj;
 
-		public EventCellVM(GoogleEvent i)
+		public EventCellVM_Event(Event i)
 		{
 			Obj = i;
 		}
 
 		public void UpdateVM()
 		{
-			Title = Obj.Name;
-			Copertina = Obj.ImageUris?.FirstOrDefault() ?? Globals.DefaultThumb;
-			Description = Obj.Description;
-			DataInizio = Obj.StartDate.ToString("g");
+			Title = Obj.data.Name;
+			Copertina = Obj.data.Image?.ImageSource;// ?? Tema.DefaultCopertinaURL;
+			Description = Obj.data.Description;
+			DataInizio = Obj.data.StartDate.ToString("g");
 			DataFormatted = new FormattedString
 			{
 				Spans = {
 					new Span { ForegroundColor=Color.Black,
-						Text=Obj.StartDate.Day.ToString("F0"),
+						Text=Obj.data.StartDate.Day.ToString("F0"),
 						FontAttributes= FontAttributes.Bold, FontSize=Tema.fontSizeLarge,
 					},
 					new Span{Text=Environment.NewLine},
 					new Span { ForegroundColor=Color.Red,
-						Text=Obj.StartDate.ToString("MMM").ToUpperInvariant(),
+						Text=Obj.data.StartDate.ToString("MMM").ToUpperInvariant(),
 						FontAttributes= FontAttributes.None, FontSize=Tema.fontSizeMedium,
 					}
 				}
