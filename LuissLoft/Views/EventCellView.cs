@@ -79,11 +79,15 @@ namespace LuissLoft
 			var startLabel = new Label { };
 			startLabel.SetBinding(Label.FormattedTextProperty, nameof(EventCellVM.DataFormatted));
 
-			//var img = new SpeedImage() { Aspect = Aspect.AspectFill, LoadingPriority = FFImageLoading.Work.LoadingPriority.Low };
-			//img.SetBinding(SpeedImage.SourceProperty, nameof(EventCellVM.Copertina));
+			var img = new SpeedImage() { 
+				Aspect = Aspect.AspectFill, 
+				LoadingPriority = FFImageLoading.Work.LoadingPriority.Low,
+				CacheDuration=TimeSpan.FromDays(360),
+			};
+			img.SetBinding(SpeedImage.SourceProperty, nameof(EventCellVM.Copertina));
 
-			var img = new Image() { Aspect = Aspect.AspectFill,};
-			img.Bind(nameof(EventCellVM.Copertina));
+			//var img = new Image() { Aspect = Aspect.AspectFill,};
+			//img.Bind(nameof(EventCellVM.Copertina));
 
 			var layoutDataLuogo = new StackLayout
 			{

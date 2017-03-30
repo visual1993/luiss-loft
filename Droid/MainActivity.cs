@@ -8,6 +8,8 @@ using Android.Views;
 using Android.Widget;
 using Android.OS;
 
+using FFImageLoading;
+
 namespace LuissLoft.Droid
 {
 	[Activity(Label = "LuissLoft.Droid", Icon = "@drawable/icon", Theme = "@style/MyTheme", MainLauncher = true, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation)]
@@ -19,6 +21,14 @@ namespace LuissLoft.Droid
 			ToolbarResource = Resource.Layout.Toolbar;
 
 			base.OnCreate(bundle);
+
+			var processorsCount = System.Environment.ProcessorCount;
+			var config = new FFImageLoading.Config.Configuration()
+			{
+				SchedulerMaxParallelTasks = Math.Max(2, processorsCount - 1),
+				HttpClient = new System.Net.Http.HttpClient(new Xamarin.Android.Net.AndroidClientHandler()),
+			};
+			ImageService.Instance.Initialize(config);
 
 			global::Xamarin.Forms.Forms.Init(this, bundle);
 
