@@ -14,6 +14,7 @@ namespace LuissLoft
 {
 	public class App : Application
 	{
+		public NavigationPage Navigation;
 		public App()
 		{
 			// The root page of your application
@@ -54,7 +55,13 @@ namespace LuissLoft
 				}
 			};
 
-			MainPage = new NavigationPage(content);
+			var pageVM0 = new EventsPageVM { };
+			pageVM0.DownloadData().ContinueWith((arg) => { pageVM0.UpdateVM(); });
+			var eventsPage = new EventsPage(pageVM0);
+
+			var navigation = new NavigationPage(eventsPage);
+			Navigation = navigation;
+			MainPage = Navigation;
 		}
 		private void SetupGateway()
 		{ 

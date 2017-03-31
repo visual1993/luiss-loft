@@ -50,7 +50,7 @@ namespace LoftServer
 				Generic.Calendar.Events.List(MainClass.CalendarId); //primary //loft.luiss@gmail.com //visual1993@gmail.com
 			request.TimeMin = DateTime.Now;
 			request.ShowDeleted = false;
-			request.SingleEvents = true;
+			request.SingleEvents = false;
 			request.MaxResults = 20;
 			request.OrderBy = EventsResource.ListRequest.OrderByEnum.StartTime;
 

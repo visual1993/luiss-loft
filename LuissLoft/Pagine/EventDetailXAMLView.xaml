@@ -1,15 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="LuissLoft.EventDetailXAMLView">
 	<ContentPage.Content>
+		<ScrollView>
 		<Grid BackgroundColor="Silver">
 			<Grid.RowDefinitions>
-				<RowDefinition Height="0.35*"/>
-				<RowDefinition Height="0.30*"/>
-				<RowDefinition Height="0.35*"/>
+				<RowDefinition Height="0.40*"/>
+				<RowDefinition Height="0.05*"/>
+				<RowDefinition Height="0.55*"/>
+				<RowDefinition Height="Auto"/>
 			</Grid.RowDefinitions>
 
 			<Grid.ColumnDefinitions>
-				<ColumnDefinition Width="0.6*"/>
+				<ColumnDefinition Width="0.5*"/>
 				<ColumnDefinition Width="0.5*"/>
 			</Grid.ColumnDefinitions>
 
@@ -24,6 +26,7 @@
 				Text="{Binding Title}"
 				TextColor="White"
 				FontSize="30"
+					BackgroundColor="Green"
 				Grid.Row="2"
 				Grid.Column="0"
 				Grid.ColumnSpan="2"
@@ -32,6 +35,7 @@
 			<Label
 				Text="{Binding Description}"
 				TextColor="White"
+					BackgroundColor="Red"
 				FontSize="25"
 				Grid.Row="3"
 				Grid.Column="0"
@@ -49,5 +53,6 @@
 			</StackLayout>
 			
 		</Grid>
+			</ScrollView>
 	</ContentPage.Content>
 </ContentPage>

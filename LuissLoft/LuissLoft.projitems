@@ -21,6 +21,8 @@
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\EvenDetailViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\EventCellVM_Event.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Globals.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Pagine\EventDetailView.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\EventListViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="$(MSBuildThisFileDirectory)Models\" />
