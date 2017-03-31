@@ -5,6 +5,7 @@ using System.Linq;
 using Foundation;
 using UIKit;
 
+using FFImageLoading;
 namespace LuissLoft.iOS
 {
 	[Register("AppDelegate")]
@@ -13,6 +14,14 @@ namespace LuissLoft.iOS
 		public override bool FinishedLaunching(UIApplication app, NSDictionary options)
 		{
 			global::Xamarin.Forms.Forms.Init();
+
+			var processorsCount = System.Environment.ProcessorCount;
+			var config = new FFImageLoading.Config.Configuration()
+			{
+				//SchedulerMaxParallelTasks = Math.Max(2, processorsCount - 1),
+				//HttpClient = new System.Net.Http.HttpClient(new Xamarin.Android.Net.AndroidClientHandler()),
+			};
+			ImageService.Instance.Initialize(config);
 
 			LoadApplication(new App());
 
