@@ -31,14 +31,36 @@ namespace LoftServer
 			Get[MainClass.LoftPrefix + "file/get/{fileid}"] = (dynamic arg) =>
 			{
 				string fileID = arg.fileid;
-				var req = Generic.Drive.Files.Get(fileID);
-				var res = req.Execute();
-
+				string dirPath = "./cache/";
+				string filePath = dirPath + fileID;
 				string ContentType = "image/jpg";
-				MemoryStream memory = new MemoryStream();
-				req.Download(memory);
-				memory.Position = 0;
-				return Response.FromStream(memory, ContentType);
+				var memory = new MemoryStream();
+					if (Directory.Exists(dirPath) == false) { Directory.CreateDirectory(dirPath);}
+					//verifica se esiste in cache
+					if (File.Exists(filePath))
+					{
+						using (var fileStream = File.OpenRead("./cache/" + fileID))
+						{
+							fileStream.CopyTo(memory);
+						}
+					}
+					else
+					{
+						var req = Generic.Drive.Files.Get(fileID);
+						var res = req.Execute();
+
+						req.Download(memory);
+						memory.Position = 0;
+						//salva lo stream in cache
+						using (var fileStream = File.Create("./cache/" + fileID))
+						{
+							memory.CopyTo(fileStream);
+						}
+					}
+					memory.Position = 0;
+
+					return Response.FromStream(memory, ContentType);
+
 			};
 		}
 
@@ -50,7 +72,7 @@ namespace LoftServer
 				Generic.Calendar.Events.List(MainClass.CalendarId); //primary //loft.luiss@gmail.com //visual1993@gmail.com
 			request.TimeMin = DateTime.Now;
 			request.ShowDeleted = false;
-			request.SingleEvents = false;
+			request.SingleEvents = true;
 			request.MaxResults = 20;
 			request.OrderBy = EventsResource.ListRequest.OrderByEnum.StartTime;
 
