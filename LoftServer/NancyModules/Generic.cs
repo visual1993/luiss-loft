@@ -126,6 +126,7 @@ namespace LoftServer
 				o.Description = i.Description;
 			}
 			o.Name = i.Summary;
+			o.Luogo = i.Location;
 			o.StartDate = i.Start.DateTime ?? DateTime.MinValue;
 			o.EndDate = i.End.DateTime ?? DateTime.MinValue;
 

@@ -48,7 +48,7 @@ namespace LuissLoft
 				if (App.VM.user != null)
 				{
 					IsLogged = true;
-					UserName = App.VM.user.data.Nome;
+					UserName = App.VM.user.data.Nome+" "+App.VM.user.data.Cognome;
 					UserImg = App.VM.user.data.ImageUrl ?? Globals.DefaultThumb;
 				}
 				else {

@@ -17,6 +17,9 @@ namespace CommonClasses
 		public string Name { get; set; }
 
 		[JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
+		public string Luogo { get; set; }
+
+		[JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
 		public string Description { get; set; }
 
 		[JsonProperty(NullValueHandling = NullValueHandling.Ignore)]

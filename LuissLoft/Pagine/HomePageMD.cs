@@ -74,6 +74,17 @@ namespace LuissLoft
 			};
 			userName.Bind(nameof(MasterPageVM.UserName),true);
 
+			var buttonCalendario = new Button { 
+				Text="Prenotazione"
+			};
+			buttonCalendario.Clicked+= delegate {
+				var pageVM = new CalendarioPageVM();
+				pageVM.DownloadData().ContinueWith(delegate {
+					pageVM.UpdateVM();
+				});
+				VM.Navigation = new NavigationPage(new CalendarioPage(pageVM));
+			};
+
 			Content = new StackLayout {
 				Children ={
 					new BoxView{ HeightRequest=20, Color= Color.Transparent, BackgroundColor=Color.Transparent},
@@ -82,7 +93,8 @@ namespace LuissLoft
 					buttLogin,
 					new Button{Text="Eventi", Command=new Command(() => {
 						GoToEventsPage();
-					})}
+					})},
+					buttonCalendario
 				}
 			};
 		}

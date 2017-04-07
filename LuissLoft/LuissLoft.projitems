@@ -29,6 +29,8 @@
     <Compile Include="$(MSBuildThisFileDirectory)AppViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Pagine\HomePageMD.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\MasterPageVM.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Pagine\CalendarioPage.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\CalendarioPageVM.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="$(MSBuildThisFileDirectory)Models\" />

@@ -31,26 +31,39 @@ namespace LuissLoft
 			pass.Element.IsPassword = true;	
 			pass.Bind(nameof(LoginPageVM.Password));
 
+			var loadingIndicator = new ActivityIndicator { };
+			loadingIndicator.Bind(nameof(LoginPageVM.IsLoadingData));
+
 			var buttLogin = new Button { Text = "Login" };
 			buttLogin.Clicked+= async delegate {
-				var data = await VM.GetDataFromMoodle(VM.Username, VM.Password);
-				if (data == null) { 
-					await App.Current.MainPage.DisplayAlert("Error", "Wrong login", "Retry");
-					return;
-				}
-				var loginResult = await VM.DoLogin(data);
-				if (loginResult.state != WebServiceV2.WebRequestState.Ok)
+				VM.IsLoadingData = true;
+				try
 				{
-					await App.Current.MainPage.DisplayAlert("Error", loginResult.errorMessage, "back");
+					var data = await VM.GetDataFromMoodle(VM.Username, VM.Password);
+					if (data == null)
+					{
+						await App.Current.MainPage.DisplayAlert("Error", "Wrong login", "Retry");
+						return;
+					}
+					var loginResult = await VM.DoLogin(data);
+					if (loginResult.state != WebServiceV2.WebRequestState.Ok)
+					{
+						await App.Current.MainPage.DisplayAlert("Error", loginResult.errorMessage, "back");
+					}
+					else
+					{
+						//già ci pensa DoLogin a salvare
+						VM.OnCompleted(App.VM.user);
+					}
 				}
-				else {
-					//già ci pensa DoLogin a salvare
-					VM.OnCompleted(App.VM.user);
+				finally {
+					VM.IsLoadingData = false;
 				}
 			};
 
 			Content = new StackLayout { 
 				Children = { 
+					loadingIndicator,
 					user,
 					pass,
 					buttLogin

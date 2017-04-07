@@ -182,6 +182,15 @@
     <Reference Include="Plugin.Visual1993.Gateway.Abstractions">
       <HintPath>..\packages\Plugin.Visual1993.Gateway.1.0.2\lib\portable-net45+wp8+wpa81+win8+MonoAndroid10+MonoTouch10+Xamarin.iOS10+UAP10\Plugin.Visual1993.Gateway.Abstractions.dll</HintPath>
     </Reference>
+    <Reference Include="Syncfusion.SfCalendar.iOS">
+      <HintPath>..\CommonClasses\Syncfusion.SfCalendar.iOS.dll</HintPath>
+    </Reference>
+    <Reference Include="Syncfusion.SfCalendar.XForms">
+      <HintPath>..\CommonClasses\Syncfusion.SfCalendar.XForms.dll</HintPath>
+    </Reference>
+    <Reference Include="Syncfusion.SfCalendar.XForms.iOS">
+      <HintPath>..\CommonClasses\Syncfusion.SfCalendar.XForms.iOS.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Contents.json" />
