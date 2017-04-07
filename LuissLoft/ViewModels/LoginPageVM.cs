@@ -72,11 +72,17 @@ namespace LuissLoft
 				var nome = doc.GetElementbyId("id_firstname").GetAttributeValue("value", "");
 				var cognome = doc.GetElementbyId("id_lastname").GetAttributeValue("value", "");
 				var email = doc.GetElementbyId("id_email").GetAttributeValue("value", "");
-				var imgDiv = doc.GetElementbyId("fitem_id_currentpicture").ChildNodes[1].ChildNodes[0].ChildNodes[0];
+				HtmlNode imgDiv = null;
 				var img = "";
-				if (imgDiv.Attributes.Contains("src"))
+				try
 				{
-					img = imgDiv.Attributes["src"].Value;
+					imgDiv = doc.GetElementbyId("fitem_id_currentpicture").ChildNodes[1].ChildNodes[0].ChildNodes[0];
+					if (imgDiv.Attributes.Contains("src"))
+					{
+						img = imgDiv.Attributes["src"].Value;
+					}
+				}
+				catch { 
 				}
 				return new User.PersonalizedData
 				{
@@ -87,7 +93,8 @@ namespace LuissLoft
 					LastChange = DateTime.Now
 				};
 			}
-			catch {
+			catch(Exception ex) {
+				Visual1993.Console.WriteLine(ex.Message);
 				return null;
 			}
 
