@@ -23,6 +23,12 @@
     <Compile Include="$(MSBuildThisFileDirectory)Globals.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Pagine\EventDetailView.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\EventListViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Pagine\LoginPageView.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\LoginPageVM.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\User.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)AppViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Pagine\HomePageMD.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\MasterPageVM.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="$(MSBuildThisFileDirectory)Models\" />
@@ -35,5 +41,8 @@
     <EmbeddedResource Include="$(MSBuildThisFileDirectory)Pagine\EventDetailXAMLView.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="$(MSBuildThisFileDirectory)README.txt" />
   </ItemGroup>
 </Project>

@@ -29,6 +29,15 @@
           "lib/netstandard1.3/AWSSDK.S3.dll": {}
         }
       },
+      "HtmlAgilityPack/1.4.9.5": {
+        "type": "package",
+        "compile": {
+          "lib/NetCore45/HtmlAgilityPack.dll": {}
+        },
+        "runtime": {
+          "lib/NetCore45/HtmlAgilityPack.dll": {}
+        }
+      },
       "Microsoft.Bcl/1.1.10": {
         "type": "package",
         "dependencies": {
@@ -450,10 +459,10 @@
           "lib/portable-net45+wp8+wpa81+win8+MonoAndroid10+MonoTouch10+Xamarin.iOS10+UAP10/Plugin.Visual1993.Controls.dll": {}
         }
       },
-      "Plugin.Visual1993.Core/1.0.2": {
+      "Plugin.Visual1993.Core/1.0.4": {
         "type": "package",
         "dependencies": {
-          "Newtonsoft.Json": "9.0.1"
+          "Newtonsoft.Json": "7.0.1"
         },
         "compile": {
           "lib/portable-net45+wp8+wpa81+win8+MonoAndroid10+MonoTouch10+Xamarin.iOS10+UAP10/Core.dll": {}
@@ -462,12 +471,12 @@
           "lib/portable-net45+wp8+wpa81+win8+MonoAndroid10+MonoTouch10+Xamarin.iOS10+UAP10/Core.dll": {}
         }
       },
-      "Plugin.Visual1993.Gateway/1.0.0": {
+      "Plugin.Visual1993.Gateway/1.0.2": {
         "type": "package",
         "dependencies": {
-          "Newtonsoft.Json": "9.0.1",
+          "Newtonsoft.Json": "7.0.1",
           "PCLCrypto": "2.0.147",
-          "Plugin.Visual1993.Core": "1.0.2"
+          "Plugin.Visual1993.Core": "1.0.4"
         },
         "compile": {
           "lib/portable-net45+wp8+wpa81+win8+MonoAndroid10+MonoTouch10+Xamarin.iOS10+UAP10/Plugin.Visual1993.Gateway.Abstractions.dll": {}
@@ -2197,6 +2206,15 @@
           "lib/netstandard1.3/AWSSDK.S3.dll": {}
         }
       },
+      "HtmlAgilityPack/1.4.9.5": {
+        "type": "package",
+        "compile": {
+          "lib/NetCore45/HtmlAgilityPack.dll": {}
+        },
+        "runtime": {
+          "lib/NetCore45/HtmlAgilityPack.dll": {}
+        }
+      },
       "Microsoft.Bcl/1.1.10": {
         "type": "package",
         "dependencies": {
@@ -2611,10 +2629,10 @@
           "lib/portable-net45+wp8+wpa81+win8+MonoAndroid10+MonoTouch10+Xamarin.iOS10+UAP10/Plugin.Visual1993.Controls.dll": {}
         }
       },
-      "Plugin.Visual1993.Core/1.0.2": {
+      "Plugin.Visual1993.Core/1.0.4": {
         "type": "package",
         "dependencies": {
-          "Newtonsoft.Json": "9.0.1"
+          "Newtonsoft.Json": "7.0.1"
         },
         "compile": {
           "lib/portable-net45+wp8+wpa81+win8+MonoAndroid10+MonoTouch10+Xamarin.iOS10+UAP10/Core.dll": {}
@@ -2623,12 +2641,12 @@
           "lib/portable-net45+wp8+wpa81+win8+MonoAndroid10+MonoTouch10+Xamarin.iOS10+UAP10/Core.dll": {}
         }
       },
-      "Plugin.Visual1993.Gateway/1.0.0": {
+      "Plugin.Visual1993.Gateway/1.0.2": {
         "type": "package",
         "dependencies": {
-          "Newtonsoft.Json": "9.0.1",
+          "Newtonsoft.Json": "7.0.1",
           "PCLCrypto": "2.0.147",
-          "Plugin.Visual1993.Core": "1.0.2"
+          "Plugin.Visual1993.Core": "1.0.4"
         },
         "compile": {
           "lib/portable-net45+wp8+wpa81+win8+MonoAndroid10+MonoTouch10+Xamarin.iOS10+UAP10/Plugin.Visual1993.Gateway.Abstractions.dll": {}
@@ -4222,6 +4240,15 @@
           "lib/netstandard1.3/AWSSDK.S3.dll": {}
         }
       },
+      "HtmlAgilityPack/1.4.9.5": {
+        "type": "package",
+        "compile": {
+          "lib/NetCore45/HtmlAgilityPack.dll": {}
+        },
+        "runtime": {
+          "lib/NetCore45/HtmlAgilityPack.dll": {}
+        }
+      },
       "Microsoft.Bcl/1.1.10": {
         "type": "package",
         "dependencies": {
@@ -4622,10 +4649,10 @@
           "lib/portable-net45+wp8+wpa81+win8+MonoAndroid10+MonoTouch10+Xamarin.iOS10+UAP10/Plugin.Visual1993.Controls.dll": {}
         }
       },
-      "Plugin.Visual1993.Core/1.0.2": {
+      "Plugin.Visual1993.Core/1.0.4": {
         "type": "package",
         "dependencies": {
-          "Newtonsoft.Json": "9.0.1"
+          "Newtonsoft.Json": "7.0.1"
         },
         "compile": {
           "lib/portable-net45+wp8+wpa81+win8+MonoAndroid10+MonoTouch10+Xamarin.iOS10+UAP10/Core.dll": {}
@@ -4634,12 +4661,12 @@
           "lib/portable-net45+wp8+wpa81+win8+MonoAndroid10+MonoTouch10+Xamarin.iOS10+UAP10/Core.dll": {}
         }
       },
-      "Plugin.Visual1993.Gateway/1.0.0": {
+      "Plugin.Visual1993.Gateway/1.0.2": {
         "type": "package",
         "dependencies": {
-          "Newtonsoft.Json": "9.0.1",
+          "Newtonsoft.Json": "7.0.1",
           "PCLCrypto": "2.0.147",
-          "Plugin.Visual1993.Core": "1.0.2"
+          "Plugin.Visual1993.Core": "1.0.4"
         },
         "compile": {
           "lib/portable-net45+wp8+wpa81+win8+MonoAndroid10+MonoTouch10+Xamarin.iOS10+UAP10/Plugin.Visual1993.Gateway.Abstractions.dll": {}
@@ -6210,6 +6237,15 @@
           "lib/netstandard1.3/AWSSDK.S3.dll": {}
         }
       },
+      "HtmlAgilityPack/1.4.9.5": {
+        "type": "package",
+        "compile": {
+          "lib/NetCore45/HtmlAgilityPack.dll": {}
+        },
+        "runtime": {
+          "lib/NetCore45/HtmlAgilityPack.dll": {}
+        }
+      },
       "Microsoft.Bcl/1.1.10": {
         "type": "package",
         "dependencies": {
@@ -6631,10 +6667,10 @@
           "lib/portable-net45+wp8+wpa81+win8+MonoAndroid10+MonoTouch10+Xamarin.iOS10+UAP10/Plugin.Visual1993.Controls.dll": {}
         }
       },
-      "Plugin.Visual1993.Core/1.0.2": {
+      "Plugin.Visual1993.Core/1.0.4": {
         "type": "package",
         "dependencies": {
-          "Newtonsoft.Json": "9.0.1"
+          "Newtonsoft.Json": "7.0.1"
         },
         "compile": {
           "lib/portable-net45+wp8+wpa81+win8+MonoAndroid10+MonoTouch10+Xamarin.iOS10+UAP10/Core.dll": {}
@@ -6643,12 +6679,12 @@
           "lib/portable-net45+wp8+wpa81+win8+MonoAndroid10+MonoTouch10+Xamarin.iOS10+UAP10/Core.dll": {}
         }
       },
-      "Plugin.Visual1993.Gateway/1.0.0": {
+      "Plugin.Visual1993.Gateway/1.0.2": {
         "type": "package",
         "dependencies": {
-          "Newtonsoft.Json": "9.0.1",
+          "Newtonsoft.Json": "7.0.1",
           "PCLCrypto": "2.0.147",
-          "Plugin.Visual1993.Core": "1.0.2"
+          "Plugin.Visual1993.Core": "1.0.4"
         },
         "compile": {
           "lib/portable-net45+wp8+wpa81+win8+MonoAndroid10+MonoTouch10+Xamarin.iOS10+UAP10/Plugin.Visual1993.Gateway.Abstractions.dll": {}
@@ -8242,6 +8278,15 @@
           "lib/netstandard1.3/AWSSDK.S3.dll": {}
         }
       },
+      "HtmlAgilityPack/1.4.9.5": {
+        "type": "package",
+        "compile": {
+          "lib/NetCore45/HtmlAgilityPack.dll": {}
+        },
+        "runtime": {
+          "lib/NetCore45/HtmlAgilityPack.dll": {}
+        }
+      },
       "Microsoft.Bcl/1.1.10": {
         "type": "package",
         "dependencies": {
@@ -8642,10 +8687,10 @@
           "lib/portable-net45+wp8+wpa81+win8+MonoAndroid10+MonoTouch10+Xamarin.iOS10+UAP10/Plugin.Visual1993.Controls.dll": {}
         }
       },
-      "Plugin.Visual1993.Core/1.0.2": {
+      "Plugin.Visual1993.Core/1.0.4": {
         "type": "package",
         "dependencies": {
-          "Newtonsoft.Json": "9.0.1"
+          "Newtonsoft.Json": "7.0.1"
         },
         "compile": {
           "lib/portable-net45+wp8+wpa81+win8+MonoAndroid10+MonoTouch10+Xamarin.iOS10+UAP10/Core.dll": {}
@@ -8654,12 +8699,12 @@
           "lib/portable-net45+wp8+wpa81+win8+MonoAndroid10+MonoTouch10+Xamarin.iOS10+UAP10/Core.dll": {}
         }
       },
-      "Plugin.Visual1993.Gateway/1.0.0": {
+      "Plugin.Visual1993.Gateway/1.0.2": {
         "type": "package",
         "dependencies": {
-          "Newtonsoft.Json": "9.0.1",
+          "Newtonsoft.Json": "7.0.1",
           "PCLCrypto": "2.0.147",
-          "Plugin.Visual1993.Core": "1.0.2"
+          "Plugin.Visual1993.Core": "1.0.4"
         },
         "compile": {
           "lib/portable-net45+wp8+wpa81+win8+MonoAndroid10+MonoTouch10+Xamarin.iOS10+UAP10/Plugin.Visual1993.Gateway.Abstractions.dll": {}
@@ -10230,6 +10275,15 @@
           "lib/netstandard1.3/AWSSDK.S3.dll": {}
         }
       },
+      "HtmlAgilityPack/1.4.9.5": {
+        "type": "package",
+        "compile": {
+          "lib/NetCore45/HtmlAgilityPack.dll": {}
+        },
+        "runtime": {
+          "lib/NetCore45/HtmlAgilityPack.dll": {}
+        }
+      },
       "Microsoft.Bcl/1.1.10": {
         "type": "package",
         "dependencies": {
@@ -10651,10 +10705,10 @@
           "lib/portable-net45+wp8+wpa81+win8+MonoAndroid10+MonoTouch10+Xamarin.iOS10+UAP10/Plugin.Visual1993.Controls.dll": {}
         }
       },
-      "Plugin.Visual1993.Core/1.0.2": {
+      "Plugin.Visual1993.Core/1.0.4": {
         "type": "package",
         "dependencies": {
-          "Newtonsoft.Json": "9.0.1"
+          "Newtonsoft.Json": "7.0.1"
         },
         "compile": {
           "lib/portable-net45+wp8+wpa81+win8+MonoAndroid10+MonoTouch10+Xamarin.iOS10+UAP10/Core.dll": {}
@@ -10663,12 +10717,12 @@
           "lib/portable-net45+wp8+wpa81+win8+MonoAndroid10+MonoTouch10+Xamarin.iOS10+UAP10/Core.dll": {}
         }
       },
-      "Plugin.Visual1993.Gateway/1.0.0": {
+      "Plugin.Visual1993.Gateway/1.0.2": {
         "type": "package",
         "dependencies": {
-          "Newtonsoft.Json": "9.0.1",
+          "Newtonsoft.Json": "7.0.1",
           "PCLCrypto": "2.0.147",
-          "Plugin.Visual1993.Core": "1.0.2"
+          "Plugin.Visual1993.Core": "1.0.4"
         },
         "compile": {
           "lib/portable-net45+wp8+wpa81+win8+MonoAndroid10+MonoTouch10+Xamarin.iOS10+UAP10/Plugin.Visual1993.Gateway.Abstractions.dll": {}
@@ -12262,6 +12316,15 @@
           "lib/netstandard1.3/AWSSDK.S3.dll": {}
         }
       },
+      "HtmlAgilityPack/1.4.9.5": {
+        "type": "package",
+        "compile": {
+          "lib/NetCore45/HtmlAgilityPack.dll": {}
+        },
+        "runtime": {
+          "lib/NetCore45/HtmlAgilityPack.dll": {}
+        }
+      },
       "Microsoft.Bcl/1.1.10": {
         "type": "package",
         "dependencies": {
@@ -12662,10 +12725,10 @@
           "lib/portable-net45+wp8+wpa81+win8+MonoAndroid10+MonoTouch10+Xamarin.iOS10+UAP10/Plugin.Visual1993.Controls.dll": {}
         }
       },
-      "Plugin.Visual1993.Core/1.0.2": {
+      "Plugin.Visual1993.Core/1.0.4": {
         "type": "package",
         "dependencies": {
-          "Newtonsoft.Json": "9.0.1"
+          "Newtonsoft.Json": "7.0.1"
         },
         "compile": {
           "lib/portable-net45+wp8+wpa81+win8+MonoAndroid10+MonoTouch10+Xamarin.iOS10+UAP10/Core.dll": {}
@@ -12674,12 +12737,12 @@
           "lib/portable-net45+wp8+wpa81+win8+MonoAndroid10+MonoTouch10+Xamarin.iOS10+UAP10/Core.dll": {}
         }
       },
-      "Plugin.Visual1993.Gateway/1.0.0": {
+      "Plugin.Visual1993.Gateway/1.0.2": {
         "type": "package",
         "dependencies": {
-          "Newtonsoft.Json": "9.0.1",
+          "Newtonsoft.Json": "7.0.1",
           "PCLCrypto": "2.0.147",
-          "Plugin.Visual1993.Core": "1.0.2"
+          "Plugin.Visual1993.Core": "1.0.4"
         },
         "compile": {
           "lib/portable-net45+wp8+wpa81+win8+MonoAndroid10+MonoTouch10+Xamarin.iOS10+UAP10/Plugin.Visual1993.Gateway.Abstractions.dll": {}
@@ -14297,6 +14360,39 @@
         "tools/uninstall.ps1"
       ]
     },
+    "HtmlAgilityPack/1.4.9.5": {
+      "sha512": "iKBDxJHESRCIRbmgLKVkNM86LIX52jf6wsVQdbSsLpPUG9oSnAD1Pz8IHjJT+dQ3TWJEu4WYZvbdlixdmWKMVw==",
+      "type": "package",
+      "files": [
+        "HAPIcon.png",
+        "HtmlAgilityPack.1.4.9.5.nupkg.sha512",
+        "HtmlAgilityPack.nuspec",
+        "lib/Net20/HtmlAgilityPack.dll",
+        "lib/Net20/HtmlAgilityPack.pdb",
+        "lib/Net20/HtmlAgilityPack.xml",
+        "lib/Net40-client/HtmlAgilityPack.dll",
+        "lib/Net40-client/HtmlAgilityPack.pdb",
+        "lib/Net40-client/HtmlAgilityPack.xml",
+        "lib/Net40/HtmlAgilityPack.XML",
+        "lib/Net40/HtmlAgilityPack.dll",
+        "lib/Net40/HtmlAgilityPack.pdb",
+        "lib/Net45/HtmlAgilityPack.XML",
+        "lib/Net45/HtmlAgilityPack.dll",
+        "lib/Net45/HtmlAgilityPack.pdb",
+        "lib/NetCore45/HtmlAgilityPack.dll",
+        "lib/NetCore45/HtmlAgilityPack.pdb",
+        "lib/NetCore45/HtmlAgilityPack.pri",
+        "lib/NetCore45/HtmlAgilityPack.xml",
+        "lib/portable-net45+netcore45+wp8+MonoAndroid+MonoTouch/HtmlAgilityPack.dll",
+        "lib/portable-net45+netcore45+wp8+MonoAndroid+MonoTouch/HtmlAgilityPack.pdb",
+        "lib/portable-net45+netcore45+wpa81+wp8+MonoAndroid+MonoTouch/HtmlAgilityPack.dll",
+        "lib/portable-net45+netcore45+wpa81+wp8+MonoAndroid+MonoTouch/HtmlAgilityPack.pdb",
+        "lib/sl5/HtmlAgilityPack.XML",
+        "lib/sl5/HtmlAgilityPack.dll",
+        "lib/sl5/HtmlAgilityPack.pdb",
+        "readme.txt"
+      ]
+    },
     "Microsoft.Bcl/1.1.10": {
       "sha512": "+tTqoh/M1pyL8El3qLy30EcwnAtyvFoDZJtdG9Cbg/WdFbh4N8kyrq198XHuEL7lnJbeD0DRO8jcX5IIOh05cQ==",
       "type": "package",
@@ -15261,20 +15357,20 @@
         "lib/portable-net45+wp8+wpa81+win8+MonoAndroid10+MonoTouch10+Xamarin.iOS10+UAP10/Plugin.Visual1993.Controls.dll"
       ]
     },
-    "Plugin.Visual1993.Core/1.0.2": {
-      "sha512": "4+pTAq9uZFcQKd6RtQmyJTDlZY+lZClRONaEQFm6q+BPdRK/Q6Xj22e0P3jh078P8V0jZAQM+C5JrNnEzqgZig==",
+    "Plugin.Visual1993.Core/1.0.4": {
+      "sha512": "LdDXz4HRprq1/RCqJbRVNJDlKg7tzHcI55WmYkcnOztS84gHZGPejGsNp0YnXAbqAcIY8xis9gZevH8+o39b/w==",
       "type": "package",
       "files": [
-        "Plugin.Visual1993.Core.1.0.2.nupkg.sha512",
+        "Plugin.Visual1993.Core.1.0.4.nupkg.sha512",
         "Plugin.Visual1993.Core.nuspec",
         "lib/portable-net45+wp8+wpa81+win8+MonoAndroid10+MonoTouch10+Xamarin.iOS10+UAP10/Core.dll"
       ]
     },
-    "Plugin.Visual1993.Gateway/1.0.0": {
-      "sha512": "UY8PJ1TVHZZJX8ZKK5O1w/H8+4RxLnAwEzKz8NNSPX6oXuYh5shIJb8k03oP/GQVAWBpw29J+tQ9ip0bsUj4xQ==",
+    "Plugin.Visual1993.Gateway/1.0.2": {
+      "sha512": "t/6RNmp2I4gdQaY86aDr5OGv+gDBDxzse1NkKmZwKvus7+PgTeQa6x5gvJGyFAngNkcOeXa+ezZf4lHiqwfKNQ==",
       "type": "package",
       "files": [
-        "Plugin.Visual1993.Gateway.1.0.0.nupkg.sha512",
+        "Plugin.Visual1993.Gateway.1.0.2.nupkg.sha512",
         "Plugin.Visual1993.Gateway.nuspec",
         "lib/portable-net45+wp8+wpa81+win8+MonoAndroid10+MonoTouch10+Xamarin.iOS10+UAP10/Plugin.Visual1993.Gateway.Abstractions.dll"
       ]
@@ -18125,12 +18221,14 @@
   },
   "projectFileDependencyGroups": {
     "": [
+      "HtmlAgilityPack >= 1.4.9.5",
       "Microsoft.NETCore.UniversalWindowsPlatform >= 5.0.0",
       "Newtonsoft.Json >= 9.0.1",
       "PCLCrypto >= 2.0.147",
       "Plugin.Visual1993.CloudImage >= 1.0.0",
       "Plugin.Visual1993.Controls >= 1.0.0",
-      "Plugin.Visual1993.Gateway >= 1.0.0",
+      "Plugin.Visual1993.Core >= 1.0.4",
+      "Plugin.Visual1993.Gateway >= 1.0.2",
       "Xamarin.Forms >= 2.3.3.193"
     ],
     "UAP,Version=v10.0": []
