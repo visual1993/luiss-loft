@@ -12,7 +12,7 @@ using Visual1993;
 using System.Threading.Tasks;
 
 using Xamarin.Forms;
-using Syncfusion.SfCalendar.XForms;
+using Syncfusion.SfSchedule.XForms;
 
 namespace LuissLoft
 {
@@ -25,11 +25,25 @@ namespace LuissLoft
 			VM.UIPage = this;
 			BindingContext = VM;
 
-			var calendar = new SfCalendar();
+			var calendar = new SfSchedule {
+				ShowAppointmentsInline=true,
+				ScheduleView= ScheduleView.WeekView
+			};
+			ScheduleAppointmentMapping dataMapping = new ScheduleAppointmentMapping();
+			dataMapping.SubjectMapping = nameof(GoogleEventVM.Title);
+			dataMapping.StartTimeMapping = nameof(GoogleEventVM.StartDate);
+			dataMapping.EndTimeMapping = nameof(GoogleEventVM.EndDate);
+			//dataMapping.ColorMapping = "color";
+			calendar.AppointmentMapping = dataMapping;
 
-			var listaVacanze = new List<DateTime>();
-			listaVacanze.Add(DateTime.Now);
-			calendar.BlackoutDates = listaVacanze;
+			calendar.ScheduleCellTapped += (object sender, ScheduleTappedEventArgs args) => {
+				var data = args;
+			};
+			//var listaVacanze = new List<DateTime> { };
+			//listaVacanze.Add(DateTime.Now);
+			//calendar.BlackoutDates = listaVacanze;
+
+			calendar.SetBinding(SfSchedule.DataSourceProperty, new Binding(nameof(CalendarioPageVM.Items)));
 			this.Content = calendar;
 
 		}

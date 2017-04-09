@@ -7,7 +7,7 @@ using UIKit;
 
 using FFImageLoading;
 
-using Syncfusion.SfCalendar.XForms.iOS;
+using Syncfusion.SfSchedule.XForms.iOS;
 
 namespace LuissLoft.iOS
 {
@@ -25,7 +25,7 @@ namespace LuissLoft.iOS
 				//HttpClient = new System.Net.Http.HttpClient(new Xamarin.Android.Net.AndroidClientHandler()),
 			};
 			ImageService.Instance.Initialize(config);
-			new SfCalendarRenderer();
+			new SfScheduleRenderer();
 			LoadApplication(new App());
 
 			return base.FinishedLaunching(app, options);

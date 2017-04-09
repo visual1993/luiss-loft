@@ -1,2 +1,2 @@
 ﻿Manca l'aggiunta dei Nuget a Droid e WP
-il login non viene salvato, usa direttamente PCLStorage senza referenziare il Core
+Syncfusion.SfScheduler non restituisce l'appuntamento selezionato. Ma il Sample che sta in Downloads funziona. Vedi se è problema di versionamento
