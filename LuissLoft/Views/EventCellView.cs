@@ -25,7 +25,7 @@ namespace LuissLoft
 				var menuRemove = new MenuItem
 				{
 					Text = "Rimuovi",
-					IsDestructive=true
+					IsDestructive = true
 				};
 				menuRemove.Clicked += (sender, e) =>
 				{
@@ -36,14 +36,16 @@ namespace LuissLoft
 
 		public EventCellView()
 		{
-			var layoutIntero = new Grid {
-                HeightRequest=300,
-                BackgroundColor = Color.Transparent,
-				RowDefinitions=new RowDefinitionCollection { 
+			var layoutIntero = new Grid
+			{
+				HeightRequest = 300,
+				BackgroundColor = Color.Transparent,
+				RowDefinitions = new RowDefinitionCollection {
 					new RowDefinition { Height=new GridLength(0.70, GridUnitType.Star) },
 					new RowDefinition { Height=new GridLength(0.30, GridUnitType.Star) }
-				}, RowSpacing=0,
-				Padding=new Thickness(5),
+				},
+				RowSpacing = 0,
+				Padding = new Thickness(5),
 			};
 			var grigliaTesto = new Grid
 			{
@@ -56,14 +58,15 @@ namespace LuissLoft
 					new ColumnDefinition { Width=50 },
 					new ColumnDefinition { Width=GridLength.Star }
 				},
-				Padding=new Thickness(5,0,5,0)
+				Padding = new Thickness(5, 0, 5, 0)
 			};
-			var title = new Label { 
+			var title = new Label
+			{
 				TextColor = Color.Black,
-				FontSize = DefaultTema.FontMedium, 
+				FontSize = DefaultTema.FontMedium,
 				FontAttributes = FontAttributes.Bold,
-				HorizontalTextAlignment= TextAlignment.Start,
-				HorizontalOptions=LayoutOptions.Start,
+				HorizontalTextAlignment = TextAlignment.Start,
+				HorizontalOptions = LayoutOptions.Start,
 			};
 			title.SetBinding(Label.TextProperty, nameof(EventCellVM.Title));
 
@@ -79,12 +82,23 @@ namespace LuissLoft
 			var startLabel = new Label { };
 			startLabel.SetBinding(Label.FormattedTextProperty, nameof(EventCellVM.DataFormatted));
 
-			var img = new SpeedImage() { 
-				Aspect = Aspect.AspectFill, 
+#if __DROID__
+			var img = new FFImageLoading.Forms.CachedImage()
+			{
+				Aspect = Aspect.AspectFill,
 				LoadingPriority = FFImageLoading.Work.LoadingPriority.Low,
-				CacheDuration=TimeSpan.FromDays(360),
+				CacheDuration = TimeSpan.FromDays(360),
+				ErrorPlaceholder = Globals.DefaultThumb,
+				LoadingPlaceholder = Globals.DefaultThumb,
 			};
 			img.SetBinding(SpeedImage.SourceProperty, nameof(EventCellVM.Copertina));
+#else
+			var img = new Image()
+			{
+				Aspect = Aspect.AspectFill,
+			};
+			img.SetBinding(Image.SourceProperty, nameof(EventCellVM.Copertina));
+			#endif
 
 			//var img = new Image() { Aspect = Aspect.AspectFill,};
 			//img.Bind(nameof(EventCellVM.Copertina));
