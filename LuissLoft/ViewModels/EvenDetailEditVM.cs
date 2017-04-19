@@ -5,6 +5,8 @@ using Xamarin.Forms;
 using CommonClasses;
 using System.Linq;
 using System.Threading.Tasks;
+using Visual1993.Data;
+using Newtonsoft.Json;
 
 namespace LuissLoft
 {
@@ -35,9 +37,25 @@ namespace LuissLoft
 			ObjEvent.EndDate=EndDate.SetTime(EndTime);
 		}
 
-		public async Task UploadData()
+		public async Task<GoogleEvent.UpdateResponse> UploadData()
 		{
-			
+			IsLoadingData = true;
+			try
+			{
+				var ws = new WebServiceV2();
+				var config = new WebServiceV2.UrlToStringConfiguration
+				{
+					url = Globals.RestApiV1 + "loft/event/" + ObjEvent.ID + "/update",
+					Type = WebServiceV2.UrlToStringConfiguration.RequestType.JsonRaw,
+					Verb = WebServiceV2.UrlToStringConfiguration.RequestVerb.POST,
+					RawContent = JsonConvert.SerializeObject(ObjEvent)
+				};
+				var res = await ws.UrlToString(config);
+				return JsonConvert.DeserializeObject<GoogleEvent.UpdateResponse>(res);
+			}
+			finally {
+				IsLoadingData = false;
+			}
 		}
 
 		string description = "";

@@ -12,6 +12,7 @@ namespace LoftServer
 		public const string LoftPrefix = "loft/";
 		public static bool killProcess = false;
 		public static string CalendarId = "h9kcedctrf2j9e4rqi0c40c7fg@group.calendar.google.com";
+		public static string StudentsCalendar = "h9kcedctrf2j9e4rqi0c40c7fg@group.calendar.google.com";
 #if DEBUG
 		public const string ExternalAccessBaseUri = "http://127.0.0.1:8889/";
 #else

@@ -62,6 +62,15 @@ namespace LoftServer
 					return Response.FromStream(memory, ContentType);
 
 			};
+			Post[MainClass.LoftPrefix + "event/{id}/update", runAsync:true] = async (dynamic arg1, System.Threading.CancellationToken arg2) =>
+			{
+				string eventID = arg1.id;
+				var inputStr = Request.Body.AsString();
+				var i = JsonConvert.DeserializeObject<GoogleEvent>(inputStr);
+				if (string.IsNullOrWhiteSpace(eventID) == false)
+				{ i.ID = eventID; }
+				return await UpdateEvent(i);
+			};
 		}
 
 		public static string GetEvents()
@@ -84,6 +93,40 @@ namespace LoftServer
 				{
 					output.items.Add(eventItem.ToGoogleEvent());
 				}
+			}
+			return JsonConvert.SerializeObject(output);
+		}
+
+		public async Task<string> UpdateEvent(GoogleEvent i)
+		{
+			GoogleEvent.UpdateResponse output = new GoogleEvent.UpdateResponse();
+			var IsUpdate = (string.IsNullOrWhiteSpace(i.ID) == false);
+
+			try
+			{
+				Event res = null;
+				if (IsUpdate)
+				{
+					EventsResource.UpdateRequest request = Generic.Calendar.Events.Update(
+					i.ToEvent(), MainClass.StudentsCalendar, i.ToEvent().Id
+				);
+					res = await request.ExecuteAsync();
+				}
+				else { 
+					EventsResource.InsertRequest request = Generic.Calendar.Events.Insert(
+					i.ToEvent(), MainClass.StudentsCalendar
+				);
+					res = await request.ExecuteAsync();
+				}
+				if (res != null)
+				{
+					output.item = res.ToGoogleEvent();
+					output.state = Visual1993.Data.WebServiceV2.WebRequestState.Ok;
+				}
+			}
+			catch(Exception ex){ 
+				output.state = Visual1993.Data.WebServiceV2.WebRequestState.GenericError;
+				output.errorMessage = ex.Message;
 			}
 			return JsonConvert.SerializeObject(output);
 		}

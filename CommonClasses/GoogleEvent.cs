@@ -11,7 +11,7 @@ namespace CommonClasses
 		{
 		}
 		[JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
-		public string ID { get; set; }
+		public string ID { get; set; } = "";
 
 		[JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
 		public string Name { get; set; }
@@ -34,6 +34,8 @@ namespace CommonClasses
 		[JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
 		public DateTime LastChange { get; set; }
 
+		[JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
+		public string AttachmentsSerialization { get; set; }
 
 		public class EventsRequest
 		{ 
@@ -41,6 +43,10 @@ namespace CommonClasses
 		public class EventsResponse: WebServiceV2.DefaultResponse
 		{
 			public List<GoogleEvent> items = new List<GoogleEvent>();
+		}
+		public class UpdateResponse : WebServiceV2.DefaultResponse
+		{
+			public GoogleEvent item;
 		}
 		public class RichDescription {
 

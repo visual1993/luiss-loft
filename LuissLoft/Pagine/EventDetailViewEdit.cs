@@ -53,10 +53,21 @@ namespace LuissLoft
 			};
 			labelDescrizione.Bind(nameof(EventDetailEditVM.Description));
 
+			var buttSalva = new Button { Text = "Salva" };
+			buttSalva.Clicked+= async delegate {
+				VM.UpdateModel();
+				var res = await VM.UploadData();
+				if (res.state != Visual1993.Data.WebServiceV2.WebRequestState.Ok && res.state != Visual1993.Data.WebServiceV2.WebRequestState.DuplicateExistsOnServer)
+				{
+					await DisplayAlert("Errore nel salvataggio", res.errorMessage, "Ok");
+				}
+			};
+
 			stackIntero.Children.Add(image);
 			stackIntero.Children.Add(grigliaData);
 			stackIntero.Children.Add(labelTitolo);
 			stackIntero.Children.Add(labelDescrizione);
+			stackIntero.Children.Add(buttSalva);
 
 			var scroller = new ScrollView { Content = stackIntero };
 			Content = scroller;

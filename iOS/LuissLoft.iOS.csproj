@@ -164,9 +164,6 @@
     <Reference Include="HtmlAgilityPack">
       <HintPath>..\packages\HtmlAgilityPack.1.4.9.5\lib\portable-net45+netcore45+wp8+MonoAndroid+MonoTouch\HtmlAgilityPack.dll</HintPath>
     </Reference>
-    <Reference Include="Core">
-      <HintPath>..\packages\Plugin.Visual1993.Core.1.0.4\lib\portable-net45+wp8+wpa81+win8+MonoAndroid10+MonoTouch10+Xamarin.iOS10+UAP10\Core.dll</HintPath>
-    </Reference>
     <Reference Include="Plugin.Visual1993.Gateway.Abstractions">
       <HintPath>..\packages\Plugin.Visual1993.Gateway.1.0.2\lib\portable-net45+wp8+wpa81+win8+MonoAndroid10+MonoTouch10+Xamarin.iOS10+UAP10\Plugin.Visual1993.Gateway.Abstractions.dll</HintPath>
     </Reference>
@@ -190,6 +187,9 @@
     </Reference>
     <Reference Include="Xamarin.Forms.Xaml">
       <HintPath>..\packages\Xamarin.Forms.2.3.4.231\lib\Xamarin.iOS10\Xamarin.Forms.Xaml.dll</HintPath>
+    </Reference>
+    <Reference Include="Core">
+      <HintPath>..\packages\Plugin.Visual1993.Core.1.0.5\lib\portable-net45+wp8+wpa81+win8+MonoAndroid10+MonoTouch10+Xamarin.iOS10+UAP10\Core.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>

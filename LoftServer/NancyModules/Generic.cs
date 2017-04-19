@@ -147,5 +147,34 @@ namespace LoftServer
 			#endregion
 			return o;
 		}
+
+		public static Event ToEvent(this CommonClasses.GoogleEvent i)
+		{
+			var o = new Event();
+			o.Id = i.ID;
+			try
+			{
+				//var rd = JsonConvert.DeserializeObject<CommonClasses.GoogleEvent.RichDescription>(o.Description);
+				//o.Description = rd.Description;
+				//o.ImageUris = rd.ImageUris;
+			}
+			catch
+			{
+				o.Description = i.Description;
+			}
+			o.Summary = i.Name;
+			o.Location = i.Luogo;
+			o.Start.DateTime = i.StartDate;
+			o.End.DateTime = i.EndDate;
+			try
+			{
+				if (string.IsNullOrWhiteSpace(i.AttachmentsSerialization) == false)
+				{
+					o.Attachments = JsonConvert.DeserializeObject<List<EventAttachment>>(i.AttachmentsSerialization);
+				}
+			}
+			catch { }
+			return o;
+		}
 	}
 }
