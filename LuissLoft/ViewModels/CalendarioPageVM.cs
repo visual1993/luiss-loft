@@ -63,7 +63,11 @@ namespace LuissLoft
 			var o = new List<GoogleEvent>();
 			//se l'evento è all'interno della fascia oraria
 			var fine = inizio.Add(durata);
-			var eventi = EventsObj.Where(x => x.StartDate >= inizio && x.EndDate <= fine);
+			var eventi = EventsObj.Where(x=>
+				(x.StartDate >= inizio && x.EndDate <= fine)
+				||
+				(x.StartDate <= inizio && x.EndDate >= fine)
+			);
 			o = eventi.ToList();
 			return o;
 		}

@@ -84,9 +84,19 @@ namespace LoftServer
 			request.SingleEvents = true;
 			request.MaxResults = 20;
 			request.OrderBy = EventsResource.ListRequest.OrderByEnum.StartTime;
-
 			// List events.
 			Events events = request.Execute();
+
+			EventsResource.ListRequest request1 =
+				              Generic.Calendar.Events.List(MainClass.StudentsCalendar); //primary //loft.luiss@gmail.com //visual1993@gmail.com
+			request1.TimeMin = DateTime.Now;
+			request1.ShowDeleted = false;
+			request1.SingleEvents = true;
+			request1.MaxResults = 20;
+			request1.OrderBy = EventsResource.ListRequest.OrderByEnum.StartTime;
+			// List events.
+			Events events1 = request1.Execute();
+
 			if (events.Items != null && events.Items.Count > 0)
 			{
 				foreach (var eventItem in events.Items)
@@ -94,33 +104,50 @@ namespace LoftServer
 					output.items.Add(eventItem.ToGoogleEvent());
 				}
 			}
+
+			if (events1.Items != null && events1.Items.Count > 0)
+			{
+				foreach (var eventItem1 in events1.Items)
+				{
+					output.items.Add(eventItem1.ToGoogleEvent());
+				}
+			}
 			return JsonConvert.SerializeObject(output);
 		}
 
 		public async Task<string> UpdateEvent(GoogleEvent i)
 		{
-			GoogleEvent.UpdateResponse output = new GoogleEvent.UpdateResponse();
+			Event eventoEsistente = null;
+			//verifica se fare update o insert
 			var IsUpdate = (string.IsNullOrWhiteSpace(i.ID) == false);
-
+			if (i.ID == "null") { IsUpdate = false;}
+			if (IsUpdate == false)
+			{
+				EventsResource.GetRequest request = Generic.Calendar.Events.Get(MainClass.StudentsCalendar, i.ID);
+				try { eventoEsistente = await request.ExecuteAsync(); } catch { }
+				IsUpdate = eventoEsistente != null;
+			}
+			GoogleEvent.UpdateResponse output = new GoogleEvent.UpdateResponse();
 			try
 			{
-				Event res = null;
+				eventoEsistente = EventMixedFromGoogle(i,eventoEsistente);
 				if (IsUpdate)
 				{
 					EventsResource.UpdateRequest request = Generic.Calendar.Events.Update(
-					i.ToEvent(), MainClass.StudentsCalendar, i.ToEvent().Id
+					eventoEsistente, MainClass.StudentsCalendar, eventoEsistente.Id
 				);
-					res = await request.ExecuteAsync();
+					eventoEsistente = await request.ExecuteAsync();
 				}
-				else { 
+				else {
+					eventoEsistente.Id = null;
 					EventsResource.InsertRequest request = Generic.Calendar.Events.Insert(
-					i.ToEvent(), MainClass.StudentsCalendar
+					eventoEsistente, MainClass.StudentsCalendar
 				);
-					res = await request.ExecuteAsync();
+					eventoEsistente = await request.ExecuteAsync();
 				}
-				if (res != null)
+				if (eventoEsistente != null)
 				{
-					output.item = res.ToGoogleEvent();
+					output.item = eventoEsistente.ToGoogleEvent();
 					output.state = Visual1993.Data.WebServiceV2.WebRequestState.Ok;
 				}
 			}
@@ -130,7 +157,18 @@ namespace LoftServer
 			}
 			return JsonConvert.SerializeObject(output);
 		}
+		public Event EventMixedFromGoogle(GoogleEvent i, Event j)
+		{
+			if (i == null) { return null; }
+			if (j == null) { j = new Event { Start = new EventDateTime { }, End = new EventDateTime { } };}
 
+			j.Id = i.ID;
+			j.Summary = i.Name;
+			j.Description = i.Description;
+			j.Location = i.Luogo;
+			j.Start.DateTime = i.StartDate;
+			j.End.DateTime = i.EndDate;
+			return j;
+		}
 	}
-
 }

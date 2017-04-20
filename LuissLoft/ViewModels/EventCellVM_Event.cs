@@ -22,6 +22,7 @@ namespace LuissLoft
 
 		public void UpdateVM()
 		{
+			/*
 			Title = Obj.data.Name;
 			Copertina = Obj.data.Image?.ImageSource;// ?? Tema.DefaultCopertinaURL;
 			Description = Obj.data.Description;
@@ -40,6 +41,7 @@ namespace LuissLoft
 					}
 				}
 			};
+			*/
 		}
 		private string dataInizio = "00/00/0000";
 		public string DataInizio { get { return dataInizio; } set { dataInizio = value; this.RaisePropertyChanged(); } }

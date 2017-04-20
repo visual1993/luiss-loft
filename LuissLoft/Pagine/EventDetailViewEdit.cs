@@ -24,9 +24,9 @@ namespace LuissLoft
 			var grigliaData = new Grid { 
 				RowDefinitions=new RowDefinitionCollection { 
 					new RowDefinition{ Height=GridLength.Auto},
+					new RowDefinition{ Height=GridLength.Auto},
 				},
 				ColumnDefinitions=new ColumnDefinitionCollection { 
-					new ColumnDefinition{Width=GridLength.Star},
 					new ColumnDefinition{Width=GridLength.Star},
 				}
 			};
@@ -34,38 +34,62 @@ namespace LuissLoft
 			var inizio = new DateTimePickerWithLabel { LabelText="Inizio", LabelTextColor= Color.Navy };
 			inizio.Bind(nameof(EventDetailEditVM.StartDate), nameof(EventDetailEditVM.StartTime));
 
-			var fine = new DateTimePickerWithLabel { LabelText="Fine", LabelTextColor= Color.Navy, HorizontalOptions= LayoutOptions.End, };
+			var fine = new DateTimePickerWithLabel { LabelText="Fine", LabelTextColor= Color.Navy,};
 			fine.Bind(nameof(EventDetailEditVM.EndDate), nameof(EventDetailEditVM.EndTime));
 
 			grigliaData.AddChild(inizio, 0,0);
-			grigliaData.AddChild(fine, 0, 1);
+			grigliaData.AddChild(fine, 1, 0);
 
-			var labelTitolo = new Entry { 
-				TextColor=Color.Black,
-				FontSize= 30
+			var labelStato = new LabelWithLabelV2 { 
+				LabelText="Stato"
 			};
+			labelStato.Bind(nameof(EventDetailEditVM.Stato));
+
+			var labelAutore = new LabelWithLabelV2
+			{
+				LabelText = "Richiedente"
+			};
+			labelAutore.Bind(nameof(EventDetailEditVM.Autore));
+
+			var labelTitolo = new EntryWithLabelV2 { LabelText="Titolo"};
+			var le = labelTitolo.Element;
+			le.TextColor = Color.Black;
+			le.FontSize = 30; 
+			le.Placeholder = "Titolo";
 			labelTitolo.Bind(nameof(EventDetailEditVM.Title));
 
-			var labelDescrizione = new Editor
+			var labelDescrizione = new EditorWithLabelV2
 			{
-				TextColor = Color.Black,
-				FontSize = 25
+				LabelText="Descrizione",
 			};
 			labelDescrizione.Bind(nameof(EventDetailEditVM.Description));
 
 			var buttSalva = new Button { Text = "Salva" };
 			buttSalva.Clicked+= async delegate {
-				VM.UpdateModel();
-				var res = await VM.UploadData();
-				if (res.state != Visual1993.Data.WebServiceV2.WebRequestState.Ok && res.state != Visual1993.Data.WebServiceV2.WebRequestState.DuplicateExistsOnServer)
+				if (VM.UpdateModel())
 				{
-					await DisplayAlert("Errore nel salvataggio", res.errorMessage, "Ok");
+					var res = await VM.UploadData();
+					if (res.state != Visual1993.Data.WebServiceV2.WebRequestState.Ok && res.state != Visual1993.Data.WebServiceV2.WebRequestState.DuplicateExistsOnServer)
+					{
+						await DisplayAlert("Errore nel salvataggio", res.errorMessage, "Ok");
+					}
+					else {
+						if (VM.CalendarioVM != null)
+						{
+							VM.CalendarioVM.DownloadData().ContinueWith(delegate
+							{
+								VM.CalendarioVM.UpdateVM();
+							});
+						}
+						try { await Navigation.PopAsync(); } catch { }
+					}
 				}
 			};
 
 			stackIntero.Children.Add(image);
-			stackIntero.Children.Add(grigliaData);
 			stackIntero.Children.Add(labelTitolo);
+			stackIntero.Children.Add(grigliaData);
+			stackIntero.Children.Add(labelStato);
 			stackIntero.Children.Add(labelDescrizione);
 			stackIntero.Children.Add(buttSalva);
 

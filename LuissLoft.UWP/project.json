@@ -6,8 +6,9 @@
     "PCLCrypto": "2.0.147",
     "Plugin.Visual1993.CloudImage": "1.0.0",
     "Plugin.Visual1993.Controls": "1.0.0",
-    "Plugin.Visual1993.Core": "1.0.4",
+    "Plugin.Visual1993.Core": "1.0.5",
     "Plugin.Visual1993.Gateway": "1.0.2",
+    "Syncfusion.Xamarin.SfSchedule": "15.1.0.41",
     "Xamarin.Forms": "2.3.3.193"
   },
   "frameworks": {

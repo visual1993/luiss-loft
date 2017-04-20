@@ -25,7 +25,7 @@ namespace LoftServer
 {
 	public class Generic
 	{
-		static string[] CalendarScopes = { CalendarService.Scope.CalendarReadonly };
+		static string[] CalendarScopes = { CalendarService.Scope.Calendar };
 		static string[] DriveScopes = { DriveService.Scope.DriveReadonly };
 		static string ApplicationName = "Google Calendar API .NET Quickstart";
 

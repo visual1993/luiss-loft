@@ -39,7 +39,7 @@ namespace LuissLoft
 			[JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
 			public EventStateEnum State { get; set; } = EventStateEnum.Inserted;
 
-			public enum EventStateEnum { Inserted = 0, Removed = 1 };
+			public enum EventStateEnum {Pending=-1, Inserted = 0, Approved=2, Rejected=3, Removed = 1 };
 		}
 		public CachedDataClass CachedData { get; set; } = new CachedDataClass();
 		//should be ignored in online saving. Only token into consideration while inserting/updating the cache, because it serializes the fullObject
