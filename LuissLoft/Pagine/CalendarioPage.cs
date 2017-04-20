@@ -36,8 +36,55 @@ namespace LuissLoft
 			//dataMapping.ColorMapping = "color";
 			calendar.AppointmentMapping = dataMapping;
 
-			calendar.ScheduleCellTapped += (object sender, ScheduleTappedEventArgs args) => {
+			calendar.ScheduleCellTapped += async(object sender, ScheduleTappedEventArgs args) =>
+			{
 				var data = args;
+				var events = VM.GetEventsFromDateTime(args.datetime, TimeSpan.FromMinutes(calendar.TimeInterval));
+				if (events != null || events.Count > 0)
+				{
+					var stringaScelta = await DisplayActionSheet("Quale evento?", "Nessuno", null, events.Select(x => x.Name).ToArray());
+					var eventoScelto = VM.EventsObj.FirstOrDefault(x => x.Name == stringaScelta);
+					if (eventoScelto != null)
+					{
+						if (App.VM.user != null)
+						{
+							//se è modificabile, aprilo in edit
+							var eventoInterno = VM.EventiInterniObj.FirstOrDefault(x => x.data.RelatedGoogleEventID == eventoScelto.ID);
+							if (eventoInterno != null && eventoInterno.data.RelatedOwnerGuid == App.VM.user.Guid)
+							{
+								var pageEditVM = new EventDetailEditVM { ObjEvent = eventoScelto, ObjInternalEvent = eventoInterno };
+								pageEditVM.UpdateVM(); //non c'è bisogno qui di fare il download data perchè già ho gli oggetti interi che sto passando
+								await Navigation.PushAsync(new EventDetailViewEdit(pageEditVM));
+							}
+							else
+							{  //altrimenti, aprilo in read only
+								var pageViewVM = new EventDetailViewModel { ObjEvent = eventoScelto };
+								pageViewVM.UpdateVM(); //non c'è bisogno qui di fare il download data perchè già ho gli oggetti interi che sto passando
+								await Navigation.PushAsync(new EventDetailView(pageViewVM));
+							}
+						}
+						else
+						{  //altrimenti, aprilo in read only
+							var pageViewVM = new EventDetailViewModel { ObjEvent = eventoScelto };
+							pageViewVM.UpdateVM(); //non c'è bisogno qui di fare il download data perchè già ho gli oggetti interi che sto passando
+							await Navigation.PushAsync(new EventDetailView(pageViewVM));
+						}
+					}
+					else
+					{
+						//se non ho scelto nessun evento torna indietro
+						return;
+					}
+				}
+				else {
+					//se non ci sono già eventi in questa fascia oraria, permettine la creazione
+					var pageEditVM = new EventDetailEditVM
+					{
+						IsNew = true,
+					};
+					pageEditVM.UpdateVM(); 
+					await Navigation.PushAsync(new EventDetailViewEdit(pageEditVM));
+				}
 			};
 			//var listaVacanze = new List<DateTime> { };
 			//listaVacanze.Add(DateTime.Now);

@@ -13,12 +13,32 @@ namespace LuissLoft
 	public class EventDetailEditVM: ViewModelBase
 	{
 		public GoogleEvent ObjEvent;
+		public Event ObjInternalEvent;
+		public bool IsNew;
 
 		public EventDetailEditVM()
 		{
 		}
+
+		public async Task DownloadData()
+		{
+			if (IsNew)
+			{return;}
+
+			IsLoadingData = true;
+			try
+			{
+				ObjInternalEvent = (await Event.getAllFromGoogleID(ObjEvent.ID)).items.FirstOrDefault();
+			}
+			finally { IsLoadingData = false; }
+		}
 		public void UpdateVM()
 		{
+			if (IsNew) { 
+				
+				return;
+			}
+
 			Title = ObjEvent.Name;
 			Img = ObjEvent.ImageUris?.FirstOrDefault() ?? Globals.DefaultThumb;
 			Description = ObjEvent.Description;
@@ -26,10 +46,27 @@ namespace LuissLoft
 			EndTime = ObjEvent.EndDate.TimeOfDay;
 			StartDate = ObjEvent.StartDate;
 			EndDate = ObjEvent.EndDate;
+
+			if (ObjInternalEvent != null) { 
+				
+			}
 		}
 
 		public void UpdateModel()
 		{
+			if (IsNew)
+			{ 
+				ObjEvent = new GoogleEvent { ID=""};
+				ObjInternalEvent = new Event
+				{
+					data = new Event.PersonalizedData
+					{
+						RelatedOwnerGuid= App.VM.user.Guid,
+						State= Event.PersonalizedData.EventStateEnum.Inserted
+					}
+				};
+			}
+
 			ObjEvent.Name=Title;
 			//Img = ObjEvent.ImageUris?.FirstOrDefault() ?? Globals.DefaultThumb;
 			ObjEvent.Description=Description;
@@ -51,7 +88,17 @@ namespace LuissLoft
 					RawContent = JsonConvert.SerializeObject(ObjEvent)
 				};
 				var res = await ws.UrlToString(config);
-				return JsonConvert.DeserializeObject<GoogleEvent.UpdateResponse>(res);
+				var resObj= JsonConvert.DeserializeObject<GoogleEvent.UpdateResponse>(res);
+				if (resObj != null) {
+					this.ObjEvent = resObj.item;
+					if (IsNew)
+					{
+						this.ObjInternalEvent.data.RelatedGoogleEventID = this.ObjEvent.ID;
+						await this.ObjInternalEvent.update();
+						IsNew = false;
+					}//qui non ci posso mettere l'else
+				}
+				return resObj;
 			}
 			finally {
 				IsLoadingData = false;

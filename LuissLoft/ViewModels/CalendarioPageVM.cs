@@ -39,6 +39,7 @@ namespace LuissLoft
 			try
 			{
 				EventsObj = (await DownloadEvents()).items;
+				EventiInterniObj = (await Event.getAllFromGoogleIDs(EventsObj.Select(x=>x.ID))).items;
 			}
 			finally
 			{
@@ -57,11 +58,21 @@ namespace LuissLoft
 				}
 			});
 		}
+		public List<GoogleEvent> GetEventsFromDateTime(DateTime inizio, TimeSpan durata)
+		{
+			var o = new List<GoogleEvent>();
+			//se l'evento è all'interno della fascia oraria
+			var fine = inizio.Add(durata);
+			var eventi = EventsObj.Where(x => x.StartDate >= inizio && x.EndDate <= fine);
+			o = eventi.ToList();
+			return o;
+		}
 
 		/*private string password = "";
 		public string Password { get { return password; } set { password = value; this.RaisePropertyChanged(); } }
 		*/
 		public List<GoogleEvent> EventsObj = new List<GoogleEvent>();
+		public List<Event> EventiInterniObj = new List<Event>();
 		public ObservableCollection<GoogleEventVM> Items { get; } = new ObservableCollection<GoogleEventVM>();
 		public async Task<CommonClasses.GoogleEvent.EventsResponse> DownloadEvents()
 		{

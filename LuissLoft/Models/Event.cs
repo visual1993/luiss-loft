@@ -25,16 +25,10 @@ namespace LuissLoft
 		public class PersonalizedData
 		{
 			[JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
-			public string Name { get; set; }
+			public string RelatedGoogleEventID { get; set; }
 
 			[JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
-			public string Description { get; set; }
-
-			[JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
-			public DateTime StartDate { get; set; }
-
-			[JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
-			public DateTime EndDate { get; set; }
+			public Guid RelatedOwnerGuid { get; set; }
 
 			[JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
 			public CloudImage Image { get; set; }
@@ -51,6 +45,14 @@ namespace LuissLoft
 		//should be ignored in online saving. Only token into consideration while inserting/updating the cache, because it serializes the fullObject
 		public class CachedDataClass
 		{ 
+		}
+		public static async Task<ResponseList<Event>> getAllFromGoogleID(string id)
+		{
+			return await get(Guid.Empty, "AND JSON_EXTRACT(|table_full_name|.data, '$." + nameof(PersonalizedData.RelatedGoogleEventID) + "')='" + id + "'");
+		}
+		public static async Task<ResponseList<Event>> getAllFromGoogleIDs(IEnumerable<string> ids)
+		{
+			return await get(Guid.Empty, "AND JSON_UNQUOTE(JSON_EXTRACT(|table_full_name|.data, '$." + nameof(PersonalizedData.RelatedGoogleEventID) + "')) IN ('" + string.Join("','", ids.Distinct()) + "') ");
 		}
 		public static async Task<ResponseList<Event>> getMultiple(List<Guid> guids)
 		{
