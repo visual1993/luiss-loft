@@ -61,9 +61,10 @@ namespace LuissLoft
 				}
 			};
 
-			Content = new StackLayout { 
+			Content = new StackLayout { Spacing=35,
 				Children = { 
 					loadingIndicator,
+					new BoxView{HeightRequest=50},
 					user,
 					pass,
 					buttLogin

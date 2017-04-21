@@ -68,7 +68,9 @@ namespace LuissLoft
 
 		public bool UpdateModel()
 		{
+			
 			if (App.VM.user == null) { UIPage.DisplayAlert("Attenzione", "E' necessario loggarsi", "Ok"); return false;}
+
 			if (IsNew)
 			{ 
 				ObjEvent = new GoogleEvent { ID=""};
@@ -89,6 +91,27 @@ namespace LuissLoft
 			ObjEvent.EndDate=EndDate.SetTime(EndTime);
 			ObjInternalEvent.data.State = Event.PersonalizedData.EventStateEnum.Pending;
 
+			if (
+				ObjEvent.EndDate<ObjEvent.StartDate
+				||
+				ObjEvent.StartDate < DateTime.Now
+			) {
+				UIPage.DisplayAlert("Attenzione", "Errore nella data", "Ok"); return false;
+			}
+			var dataInizio_ = ObjEvent.StartDate.TimeOfDay; var dataFine = ObjEvent.EndDate.TimeOfDay;
+			if (
+				(dataInizio_.Hours >= 8 && (dataInizio_.Hours < 19 && dataInizio_.Minutes <= 30))
+				&&
+				(dataFine.Hours >= 8 && (dataFine.Hours < 20))
+			   )
+			{ }
+			else
+			{
+				UIPage.DisplayAlert("Attenzione", "Il LOFT è chiuso", "Ok"); return false;
+			}
+			if ((ObjEvent.EndDate - ObjEvent.StartDate) < Globals.DurataMinimaEvento) { 
+				UIPage.DisplayAlert("Attenzione", "Prenotazione minima "+Globals.DurataMinimaEvento.Minutes+" minuti", "Ok"); return false;
+			}
 			return true;
 		}
 
@@ -112,6 +135,9 @@ namespace LuissLoft
 				var resObj= JsonConvert.DeserializeObject<GoogleEvent.UpdateResponse>(res);
 				if (resObj != null) {
 					this.ObjEvent = resObj.item;
+					if (this.ObjEvent == null) {
+						return resObj;
+					}
 					this.ObjInternalEvent.data.RelatedGoogleEventID = this.ObjEvent.ID;
 					if (IsNew == false) { 
 						var resInterno = await this.ObjInternalEvent.update();
