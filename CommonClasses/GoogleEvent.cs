@@ -17,6 +17,12 @@ namespace CommonClasses
 		public string Name { get; set; }
 
 		[JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
+		public Guid InternalEventGuid { get; set; }
+
+		[JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
+		public string OwnerName { get; set; }
+
+		[JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
 		public string Luogo { get; set; }
 
 		[JsonProperty(NullValueHandling = NullValueHandling.Ignore)]

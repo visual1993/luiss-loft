@@ -75,7 +75,7 @@ namespace LuissLoft
 			{ 
 				ObjEvent = new GoogleEvent { ID=""};
 				ObjInternalEvent = new Event
-				{
+				{ Guid = Guid.NewGuid(),
 					data = new Event.PersonalizedData
 					{
 						RelatedOwnerGuid= App.VM.user.Guid,
@@ -89,6 +89,8 @@ namespace LuissLoft
 			ObjEvent.Description=Description;
 			ObjEvent.StartDate=StartDate.SetTime(StartTime);
 			ObjEvent.EndDate=EndDate.SetTime(EndTime);
+			ObjEvent.InternalEventGuid = ObjInternalEvent.Guid;
+			ObjEvent.OwnerName = App.VM.user?.data?.Nome??"ND" + " "+App.VM.user?.data?.Cognome?? "ND"+ " - "+App.VM.user?.data?.Email??"ND";
 			ObjInternalEvent.data.State = Event.PersonalizedData.EventStateEnum.Pending;
 
 			if (
@@ -132,6 +134,7 @@ namespace LuissLoft
 					config.url = Globals.RestApiV1 + "loft/event/null/update";
 				}
 				var res = await ws.UrlToString(config);
+				if (res == null) { Visual1993.Console.WriteLine("bad response"); return new GoogleEvent.UpdateResponse();}
 				var resObj= JsonConvert.DeserializeObject<GoogleEvent.UpdateResponse>(res);
 				if (resObj != null) {
 					this.ObjEvent = resObj.item;
