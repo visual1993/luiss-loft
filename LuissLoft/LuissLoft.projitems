@@ -33,6 +33,8 @@
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\CalendarioPageVM.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Pagine\EventDetailViewEdit.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\EvenDetailEditVM.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Pagine\AboutPage.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\AboutPageVM.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="$(MSBuildThisFileDirectory)Models\" />

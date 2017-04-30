@@ -44,6 +44,10 @@ namespace LuissLoft
 		{
 			return await get(Guid.Empty, "AND JSON_EXTRACT(|table_full_name|.data, '$." + nameof(PersonalizedData.Email) + "')='" + mail.ToString() + "'");
 		}
+		public static async Task<ResponseList<User>> getAllFromMail(IEnumerable<string> mails)
+		{
+			throw new NotImplementedException();
+		}
 		public static async Task<ResponseList<User>> getMultiple(List<Guid> guids)
 		{
 			return await getAdvanced(guids, null, "", null, Constants.GatewayUrl, remoteClassNameConst) ?? new Gateway<PersonalizedData, User>.ResponseList<User>();
