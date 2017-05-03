@@ -69,6 +69,7 @@ namespace LuissLoft
 				if (VM.UpdateModel())
 				{
 					var luoghiDisponibili = VM.GetLuoghiDisponibili(VM.ObjAllEvents);
+					if (luoghiDisponibili.Count == 0) { await DisplayAlert("Attento","Non sono disponibili luoghi per questi orari","Riprova"); return;}
 					var LuogoNessuno = "Nessuno";
 					var resLuogo = await DisplayActionSheet("Scegli il luogo in base a quelli disponibili secondo l'orario impostato", LuogoNessuno, null, luoghiDisponibili.ToArray());
 					if (string.IsNullOrWhiteSpace(resLuogo) || resLuogo == LuogoNessuno)

@@ -184,6 +184,8 @@ namespace LuissLoft
 						evento.Luogo.ToLowerInvariant().Contains(luogoString.LuogoStringa.ToLowerInvariant())
 					  )
 					{
+						//se è presente tuttoLoft, ritorna
+						if (luogoString.LuogoEnum == LuoghiEnum.Intero) { return new List<string>(); }
 						try { luoghiOccupatiPerSingoloEvento.Add(luogoString.LuogoEnum); } catch { }
 					}
 				}
