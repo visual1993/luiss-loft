@@ -35,6 +35,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\EvenDetailEditVM.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Pagine\AboutPage.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\AboutPageVM.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Views\PersonCellView.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="$(MSBuildThisFileDirectory)Models\" />

@@ -7,6 +7,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Visual1993.Data;
 using Newtonsoft.Json;
+using System.Collections.Generic;
 
 namespace LuissLoft
 {
@@ -14,6 +15,7 @@ namespace LuissLoft
 	{
 		public CalendarioPageVM CalendarioVM;
 
+		public List<GoogleEvent> ObjAllEvents = new List<GoogleEvent>();
 		public GoogleEvent ObjEvent;
 		public Event ObjInternalEvent;
 		public User ObjUser;
@@ -158,6 +160,67 @@ namespace LuissLoft
 			}
 		}
 
+		public List<string> GetLuoghiDisponibili(List<GoogleEvent> eventi)
+		{
+			var listaLuoghi = new List<LuoghiEnum>();
+			foreach (LuoghiEnum luogoEnum in Enum.GetValues(typeof(LuoghiEnum)))
+			{
+				listaLuoghi.Add(luogoEnum);
+			}
+			var o = new List<string>();
+			if (eventi == null) { }
+			//StartDate ed EndDate sono già valorizzati con SetTime perchè dopo .UpdateModel()
+			var luoghiDisponibiliTot = listaLuoghi.ToList();
+			foreach (var evento in GetOnlyEventsFromWithinDateTime(eventi, ObjEvent.StartDate, ObjEvent.EndDate))
+			{
+				System.Console.WriteLine("luogo occupato: "+evento.Luogo);
+				var luoghiOccupatiPerSingoloEvento = new List<LuoghiEnum>();
+				foreach (var luogoString in Globals.Luoghi)
+				{
+					if (string.IsNullOrWhiteSpace(evento.Luogo)) { continue; } //cioè non aggiungerlo a quelli occupati
+					if (
+						luogoString.LuogoStringa.ToLowerInvariant().Contains(evento.Luogo.ToLowerInvariant())
+						||
+						evento.Luogo.ToLowerInvariant().Contains(luogoString.LuogoStringa.ToLowerInvariant())
+					  )
+					{
+						try { luoghiOccupatiPerSingoloEvento.Add(luogoString.LuogoEnum); } catch { }
+					}
+				}
+				if (luoghiOccupatiPerSingoloEvento.Count > 0)
+				{
+					//allora elimina il tutto loft
+					try { luoghiDisponibiliTot.Remove(LuoghiEnum.Intero); } catch { }
+				}
+				foreach (var luogoOccupatoTemp in luoghiOccupatiPerSingoloEvento.ToList())
+				{
+					try { luoghiDisponibiliTot.Remove(luogoOccupatoTemp); } catch { }
+				}
+			}
+			foreach (var luogoDisponibile in luoghiDisponibiliTot)
+			{
+				var luogoDisponibileStr = "";
+				luogoDisponibileStr = Globals.Luoghi.FirstOrDefault(x=>x.IsCorretto==true && x.LuogoEnum==luogoDisponibile)?.LuogoStringa??"";
+
+				if (string.IsNullOrWhiteSpace(luogoDisponibileStr) == false)
+				{
+					o.Add(luogoDisponibileStr);
+				}
+			}
+			return o;
+		}
+		public List<GoogleEvent> GetOnlyEventsFromWithinDateTime(IEnumerable<GoogleEvent> i, DateTime inizio, DateTime fine)
+		{
+			var o = new List<GoogleEvent>();
+			//se l'evento è all'interno della fascia oraria
+			var eventi = i.Where(x =>
+				(x.StartDate >= inizio && x.EndDate <= fine)
+				||
+				(x.StartDate <= inizio && x.EndDate >= fine)
+			);
+			o = eventi.ToList();
+			return o;
+		}
 		string description = "";
 		public string Description
 		{

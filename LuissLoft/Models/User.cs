@@ -46,7 +46,7 @@ namespace LuissLoft
 		}
 		public static async Task<ResponseList<User>> getAllFromMail(IEnumerable<string> mails)
 		{
-			throw new NotImplementedException();
+			return await get(Guid.Empty, "AND JSON_UNQUOTE(JSON_EXTRACT(|table_full_name|.data, '$." + nameof(PersonalizedData.Email) + "')) IN ('" + string.Join("','", mails.Distinct()) + "') ");
 		}
 		public static async Task<ResponseList<User>> getMultiple(List<Guid> guids)
 		{

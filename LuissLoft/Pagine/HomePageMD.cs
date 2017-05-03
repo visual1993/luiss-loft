@@ -87,7 +87,7 @@ namespace LuissLoft
 
 			var buttonAbout = new Button
 			{
-				Text = "Prenotazione"
+				Text = "About"
 			};
 			buttonAbout.Clicked += (sender, e) => {
 				var pageVM = new AboutPageVM();

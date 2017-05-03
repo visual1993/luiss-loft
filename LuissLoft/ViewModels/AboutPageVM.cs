@@ -12,32 +12,38 @@ using Newtonsoft.Json;
 
 namespace LuissLoft
 {
-	public class AboutPageVM
+	public class AboutPageVM: ViewModelBase
 	{
-		public ObservableCollection<View> Foto { get; } = new ObservableCollection<View>();
-		public List<User> Utenti = new List<User>();
+		public ObservableCollection<UtenteCell> Utenti { get; } = new ObservableCollection<UtenteCell>();
+		public List<User> UtentiObj = new List<User>();
 		public AboutPageVM()
 		{
 			
 		}
 		public async Task DownloadData()
 		{
-			Utenti = (await User.getAllFromMail(new string[] { "luca.pisano@studenti.luiss.it", "sullivan.decarli@studenti.luiss.it", "livio.rogante@studenti.luiss.it", "francesco.scudo@studenti.luiss.it" })).items;
-
+			IsLoadingData = true;
+			try { UtentiObj = (await User.getAllFromMail(new string[] { "luca.pisano@studenti.luiss.it", "sullivan.decarli@studenti.luiss.it", "livio.rogante@studenti.luiss.it", "francesco.scudo@studenti.luiss.it", "francesco.pedulla@studenti.luiss.it" })).items; }
+			finally { IsLoadingData = false;}
 		}
 		public void UpdateVM()
 		{
-			Foto.Clear();
-			foreach (var utente in Utenti)
+			Device.BeginInvokeOnMainThread(() =>
 			{
-				var image = new Image { Source = utente.data.ImageUrl };
-				var nome = new Label{ Text=utente.data.Nome+" "+utente.data.Cognome};
-				var stack = new StackLayout
+				Utenti.Clear();
+				foreach (var utente in UtentiObj.OrderBy(x=>x.data?.Cognome))
 				{
-					Children = { image, nome}
-				};
-				Foto.Add(stack);
-			}
+					var cellVM = new UtenteCell
+					{
+						Title = utente.data.Nome + " " + utente.data.Cognome,
+						Thumb = utente.data.ImageUrl
+					};
+					Utenti.Add(cellVM);
+				}
+			});
 		}
+	}
+	public class UtenteCell : CellViewModelBase
+	{ 
 	}
 }

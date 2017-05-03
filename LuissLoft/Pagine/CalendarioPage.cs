@@ -43,7 +43,19 @@ namespace LuissLoft
 				var events = VM.GetEventsFromDateTime(args.datetime, TimeSpan.FromMinutes(calendar.TimeInterval));
 				if (events != null && events.Count > 0)
 				{
-					var stringaScelta = await DisplayActionSheet("Quale evento?", "Nessuno", null, events.Select(x => x.Name).ToArray());
+					var IsNuovoEvento = false;
+					var stringaCrea = "Crea evento";
+					var eventiListaStringhe = events.Select(x => x.Name).ToList();
+					eventiListaStringhe.Add(stringaCrea);
+
+					var stringaScelta = await DisplayActionSheet("Quale evento?", "Nessuno", null, eventiListaStringhe.ToArray());
+					if (stringaScelta == stringaCrea) {
+						IsNuovoEvento = true;
+						await DoCrea(args.datetime, fine);
+						return;
+					}
+
+
 					var eventoScelto = VM.EventsObj.FirstOrDefault(x => x.Name == stringaScelta);
 					if (eventoScelto != null)
 					{
@@ -51,9 +63,12 @@ namespace LuissLoft
 						{
 							//se è modificabile, aprilo in edit
 							var eventoInterno = VM.EventiInterniObj.FirstOrDefault(x => x.data.RelatedGoogleEventID == eventoScelto.ID);
-							if (eventoInterno != null && eventoInterno.data.RelatedOwnerGuid == App.VM.user.Guid)
+							if (IsNuovoEvento||(eventoInterno != null && eventoInterno.data.RelatedOwnerGuid == App.VM.user.Guid))
 							{
-								var pageEditVM = new EventDetailEditVM { CalendarioVM=VM, ObjEvent = eventoScelto, ObjInternalEvent = eventoInterno };
+								var pageEditVM = new EventDetailEditVM {
+									CalendarioVM=VM, ObjEvent = eventoScelto, ObjInternalEvent = eventoInterno,
+									ObjAllEvents = VM.EventsObj
+								};
 								pageEditVM.DownloadData(false).ContinueWith(delegate {
 									pageEditVM.UpdateVM();
 								}); 
@@ -84,14 +99,7 @@ namespace LuissLoft
 				}
 				else if(events == null || events.Count == 0) {
 					//se non ci sono già eventi in questa fascia oraria, permettine la creazione
-					var pageEditVM = new EventDetailEditVM
-					{
-						IsNew = true, CalendarioVM = VM,
-						StartDate = args.datetime, StartTime=args.datetime.TimeOfDay,
-						EndDate=fine, EndTime=fine.TimeOfDay,
-					};
-					pageEditVM.UpdateVM(); 
-					await Navigation.PushAsync(new EventDetailViewEdit(pageEditVM));
+					await DoCrea(args.datetime, fine);
 				}
 			};
 			//var listaVacanze = new List<DateTime> { };
@@ -102,6 +110,22 @@ namespace LuissLoft
 			this.Content = calendar;
 
 		}
+		public async Task DoCrea(DateTime start, DateTime fine)
+		{
+			var pageEditVM = new EventDetailEditVM
+			{
+				IsNew = true,
+				CalendarioVM = VM,
+				StartDate = start,
+				StartTime = start.TimeOfDay,
+				EndDate = fine,
+				EndTime = fine.TimeOfDay,
+				ObjAllEvents = VM.EventsObj
+			};
+			pageEditVM.UpdateVM();
+			await Navigation.PushAsync(new EventDetailViewEdit(pageEditVM));
+		}
 	}
+
 }
 

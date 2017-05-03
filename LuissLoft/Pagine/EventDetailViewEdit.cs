@@ -68,6 +68,12 @@ namespace LuissLoft
 			buttSalva.Clicked+= async delegate {
 				if (VM.UpdateModel())
 				{
+					var luoghiDisponibili = VM.GetLuoghiDisponibili(VM.ObjAllEvents);
+					var LuogoNessuno = "Nessuno";
+					var resLuogo = await DisplayActionSheet("Scegli il luogo in base a quelli disponibili secondo l'orario impostato", LuogoNessuno, null, luoghiDisponibili.ToArray());
+					if (string.IsNullOrWhiteSpace(resLuogo) || resLuogo == LuogoNessuno)
+					{ return;}
+					VM.ObjEvent.Luogo = resLuogo;
 					var res = await VM.UploadData();
 					if (res.state != Visual1993.Data.WebServiceV2.WebRequestState.Ok && res.state != Visual1993.Data.WebServiceV2.WebRequestState.DuplicateExistsOnServer)
 					{

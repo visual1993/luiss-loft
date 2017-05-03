@@ -91,7 +91,7 @@ namespace LoftServer
 			request.TimeMin = DateTime.Now;
 			request.ShowDeleted = false;
 			request.SingleEvents = true;
-			request.MaxResults = 20;
+			request.MaxResults = 50;
 			request.OrderBy = EventsResource.ListRequest.OrderByEnum.StartTime;
 			// List events.
 			Events events = request.Execute();
