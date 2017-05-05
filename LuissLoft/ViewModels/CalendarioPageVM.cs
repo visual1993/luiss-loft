@@ -106,6 +106,36 @@ namespace LuissLoft
 			Place = ObjEvent.Luogo;
 			StartDate = ObjEvent.StartDate;
 			EndDate = ObjEvent.EndDate;
+			BackgroundColor = GetColorFromLuogo(ObjEvent.Luogo);
+		}
+		public Color GetColorFromLuogo(string luogo)
+		{
+			var tipo = GetLuogoEnumFromString(luogo);
+			switch (tipo)
+			{
+				case LuoghiEnum.Cinema: { return Color.FromHex("#FF4040"); break;}
+				case LuoghiEnum.Centrale: { return Color.FromHex("#24A0ED"); break; }
+				case LuoghiEnum.Intero: { return Color.White; break; }
+				case LuoghiEnum.TeloVerde: { return Color.Green; break; }
+				default: { return Color.Transparent; break;}
+			}
+			return Color.Transparent;
+		}
+		public LuoghiEnum GetLuogoEnumFromString(string i)
+		{
+			foreach (var luogoString in Globals.Luoghi)
+			{
+				if (string.IsNullOrWhiteSpace(i)) { return LuoghiEnum.Nessuno; }
+				if (
+					luogoString.LuogoStringa.ToLowerInvariant().Contains(i.ToLowerInvariant())
+					||
+					i.ToLowerInvariant().Contains(luogoString.LuogoStringa.ToLowerInvariant())
+				  )
+				{
+					return luogoString.LuogoEnum;
+				}
+			}
+			return  LuoghiEnum.Nessuno;
 		}
 		public GoogleEvent ObjEvent;
 

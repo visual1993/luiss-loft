@@ -29,11 +29,20 @@ namespace LuissLoft
 				ShowAppointmentsInline=true,
 				ScheduleView= ScheduleView.WeekView
 			};
+
+			#region Customization
+			var headerStyle = new HeaderStyle();
+			//headerStyle.TextSize = 15;
+			//headerStyle.TextStyle
+			headerStyle.TextColor = Color.Black;
+			calendar.HeaderStyle = headerStyle;
+			#endregion
+
 			ScheduleAppointmentMapping dataMapping = new ScheduleAppointmentMapping();
 			dataMapping.SubjectMapping = nameof(GoogleEventVM.Title);
 			dataMapping.StartTimeMapping = nameof(GoogleEventVM.StartDate);
 			dataMapping.EndTimeMapping = nameof(GoogleEventVM.EndDate);
-			//dataMapping.ColorMapping = "color";
+			dataMapping.ColorMapping = nameof(GoogleEventVM.BackgroundColor);
 			calendar.AppointmentMapping = dataMapping;
 
 			calendar.ScheduleCellTapped += async(object sender, ScheduleTappedEventArgs args) =>

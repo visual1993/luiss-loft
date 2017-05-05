@@ -20,15 +20,17 @@ namespace LuissLoft
 		public static IEnumerable<LuogoStringaClass> Luoghi = new List<LuogoStringaClass> {
 			new LuogoStringaClass{LuogoEnum= LuoghiEnum.Intero,LuogoStringa= "Intero LOFT", IsCorretto=true},
 			new LuogoStringaClass{LuogoEnum= LuoghiEnum.Cinema,LuogoStringa= "Cinema", IsCorretto=true},
-			new LuogoStringaClass{LuogoEnum= LuoghiEnum.Centrale,LuogoStringa= "Centrale", IsCorretto=true},
-			new LuogoStringaClass{LuogoEnum= LuoghiEnum.TeloVerde,LuogoStringa= "Telo verde", IsCorretto=true},
+			new LuogoStringaClass{LuogoEnum= LuoghiEnum.Centrale,LuogoStringa= "Lab", IsCorretto=true},
+			new LuogoStringaClass{LuogoEnum= LuoghiEnum.TeloVerde,LuogoStringa= "Studio", IsCorretto=true},
 			new LuogoStringaClass{LuogoEnum= LuoghiEnum.Intero,LuogoStringa= "Intero"},
+			new LuogoStringaClass{LuogoEnum= LuoghiEnum.TeloVerde,LuogoStringa= "Green screen"},
 			new LuogoStringaClass{LuogoEnum= LuoghiEnum.Centrale,LuogoStringa= "Central"},
 		};
 	}
 
 		public enum LuoghiEnum
 	{
+		Nessuno=-1,
 		Intero = 0,
 		Cinema = 1,
 		TeloVerde = 2,
