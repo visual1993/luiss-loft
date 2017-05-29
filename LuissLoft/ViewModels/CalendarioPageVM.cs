@@ -39,14 +39,15 @@ namespace LuissLoft
 			try
 			{
 				EventsObj = (await DownloadEvents()).items;
-				EventiInterniObj = (await Event.getAllFromGoogleIDs(EventsObj.Select(x=>x.ID))).items;
+				EventiInterniObj = (await Event.getAllFromGoogleIDs(EventsObj.Select(x => x.ID))).items;
 			}
 			finally
 			{
 				IsLoadingData = false;
 			}
 		}
-		public void UpdateVM() {
+		public void UpdateVM()
+		{
 			Device.BeginInvokeOnMainThread(() =>
 			{
 				Items.Clear();
@@ -63,7 +64,7 @@ namespace LuissLoft
 			var o = new List<GoogleEvent>();
 			//se l'evento è all'interno della fascia oraria
 			var fine = inizio.Add(durata);
-			var eventi = EventsObj.Where(x=>
+			var eventi = EventsObj.Where(x =>
 				(x.StartDate >= inizio && x.EndDate <= fine)
 				||
 				(x.StartDate <= inizio && x.EndDate >= fine)
@@ -113,13 +114,26 @@ namespace LuissLoft
 			var tipo = GetLuogoEnumFromString(luogo);
 			switch (tipo)
 			{
-				case LuoghiEnum.Cinema: { return Color.FromHex("#FF4040"); break;}
+				case LuoghiEnum.Cinema: { return Color.FromHex("#FF4040"); break; }
 				case LuoghiEnum.Centrale: { return Color.FromHex("#24A0ED"); break; }
-				case LuoghiEnum.Intero: { return Color.White; break; }
+				case LuoghiEnum.Intero: { 
+						#if __ANDROID__
+						return Color.Black; break;
+#else
+						return Color.Transparent; break;
+#endif
+					}
 				case LuoghiEnum.TeloVerde: { return Color.Green; break; }
-				default: { return Color.Transparent; break;}
+				default:
+					{
+#if __ANDROID__
+						return Color.Black; break;
+#else
+						return Color.Transparent; break;
+#endif
+
+					}
 			}
-			return Color.Transparent;
 		}
 		public LuoghiEnum GetLuogoEnumFromString(string i)
 		{

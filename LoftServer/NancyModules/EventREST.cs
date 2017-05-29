@@ -226,7 +226,7 @@ namespace LoftServer
 		public Event EventMixedFromGoogle(GoogleEvent i, Event j)
 		{
 			if (i == null) { return null; }
-			if (j == null) { j = new Event { Start = new EventDateTime { }, End = new EventDateTime { } };}
+			if (j == null) { j = new Event { Start = new EventDateTime { TimeZone="Europe/Rome" }, End = new EventDateTime { TimeZone = "Europe/Rome" } };}
 
 			j.Id = i.ID;
 			j.Summary = i.Name;
