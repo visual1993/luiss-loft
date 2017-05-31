@@ -25,17 +25,78 @@ namespace LoftServer
 			{
 				return GetEvents();
 			};
-			Get[MainClass.LoftPrefix + "event/{guid}", runAsync: true] = async (dynamic parameters, System.Threading.CancellationToken arg2) =>
+			Get[MainClass.LoftPrefix + "event/{guid:guid}", runAsync: true] = async (dynamic parameters, System.Threading.CancellationToken arg2) =>
 			 {
-				 return HttpStatusCode.NotImplemented;
+				var eventoGuid = (Guid)parameters.guid;
+				 var evento = (await InternalEvent.GetOne(eventoGuid)).items.FirstOrDefault();
+				 if (evento == null) { return HttpStatusCode.NotFound; }
+				 return JsonConvert.SerializeObject(evento);
 			 };
-			Get[MainClass.LoftPrefix + "event/{guid}/accept", runAsync: true] = async (dynamic parameters, System.Threading.CancellationToken arg2) =>
+			Get[MainClass.LoftPrefix + "event/{guid:guid}/accept", runAsync: true] = async (dynamic parameters, System.Threading.CancellationToken arg2) =>
 			 {
-				 return HttpStatusCode.NotImplemented;
+				 var eventoGuid = (Guid)parameters.guid;
+				var evento = (await InternalEvent.GetOne(eventoGuid)).items.FirstOrDefault();
+				if (evento == null) { return HttpStatusCode.NotFound; }
+				 evento.data.State = InternalEvent.PersonalizedData.EventStateEnum.Approved;
+				 var resUpdate = await evento.update();
+
+				Event googleEvent = null; User utente = null;
+				 try
+				 {
+					 googleEvent = await Generic.Calendar.Events.Get(MainClass.StudentsCalendar, evento.data.RelatedGoogleEventID).ExecuteAsync();
+					 utente = (await User.GetOne(evento.data.RelatedOwnerGuid)).items.FirstOrDefault();
+				 }
+				 catch { }
+
+				 //TODO:manda la mail all'utente
+				 if (utente != null && googleEvent != null)
+				 {
+					 await SendMail("Prenotazione evento LOFT", "La tua prenotazione per "
+									+ (googleEvent?.End?.DateTime ?? DateTime.MinValue).ToString("f")
+									+ "è stata ACCETTATA. " +
+								   "Rispondi a questa email per chiedere informazioni",
+									MainClass.StaffMail, utente.data.Email
+								   );
+				 }
+
+				 if (resUpdate.state == WebServiceV2.WebRequestState.Ok)
+				 { return "Evento ACCETTATO"; }
+				 else { return resUpdate.errorMessage;}
 			 };
-			Get[MainClass.LoftPrefix + "event/{guid}/deny", runAsync: true] = async (dynamic parameters, System.Threading.CancellationToken arg2) =>
+			Get[MainClass.LoftPrefix + "event/{guid:guid}/deny", runAsync: true] = async (dynamic parameters, System.Threading.CancellationToken arg2) =>
 			 {
-				 return HttpStatusCode.NotImplemented;
+				 var eventoGuid = (Guid)parameters.guid;
+				 var evento = (await InternalEvent.GetOne(eventoGuid)).items.FirstOrDefault();
+				 if (evento == null) { return HttpStatusCode.NotFound; }
+				evento.data.State = InternalEvent.PersonalizedData.EventStateEnum.Rejected;
+				 var resUpdate = await evento.update();
+				 //ora cancellalo anche da Google Calendar
+				Event googleEvent = null; User utente = null;
+				 try
+				 {
+					 googleEvent = await Generic.Calendar.Events.Get(MainClass.StudentsCalendar, evento.data.RelatedGoogleEventID).ExecuteAsync();
+					 utente = (await User.GetOne(evento.data.RelatedOwnerGuid)).items.FirstOrDefault();
+				 }
+				 catch { }
+				 var request = Generic.Calendar.Events.Delete(
+					 MainClass.StudentsCalendar,
+					evento.data.RelatedGoogleEventID
+				 );
+				 await request.ExecuteAsync();
+
+				 //TODO:manda la mail all'utente
+				 if (utente != null && googleEvent != null)
+				 {
+					 await SendMail("Prenotazione evento LOFT", "La tua prenotazione per il "
+									+ (googleEvent?.End?.DateTime ?? DateTime.MinValue).ToString("f")
+									+ "è stata RIFIUTATA." +
+								   "Rispondi a questa email per chiedere informazioni",
+									MainClass.StaffMail, utente.data.Email
+								   );
+				 }
+				 if (resUpdate.state == WebServiceV2.WebRequestState.Ok)
+				 { return "Evento RIFIUTATO ed eliminato da Google Calendar"; }
+				 else { return resUpdate.errorMessage; }
 			 };
 			Get[MainClass.LoftPrefix + "file/get/{fileid}"] = (dynamic arg) =>
 			{
@@ -75,13 +136,18 @@ namespace LoftServer
 			{
 				string eventID = arg1.id;
 				var inputStr = Request.Body.AsString();
-				var i = JsonConvert.DeserializeObject<GoogleEvent>(inputStr);
+				var h = JsonConvert.DeserializeObject<GoogleEventUpdateRequest>(inputStr);
+				var i = h.ObjGoogleEvent;
 				if (string.IsNullOrWhiteSpace(eventID) == false)
 				{ i.ID = eventID; }
-				return await UpdateEvent(i);
+				return await UpdateEvent(i, h.RelatedOwnerGuid);
 			};
 		}
-
+		public class GoogleEventUpdateRequest
+		{
+			public Guid RelatedOwnerGuid { get; set; }
+			public GoogleEvent ObjGoogleEvent { get; set; }
+		}
 		public static string GetEvents()
 		{ 
 			GoogleEvent.EventsResponse output = new GoogleEvent.EventsResponse();
@@ -124,7 +190,7 @@ namespace LoftServer
 			return JsonConvert.SerializeObject(output);
 		}
 
-		public async Task<string> UpdateEvent(GoogleEvent i)
+		public async Task<string> UpdateEvent(GoogleEvent i, Guid OwnerGuid)
 		{
 			Event eventoEsistente = null;
 			//verifica se fare update o insert
@@ -165,6 +231,11 @@ namespace LoftServer
 				output.errorMessage = ex.Message;
 			}
 			//manda la mail al Loft team
+			//prendi le info dell'utente per la mail
+			//var internalEvent = (await InternalEvent.getAllFromGoogleID(i.ID)).items.FirstOrDefault();
+			//if (internalEvent == null) { output.errorMessage = "Impossibile trovare l'evento correlato"; return JsonConvert.SerializeObject(output);}
+			var utente = (await User.GetOne(OwnerGuid)).items.FirstOrDefault();
+			if (utente == null) { output.errorMessage = "Impossibile trovare l'utente che ha inserito l'evento"; return JsonConvert.SerializeObject(output); }
 			try {
 				var msgStr = "<html><body>"+
 					"<p>Nome: "+i.Name+"</p>"+
@@ -178,7 +249,9 @@ namespace LoftServer
 					"</body></html>"
 					;
 				var mail = new MailRESTRequest { 
-					To="visual1993@gmail.com",
+					From=utente?.data?.Email??null,
+					To=MainClass.StaffMail,
+					Cc=MainClass.StaffCcMail,
 					IsBodyHtml=true,
 					SmtpProvider= MailRESTRequest.SmtpProviderEnum.Luiss,
 					Body=msgStr,
@@ -187,7 +260,7 @@ namespace LoftServer
 				var web = new Visual1993.Data.WebServiceV2();
 				var config = new WebServiceV2.UrlToStringConfiguration
 				{
-					url = "http://rest.visual1993.com/visual1993/mail/send",
+					url=MainClass.Visual1993RestServer+"visual1993/mail/send",
 					Type = WebServiceV2.UrlToStringConfiguration.RequestType.JsonRaw,
 					Verb = WebServiceV2.UrlToStringConfiguration.RequestVerb.POST,
 					RawContent = JsonConvert.SerializeObject(mail)
@@ -200,9 +273,43 @@ namespace LoftServer
 			}
 			catch (Exception ex)
 			{
-				return JsonConvert.SerializeObject(output);
+				output.errorMessage = ex.Message;
 			}
 			return JsonConvert.SerializeObject(output);
+		}
+		public async Task<WebServiceV2.DefaultResponse> SendMail(string oggetto, string msgStr, string from, string to, bool isHtml = false)
+		{
+			var output = new WebServiceV2.DefaultResponse();
+			try
+			{
+				var mail = new MailRESTRequest
+				{
+					From = from,
+					To = to,
+					IsBodyHtml = isHtml,
+					SmtpProvider = MailRESTRequest.SmtpProviderEnum.Luiss,
+					Body = msgStr,
+					Subject = oggetto
+				};
+				var web = new Visual1993.Data.WebServiceV2();
+				var config = new WebServiceV2.UrlToStringConfiguration
+				{
+					url = MainClass.Visual1993RestServer+"visual1993/mail/send",
+					Type = WebServiceV2.UrlToStringConfiguration.RequestType.JsonRaw,
+					Verb = WebServiceV2.UrlToStringConfiguration.RequestVerb.POST,
+					RawContent = JsonConvert.SerializeObject(mail)
+				};
+				var res = await web.UrlToString(config);
+				var resAsObj = JsonConvert.DeserializeObject<WebServiceV2.DefaultResponse>(res);
+				if (resAsObj.state != WebServiceV2.WebRequestState.Ok)
+				{ output.errorMessage = "mail not sent. Error: " + resAsObj.errorMessage; }
+				//ma non impostare lo stato a !=Ok perchè la richiesta in se è andata a buon fine
+			}
+			catch (Exception ex)
+			{
+				output.errorMessage = ex.Message;
+			}
+			return output;
 		}
 		public Nancy.Response MakeResponseString(WebServiceV2.DefaultResponse i, Nancy.HttpStatusCode code = Nancy.HttpStatusCode.OK)
 		{
@@ -214,6 +321,7 @@ namespace LoftServer
 		}
 		public class MailRESTRequest
 		{
+			public string From { get; set; }
 			public string To { get; set; }
 			public List<string> Cc { get; set; }
 			public string Body { get; set; }

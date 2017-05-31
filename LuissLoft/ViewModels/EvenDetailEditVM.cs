@@ -11,7 +11,7 @@ using System.Collections.Generic;
 
 namespace LuissLoft
 {
-	public class EventDetailEditVM: ViewModelBase
+	public class EventDetailEditVM : ViewModelBase
 	{
 		public CalendarioPageVM CalendarioVM;
 
@@ -29,7 +29,7 @@ namespace LuissLoft
 		public async Task DownloadData(bool overwrite = false)
 		{
 			if (IsNew)
-			{return;}
+			{ return; }
 
 			IsLoadingData = true;
 			try
@@ -44,8 +44,9 @@ namespace LuissLoft
 		}
 		public void UpdateVM()
 		{
-			if (IsNew) { 
-				
+			if (IsNew)
+			{
+
 				return;
 			}
 
@@ -57,10 +58,11 @@ namespace LuissLoft
 			StartDate = ObjEvent.StartDate;
 			EndDate = ObjEvent.EndDate;
 
-			if (ObjInternalEvent != null) {
-				Stato = ObjInternalEvent.data.State.ToString();	
+			if (ObjInternalEvent != null)
+			{
+				Stato = ObjInternalEvent.data.State.ToString();
 			}
-			if (IsNew) { ObjUser = App.VM.user;}
+			if (IsNew) { ObjUser = App.VM.user; }
 			if (ObjUser != null)
 			{
 				Autore = ObjUser.data.Nome + " " + ObjUser.data.Cognome;
@@ -70,36 +72,38 @@ namespace LuissLoft
 
 		public bool UpdateModel()
 		{
-			
-			if (App.VM.user == null) { UIPage.DisplayAlert("Attenzione", "E' necessario loggarsi", "Ok"); return false;}
+
+			if (App.VM.user == null) { UIPage.DisplayAlert("Attenzione", "E' necessario loggarsi", "Ok"); return false; }
 
 			if (IsNew)
-			{ 
-				ObjEvent = new GoogleEvent { ID=""};
+			{
+				ObjEvent = new GoogleEvent { ID = "" };
 				ObjInternalEvent = new Event
-				{ Guid = Guid.NewGuid(),
+				{
+					Guid = Guid.NewGuid(),
 					data = new Event.PersonalizedData
 					{
-						RelatedOwnerGuid= App.VM.user.Guid,
-						State= Event.PersonalizedData.EventStateEnum.Inserted
+						RelatedOwnerGuid = App.VM.user.Guid,
+						State = Event.PersonalizedData.EventStateEnum.Inserted
 					}
 				};
 			}
 
-			ObjEvent.Name=Title;
+			ObjEvent.Name = Title;
 			//Img = ObjEvent.ImageUris?.FirstOrDefault() ?? Globals.DefaultThumb;
-			ObjEvent.Description=Description;
-			ObjEvent.StartDate=StartDate.SetTime(StartTime);
-			ObjEvent.EndDate=EndDate.SetTime(EndTime);
+			ObjEvent.Description = Description;
+			ObjEvent.StartDate = StartDate.SetTime(StartTime);
+			ObjEvent.EndDate = EndDate.SetTime(EndTime);
 			ObjEvent.InternalEventGuid = ObjInternalEvent.Guid;
-			ObjEvent.OwnerName = App.VM.user?.data?.Nome??"ND" + " "+App.VM.user?.data?.Cognome?? "ND"+ " - "+App.VM.user?.data?.Email??"ND";
+			ObjEvent.OwnerName = App.VM.user?.data?.Nome ?? "ND" + " " + App.VM.user?.data?.Cognome ?? "ND" + " - " + App.VM.user?.data?.Email ?? "ND";
 			ObjInternalEvent.data.State = Event.PersonalizedData.EventStateEnum.Pending;
 
 			if (
-				ObjEvent.EndDate<ObjEvent.StartDate
+				ObjEvent.EndDate < ObjEvent.StartDate
 				||
 				ObjEvent.StartDate < DateTime.Now
-			) {
+			)
+			{
 				UIPage.DisplayAlert("Attenzione", "Errore nella data", "Ok"); return false;
 			}
 			var dataInizio_ = ObjEvent.StartDate.TimeOfDay; var dataFine = ObjEvent.EndDate.TimeOfDay;
@@ -113,15 +117,26 @@ namespace LuissLoft
 			{
 				UIPage.DisplayAlert("Attenzione", "Il LOFT è chiuso", "Ok"); return false;
 			}
-			if ((ObjEvent.EndDate - ObjEvent.StartDate) < Globals.DurataMinimaEvento) { 
-				UIPage.DisplayAlert("Attenzione", "Prenotazione minima "+Globals.DurataMinimaEvento.Minutes+" minuti", "Ok"); return false;
+			if ((ObjEvent.EndDate - ObjEvent.StartDate) < Globals.DurataMinimaEvento)
+			{
+				UIPage.DisplayAlert("Attenzione", "Prenotazione minima " + Globals.DurataMinimaEvento.Minutes + " minuti", "Ok"); return false;
 			}
 			return true;
 		}
-
+		public class GoogleEventUpdateRequest
+		{
+			public Guid RelatedOwnerGuid { get; set; }
+			public GoogleEvent ObjGoogleEvent { get; set; }
+		}
 		public async Task<GoogleEvent.UpdateResponse> UploadData()
 		{
 			IsLoadingData = true;
+			ObjEvent.FixDates(false);
+
+			var request = new GoogleEventUpdateRequest { 
+				ObjGoogleEvent=ObjEvent,
+				RelatedOwnerGuid=App.VM.user.Guid,
+			};
 			try
 			{
 				var ws = new WebServiceV2();
@@ -130,7 +145,8 @@ namespace LuissLoft
 					url = Globals.RestApiV1 + "loft/event/" + ObjEvent.ID + "/update",
 					Type = WebServiceV2.UrlToStringConfiguration.RequestType.JsonRaw,
 					Verb = WebServiceV2.UrlToStringConfiguration.RequestVerb.POST,
-					RawContent = JsonConvert.SerializeObject(ObjEvent)
+					RawContent = JsonConvert.SerializeObject(request),
+					timeout= TimeSpan.FromSeconds(60)
 				};
 				if (string.IsNullOrWhiteSpace(ObjEvent.ID)) {
 					config.url = Globals.RestApiV1 + "loft/event/null/update";
@@ -160,7 +176,7 @@ namespace LuissLoft
 			}
 		}
 
-		public List<string> GetLuoghiDisponibili(List<GoogleEvent> eventi)
+		public List<string> GetLuoghiDisponibili(List<GoogleEvent> eventi, GoogleEvent eventoInCorsoDiModifica=null)
 		{
 			var listaLuoghi = new List<LuoghiEnum>();
 			foreach (LuoghiEnum luogoEnum in Enum.GetValues(typeof(LuoghiEnum)))
@@ -173,6 +189,7 @@ namespace LuissLoft
 			var luoghiDisponibiliTot = listaLuoghi.ToList();
 			foreach (var evento in GetOnlyEventsFromWithinDateTime(eventi, ObjEvent.StartDate, ObjEvent.EndDate))
 			{
+				if (eventoInCorsoDiModifica != null && evento.ID == eventoInCorsoDiModifica?.ID) { continue; }
 				System.Console.WriteLine("luogo occupato: "+evento.Luogo);
 				var luoghiOccupatiPerSingoloEvento = new List<LuoghiEnum>();
 				foreach (var luogoString in Globals.Luoghi)

@@ -93,6 +93,8 @@
     <Compile Include="DemoGoogleCal.cs" />
     <Compile Include="NancyModules\Generic.cs" />
     <Compile Include="NancyModules\EventREST.cs" />
+    <Compile Include="Models\InternalEvent.cs" />
+    <Compile Include="Models\User.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -106,6 +108,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="NancyModules\" />
+    <Folder Include="Models\" />
   </ItemGroup>
   <Import Project="..\CommonClasses\CommonClasses.projitems" Label="Shared" Condition="Exists('..\CommonClasses\CommonClasses.projitems')" />
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />

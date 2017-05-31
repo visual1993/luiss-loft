@@ -70,16 +70,6 @@ namespace LuissLoft
 		}
 		private void SetupGateway()
 		{ 
-			/*
-			Constants.AppTokens=new List<string> {
-			"847d9224-db23-429a-9c21-68376e75a680",
-			"15c8fd0d-1e18-49e5-959c-644ce130c68d",
-			"10894ac7-63a5-434d-90fa-967a5e1628e1"
-			};
-			*/
-			//Constants.RestAPI = "https://ssl.visual1993.com/disco1/v1/";
-			//Constants.GatewaySecureBlowfish = "disco1";
-
 			Constants.AppTokens = new List<string> {
 			"e2fc341b-5185-410f-8adb-5006a9a3f616",
 			"0b0eb8a7-01ae-4556-913b-0cc51b6a8fc6",

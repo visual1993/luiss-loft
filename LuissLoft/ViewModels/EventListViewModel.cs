@@ -64,7 +64,12 @@ namespace LuissLoft
 			{
 				var ws = new Visual1993.Data.WebServiceV2();
 				var res = await ws.UrlToString(Globals.RestApiV1 + "loft/events");
-				return JsonConvert.DeserializeObject<GoogleEvent.EventsResponse>(res);
+				var events = JsonConvert.DeserializeObject<GoogleEvent.EventsResponse>(res);
+				foreach (var objEvent in events.items)
+				{
+					objEvent.FixDates(IsInput:true);
+				}
+				return events;
 			}
 			catch
 			{

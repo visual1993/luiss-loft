@@ -62,5 +62,20 @@ namespace CommonClasses
 			[JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
 			public string Description { get; set; } = "";
 		}
+
+		public void FixDates(bool IsInput)
+		{
+			var i = this;
+			if (IsInput == false)
+			{
+				i.StartDate = i.StartDate.ToUniversalTime();
+				i.EndDate = i.EndDate.ToUniversalTime();
+			}
+			else
+			{
+				i.StartDate = i.StartDate.ToLocalTime();
+				i.EndDate = i.EndDate.ToLocalTime();
+			}
+		}
 	}
 }

@@ -68,7 +68,7 @@ namespace LuissLoft
 			buttSalva.Clicked+= async delegate {
 				if (VM.UpdateModel())
 				{
-					var luoghiDisponibili = VM.GetLuoghiDisponibili(VM.ObjAllEvents);
+					var luoghiDisponibili = VM.GetLuoghiDisponibili(VM.ObjAllEvents, VM.ObjEvent);
 					if (luoghiDisponibili.Count == 0) { await DisplayAlert("Attento","Non sono disponibili luoghi per questi orari","Riprova"); return;}
 					var LuogoNessuno = "Nessuno";
 					var resLuogo = await DisplayActionSheet("Scegli il luogo in base a quelli disponibili secondo l'orario impostato", LuogoNessuno, null, luoghiDisponibili.ToArray());
@@ -88,6 +88,7 @@ namespace LuissLoft
 								VM.CalendarioVM.UpdateVM();
 							});
 						}
+						await DisplayAlert("Evento salvato","L'evento è in attesa di conferma da parte dello staff del Loft","Ok");
 						try { await Navigation.PopAsync(); } catch { }
 					}
 				}
