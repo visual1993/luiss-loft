@@ -14,6 +14,9 @@ using System.Threading.Tasks;
 using Xamarin.Forms;
 using Syncfusion.SfSchedule.XForms;
 
+using Visual1993.Controls;
+using Visual1993.Extensions;
+
 namespace LuissLoft
 {
 	public class CalendarioPage : ContentPage
@@ -116,7 +119,20 @@ namespace LuissLoft
 			//calendar.BlackoutDates = listaVacanze;
 
 			calendar.SetBinding(SfSchedule.DataSourceProperty, new Binding(nameof(CalendarioPageVM.Items)));
-			this.Content = calendar;
+
+
+			var loadingText = new Label { Text = "Caricamento in corso", HorizontalTextAlignment = TextAlignment.Center };
+			loadingText.SetBinding(View.IsVisibleProperty, nameof(ViewModelBase.IsLoadingData));
+
+			var grid = new Grid {
+				RowDefinitions=new RowDefinitionCollection { 
+					new RowDefinition{Height=GridLength.Auto},
+					new RowDefinition{Height=GridLength.Star},
+				}
+			};
+			grid.AddChild(loadingText,0,0);
+			grid.AddChild(calendar, 1, 0);
+			this.Content = grid;
 
 		}
 		public async Task DoCrea(DateTime start, DateTime fine)

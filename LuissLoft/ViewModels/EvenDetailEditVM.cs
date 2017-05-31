@@ -121,6 +121,14 @@ namespace LuissLoft
 			{
 				UIPage.DisplayAlert("Attenzione", "Prenotazione minima " + Globals.DurataMinimaEvento.Minutes + " minuti", "Ok"); return false;
 			}
+			if (
+				ObjEvent.StartDate.DayOfWeek == DayOfWeek.Saturday || ObjEvent.StartDate.DayOfWeek== DayOfWeek.Sunday
+				||
+				ObjEvent.EndDate.DayOfWeek == DayOfWeek.Saturday || ObjEvent.EndDate.DayOfWeek == DayOfWeek.Sunday
+			)
+			{
+				UIPage.DisplayAlert("Attenzione", "Non è possibile prenotare eventi nel weekend", "Ok"); return false;
+			}
 			return true;
 		}
 		public class GoogleEventUpdateRequest

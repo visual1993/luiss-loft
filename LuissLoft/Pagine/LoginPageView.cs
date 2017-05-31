@@ -31,8 +31,11 @@ namespace LuissLoft
 			pass.Element.IsPassword = true;	
 			pass.Bind(nameof(LoginPageVM.Password));
 
-			var loadingIndicator = new ActivityIndicator { };
-			loadingIndicator.Bind(nameof(LoginPageVM.IsLoadingData));
+			var loadingText = new Label { Text="Caricamento in corso", HorizontalTextAlignment= TextAlignment.Center };
+			loadingText.SetBinding(View.IsVisibleProperty, nameof(ViewModelBase.IsLoadingData));
+
+			//var loadingIndicator = new ActivityIndicator { Color=Color.Black };
+			//loadingIndicator.Bind(nameof(LoginPageVM.IsLoadingData));
 
 			var buttLogin = new Button { Text = "Login" };
 			buttLogin.Clicked+= async delegate {
@@ -60,10 +63,9 @@ namespace LuissLoft
 					VM.IsLoadingData = false;
 				}
 			};
-
 			Content = new StackLayout { Spacing=35,
 				Children = { 
-					loadingIndicator,
+					loadingText,
 					new BoxView{HeightRequest=50},
 					user,
 					pass,

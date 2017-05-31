@@ -27,6 +27,8 @@ namespace LuissLoft
 			var eventsVM = new EventsPageVM();
 			eventsVM.DownloadData().ContinueWith((arg) => { eventsVM.UpdateVM(); });
 			Detail = new NavigationPage(new EventsPage(eventsVM));
+
+			this.IsPresented = true;
 		}
 	}
 	public class MasterPage : ContentPage

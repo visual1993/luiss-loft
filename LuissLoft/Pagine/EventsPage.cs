@@ -28,6 +28,9 @@ namespace LuissLoft
 			};
 			listPoints.ItemTemplate = new DataTemplate(typeof(EventCellView));
 			listPoints.SetBinding(ListView.ItemsSourceProperty, new Binding(nameof(EventsPageVM.Events)));
+
+			listPoints.SetBinding(ListView.IsRefreshingProperty, new Binding(nameof(EventsPageVM.IsLoadingData)));
+
 			listPoints.ItemTapped += (sender, e) =>
 			{
 				var item = (EventCellVM)e.Item; if (item == null) { return;}

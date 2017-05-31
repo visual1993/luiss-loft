@@ -11,6 +11,9 @@ using Visual1993.Data;
 using Visual1993;
 using System.Threading.Tasks;
 
+using ModernHttpClient;
+using System.Net.Http;
+
 namespace LuissLoft
 {
 	public class LoginPageVM : ViewModelBase
@@ -54,10 +57,13 @@ namespace LuissLoft
 			App.VM.user = i;
 			await App.VM.user.SaveOffline();
 		}
+		public static HttpClient GetHttpClient(IList<Cookie> cookies)
+		{
+			var messageHandler = new NativeMessageHandler();
+			return new HttpClient(messageHandler);
+		}
 		public async Task<User.PersonalizedData> GetDataFromMoodle(string username, string password)
 		{
-			await GetPage("http://learn.luiss.it/user/edit.php");
-
 			var pars = new Dictionary<string, string>();
 			//username = "";
 			//password = "";
@@ -66,9 +72,23 @@ namespace LuissLoft
 			pars.Add("rememberusername", "0");
 			pars.Add("anchor", "");
 
+			var cookieHandler = new NativeCookieHandler();
+			var messageHandler = new NativeMessageHandler(false, false, cookieHandler);
+			var httpClient = new HttpClient(messageHandler);
+			httpClient.DefaultRequestHeaders.TryAddWithoutValidation("Content-Type", "application/x-www-form-urlencoded");
+			var content = new FormUrlEncodedContent(pars);
+			var httpResponse =
+				await httpClient.PostAsync(new Uri("http://learn.luiss.it/login/index.php"), content);
+
+			var client = GetHttpClient(cookieHandler.Cookies);
+			var res =
+				await client.GetAsync(new Uri("http://learn.luiss.it/user/edit.php"));
+			var strRes = await res.Content.ReadAsStringAsync();
+
 			try
 			{
-				var doc = await PostPage("http://learn.luiss.it/login/index.php", pars);
+				var doc = new HtmlDocument();
+				doc.LoadHtml(strRes);
 				var nome = doc.GetElementbyId("id_firstname").GetAttributeValue("value", "");
 				var cognome = doc.GetElementbyId("id_lastname").GetAttributeValue("value", "");
 				var email = doc.GetElementbyId("id_email").GetAttributeValue("value", "");
@@ -113,10 +133,14 @@ namespace LuissLoft
 		public string Password { get { return password; } set { password = value; this.RaisePropertyChanged(); } }
 
 		CookieContainer Cookies = new CookieContainer();
+		List<Cookie> cookies = new List<Cookie>();
+		List<string> rawCookies = new List<string>();
+
 
 		#region privateMethods
 		public async Task<HtmlDocument> GetPage(string url)
 		{
+			
 			HttpWebRequest request = (HttpWebRequest)WebRequest.Create(url);
 			request.Method = "GET";
 			Cookies= new CookieContainer();
@@ -126,7 +150,7 @@ namespace LuissLoft
 			var stream = response.GetResponseStream();
 
 			//When you get the response from the website, the cookies will be stored
-			//automatically in "_cookies".
+			//automatically in "Cookies".
 
 			using (var reader = new StreamReader(stream))
 			{
@@ -135,10 +159,38 @@ namespace LuissLoft
 				doc.LoadHtml(html);
 				return doc;
 			}
+
 		}
+
 		public async Task<HtmlDocument> PostPage(string url, Dictionary<string, string> pars)
 		{
-			HttpWebRequest request = (HttpWebRequest)WebRequest.Create(url);
+			
+			/*
+			cookies = new List<Cookie>();
+			rawCookies = new List<string>();
+			var ck = Cookies.GetCookies(new Uri("http://learn.luiss.it/user/edit.php"));
+			foreach (Cookie cookie in ck)
+			{
+				cookies.Add(cookie);
+				rawCookies.Add(string.Format("{0}={1}", cookie.Name, cookie.Value));
+			}
+
+			var handler = new NativeMessageHandler() { UseCookies = false};
+			var client = new HttpClient(handler);
+			client.DefaultRequestHeaders.TryAddWithoutValidation("Content-Type", "application/x-www-form-urlencoded");
+			client.DefaultRequestHeaders.Add("Cookie", string.Join("; ",rawCookies));
+
+			var content = new FormUrlEncodedContent(pars);
+			var result = await client.PostAsync(url, content);
+			//result.EnsureSuccessStatusCode();
+			var html = await result.Content.ReadAsStringAsync();
+			result.Content.c
+			var doc = new HtmlDocument();
+			doc.LoadHtml(html);
+			return doc;
+*/
+
+			HttpWebRequest request = WebRequest.CreateHttp(url);
 			request.Method = "POST";
 
 			string postData = "";
@@ -158,8 +210,10 @@ namespace LuissLoft
 			//request.Headers.c = data.Length;
 
 			Stream requestStream = await request.GetRequestStreamAsync();
-			requestStream.Write(data, 0, data.Length);
+			await requestStream.WriteAsync(data, 0, data.Length);
 			requestStream.Dispose();
+			System.Threading.Thread.Sleep(5000);
+
 
 			HttpWebResponse response = (HttpWebResponse)await request.GetResponseAsync();
 			var stream = response.GetResponseStream();
@@ -169,11 +223,12 @@ namespace LuissLoft
 
 			using (var reader = new StreamReader(stream))
 			{
-				string html = reader.ReadToEnd();
+				string html = await reader.ReadToEndAsync();//ReadToEnd();
 				var doc = new HtmlDocument();
 				doc.LoadHtml(html);
 				return doc;
 			}
+
 		}
 		#endregion
 	}
