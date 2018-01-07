@@ -16,6 +16,11 @@ Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "CommonClasses", "CommonClas
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tester", "Tester\Tester.csproj", "{9FA896BD-ACBE-4B34-A18C-16D8A655D2EE}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{37327557-400A-4C2B-B473-932996DA4905}"
+	ProjectSection(SolutionItems) = preProject
+		NuGet.config = NuGet.config
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
 		CommonClasses\CommonClasses.projitems*{b929c80d-8180-4062-a4ad-e47a11debf24}*SharedItemsImports = 4
